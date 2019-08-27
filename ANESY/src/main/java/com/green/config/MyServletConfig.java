@@ -68,8 +68,8 @@ public class MyServletConfig implements WebMvcConfigurer {
 	public DataSource dataSource() {
 		DriverManagerDataSource datasource = new DriverManagerDataSource();
 		datasource.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		datasource.setUrl("jdbc:sqlserver://localhost:1433;databaseName=user_management");
-		datasource.setUsername("root");
+		datasource.setUrl("jdbc:sqlserver://localhost:1433;databaseName=anesy");
+		datasource.setUsername("sa");
 		datasource.setPassword("root");
 		
 		return datasource;

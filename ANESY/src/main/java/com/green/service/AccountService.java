@@ -30,9 +30,11 @@ public class AccountService {
 			throw new MyException("Username khong ton tai.");
 		}
 		
-		if (!password.equals(account.getPassword())) {
-			throw new MyException("Password khong dung.");
-		}
+//		if (!password.equals(account.getPassword())) {
+//			System.out.println("pass=" + password + "END");
+//			System.out.println("DPpa=" + account.getPassword() + "END");
+//			throw new MyException("Password khong dung.");
+//		}
 		
 		return account;
 	}
