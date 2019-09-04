@@ -40,7 +40,7 @@ public class MyServletConfig implements WebMvcConfigurer {
 	public InternalResourceViewResolver viewResolver() {
 		InternalResourceViewResolver vResolver = new InternalResourceViewResolver();
 		vResolver.setViewClass(JstlView.class);
-		vResolver.setPrefix("/WEB-INF/");
+		vResolver.setPrefix("/WEB-INF/view/");
 		vResolver.setSuffix(".jsp");
 		
 		return vResolver;

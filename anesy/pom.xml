@@ -81,6 +81,6 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<finalName>ANESY</finalName>
+		<finalName>anesy</finalName>
 	</build>
 </project>
