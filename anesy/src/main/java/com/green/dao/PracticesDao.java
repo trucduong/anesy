@@ -9,32 +9,32 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.green.entity.Account;
+import com.green.entity.Practices;
 
 @Repository
-public class AccountDao {
+public class PracticesDao {
 	@Autowired
 	private SessionFactory factory;
 	
-	public Account findById(int id) {
+	public Practices findById(int id) {
 		Session session = factory.openSession();		
-		Account account = session.find(Account.class, id);
+		Practices practices = session.find(Practices.class, id);
 		session.close();
-		return account;
+		return practices;
 	}
 	
-	public List<Account> findAll() {
+	public List<Practices> findAll() {
 		Session session = factory.openSession();
-		Query query = session.createQuery("from Account");
-		List<Account> accounts = query.getResultList();
+		Query query = session.createQuery("from Practices");
+		List<Practices> practicess = query.getResultList();
 		session.close();
-		return accounts;
+		return practicess;
 	}
 	
-	public boolean insert(Account account) {
+	public boolean insert(Practices practices) {
 		try {
 			Session session = factory.openSession();
-			session.save(account);
+			session.save(practices);
 			session.close();
 			return true;	
 		} catch (Exception e) {
@@ -42,10 +42,10 @@ public class AccountDao {
 		}
 	}
 	
-	public boolean update(int id, Account account) {
+	public boolean update(int id, Practices practices) {
 		try {
 			Session session = factory.openSession();
-			session.update(account);
+			session.update(practices);
 			session.close();
 			return true;	
 		} catch (Exception e) {
@@ -56,8 +56,8 @@ public class AccountDao {
 	public boolean delete(int id) {
 		try {
 			Session session = factory.openSession();
-			Account account = session.find(Account.class, id);
-			session.remove(account);
+			Practices practices = session.find(Practices.class, id);
+			session.remove(practices);
 			session.close();
 			return true;	
 		} catch (Exception e) {

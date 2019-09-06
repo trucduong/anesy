@@ -9,32 +9,32 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.green.entity.Account;
+import com.green.entity.CourseComment;
 
 @Repository
-public class AccountDao {
+public class CourseCommentDao {
 	@Autowired
 	private SessionFactory factory;
 	
-	public Account findById(int id) {
+	public CourseComment findById(int id) {
 		Session session = factory.openSession();		
-		Account account = session.find(Account.class, id);
+		CourseComment courseComment = session.find(CourseComment.class, id);
 		session.close();
-		return account;
+		return courseComment;
 	}
 	
-	public List<Account> findAll() {
+	public List<CourseComment> findAll() {
 		Session session = factory.openSession();
-		Query query = session.createQuery("from Account");
-		List<Account> accounts = query.getResultList();
+		Query query = session.createQuery("from CourseComment");
+		List<CourseComment> courseComments = query.getResultList();
 		session.close();
-		return accounts;
+		return courseComments;
 	}
 	
-	public boolean insert(Account account) {
+	public boolean insert(CourseComment courseComment) {
 		try {
 			Session session = factory.openSession();
-			session.save(account);
+			session.save(courseComment);
 			session.close();
 			return true;	
 		} catch (Exception e) {
@@ -42,10 +42,10 @@ public class AccountDao {
 		}
 	}
 	
-	public boolean update(int id, Account account) {
+	public boolean update(int id, CourseComment courseComment) {
 		try {
 			Session session = factory.openSession();
-			session.update(account);
+			session.update(courseComment);
 			session.close();
 			return true;	
 		} catch (Exception e) {
@@ -56,8 +56,8 @@ public class AccountDao {
 	public boolean delete(int id) {
 		try {
 			Session session = factory.openSession();
-			Account account = session.find(Account.class, id);
-			session.remove(account);
+			CourseComment courseComment = session.find(CourseComment.class, id);
+			session.remove(courseComment);
 			session.close();
 			return true;	
 		} catch (Exception e) {

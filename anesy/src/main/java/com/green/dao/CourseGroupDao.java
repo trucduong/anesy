@@ -9,32 +9,32 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.green.entity.Account;
+import com.green.entity.CourseGroup;
 
 @Repository
-public class AccountDao {
+public class CourseGroupDao {
 	@Autowired
 	private SessionFactory factory;
 	
-	public Account findById(int id) {
+	public CourseGroup findById(int id) {
 		Session session = factory.openSession();		
-		Account account = session.find(Account.class, id);
+		CourseGroup courseGroup = session.find(CourseGroup.class, id);
 		session.close();
-		return account;
+		return courseGroup;
 	}
 	
-	public List<Account> findAll() {
+	public List<CourseGroup> findAll() {
 		Session session = factory.openSession();
-		Query query = session.createQuery("from Account");
-		List<Account> accounts = query.getResultList();
+		Query query = session.createQuery("from CourseGroup");
+		List<CourseGroup> courseGroups = query.getResultList();
 		session.close();
-		return accounts;
+		return courseGroups;
 	}
 	
-	public boolean insert(Account account) {
+	public boolean insert(CourseGroup courseGroup) {
 		try {
 			Session session = factory.openSession();
-			session.save(account);
+			session.save(courseGroup);
 			session.close();
 			return true;	
 		} catch (Exception e) {
@@ -42,10 +42,10 @@ public class AccountDao {
 		}
 	}
 	
-	public boolean update(int id, Account account) {
+	public boolean update(int id, CourseGroup courseGroup) {
 		try {
 			Session session = factory.openSession();
-			session.update(account);
+			session.update(courseGroup);
 			session.close();
 			return true;	
 		} catch (Exception e) {
@@ -56,8 +56,8 @@ public class AccountDao {
 	public boolean delete(int id) {
 		try {
 			Session session = factory.openSession();
-			Account account = session.find(Account.class, id);
-			session.remove(account);
+			CourseGroup courseGroup = session.find(CourseGroup.class, id);
+			session.remove(courseGroup);
 			session.close();
 			return true;	
 		} catch (Exception e) {
