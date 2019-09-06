@@ -20,7 +20,7 @@ public class PracticesFiles {
 	@Column(name = "file_name")
 	private String fileName;
 	
-	@Column(name="order")
+	@Column(name="_order")
 	private int order;
 
 	public int getId() {

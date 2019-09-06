@@ -58,6 +58,7 @@ public class MyServletConfig implements WebMvcConfigurer {
 		prop.setProperty("hibernate.current_session_context_class", "thread");
 		prop.setProperty("hibernate.show_sql", "true");
 		prop.setProperty("hibernate.dialect", "org.hibernate.dialect.SQLServerDialect");
+		prop.setProperty("hibernate.hbm2ddl.auto", "update");
 		sessionFactory.setHibernateProperties(prop);
 		
 		return sessionFactory;
@@ -69,7 +70,7 @@ public class MyServletConfig implements WebMvcConfigurer {
 		DriverManagerDataSource datasource = new DriverManagerDataSource();
 		datasource.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		datasource.setUrl("jdbc:sqlserver://localhost:1433;databaseName=anesy");
-		datasource.setUsername("sa");
+		datasource.setUsername("root");
 		datasource.setPassword("root");
 		
 		return datasource;
