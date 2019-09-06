@@ -23,7 +23,7 @@ public class Lesson {
 	@Column(name="course_id")
 	private int courseId;
 	
-	@Column(name="order")
+	@Column(name="_order")
 	private int order;
 	
 	@Column(name="author")
