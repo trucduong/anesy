@@ -1,9 +1,11 @@
 package com.green.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -14,8 +16,8 @@ public class PracticesResultFile {
 	@Column(name="id")
 	private int id;
 	
-	@Column(name="practices_result_id")
-	private int practicesResultId;
+	@ManyToOne(cascade = CascadeType.ALL)
+	private PracticesResult practicesResultId;
 	
 	@Column(name = "file_name")
 	private String fileName;
@@ -28,11 +30,11 @@ public class PracticesResultFile {
 		this.id = id;
 	}
 
-	public int getPracticesResultId() {
+	public PracticesResult getPracticesResultId() {
 		return practicesResultId;
 	}
 
-	public void setPracticesResultId(int practicesResultId) {
+	public void setPracticesResultId(PracticesResult practicesResultId) {
 		this.practicesResultId = practicesResultId;
 	}
 

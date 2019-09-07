@@ -2,14 +2,16 @@ package com.green.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ourse")
+@Table(name = "course")
 public class Course {
 	@Id
 	@GeneratedValue
@@ -34,8 +36,8 @@ public class Course {
 	@Column(name = "created_at")
 	private Date createdAt;
 	
-	@Column(name="group_id")
-	private int groupId;
+	@ManyToOne(cascade = CascadeType.ALL)
+	private CourseGroup groupId;
 
 	public int getId() {
 		return id;
@@ -93,11 +95,11 @@ public class Course {
 		this.createdAt = createdAt;
 	}
 
-	public int getGroupId() {
+	public CourseGroup getGroupId() {
 		return groupId;
 	}
 
-	public void setGroupId(int groupId) {
+	public void setGroupId(CourseGroup groupId) {
 		this.groupId = groupId;
 	}
 }

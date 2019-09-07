@@ -1,9 +1,11 @@
 package com.green.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,8 +22,8 @@ public class Lesson {
 	@Column(name = "description")
 	private String description;
 	
-	@Column(name="course_id")
-	private int courseId;
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Course courseId;
 	
 	@Column(name="order")
 	private int order;
@@ -53,11 +55,11 @@ public class Lesson {
 		this.description = description;
 	}
 
-	public int getCourseId() {
+	public Course getCourseId() {
 		return courseId;
 	}
 
-	public void setCourseId(int courseId) {
+	public void setCourseId(Course courseId) {
 		this.courseId = courseId;
 	}
 

@@ -2,17 +2,19 @@ package com.green.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "profile")
 public class Profile {
 	@Id
-	@Column(name="account_id")
-	private int accountId;
+	@OneToOne(cascade = CascadeType.ALL)
+	private Account accountId;
 	
 	@Column(name="user_type")
 	private int userType;
@@ -38,11 +40,11 @@ public class Profile {
 	@Column(name = "certificates")
 	private String certificates;
 
-	public int getAccountId() {
+	public Account getAccountId() {
 		return accountId;
 	}
 
-	public void setAccountId(int accountId) {
+	public void setAccountId(Account accountId) {
 		this.accountId = accountId;
 	}
 

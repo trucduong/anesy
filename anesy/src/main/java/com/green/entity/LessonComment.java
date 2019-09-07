@@ -2,10 +2,12 @@ package com.green.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,8 +18,8 @@ public class LessonComment {
 	@Column(name="id")
 	private int id;
 	
-	@Column(name="course_id")
-	private int courseId;
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Lesson lessonId;
 	
 	@Column(name="author")
 	private int author;
@@ -36,12 +38,12 @@ public class LessonComment {
 		this.id = id;
 	}
 
-	public int getCourseId() {
-		return courseId;
+	public Lesson getLessonId() {
+		return lessonId;
 	}
 
-	public void setCourseId(int courseId) {
-		this.courseId = courseId;
+	public void setCourseId(Lesson lessonId) {
+		this.lessonId = lessonId;
 	}
 
 	public int getAuthor() {
