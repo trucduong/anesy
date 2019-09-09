@@ -16,6 +16,13 @@ public class AccountDao {
 	@Autowired
 	private SessionFactory factory;
 	
+	public Account findByEmail(String email) {
+		Session session = factory.openSession();
+		Account account = session.find(Account.class, email);
+		session.close();
+		return account;
+	}
+	
 	public Account findById(int id) {
 		Session session = factory.openSession();		
 		Account account = session.find(Account.class, id);

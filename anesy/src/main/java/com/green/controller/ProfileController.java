@@ -1,22 +1,23 @@
 package com.green.controller;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.green.entity.Account;
-
 @Controller
-@RequestMapping("/")
-public class IndexController {
-	
+@RequestMapping("/profile")
+public class ProfileController {
+
 	@GetMapping()
-	public String index(Model model) {
-		return "home";
+	public String profile() {
+		return "profile";
 	}
+	
+	@PostMapping("image")
+	public String image() {
+		return "";
+	}
+	
 	
 }
