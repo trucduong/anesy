@@ -24,7 +24,7 @@ public class AccountService {
 	}
 	
 	public Account login(int id, String password) throws Exception {
-		Account account = accountDao.findById(id);
+		Account account = accountDao.find(id);
 		
 		if (account == null) {
 			throw new MyException("Username khong ton tai.");
@@ -40,18 +40,18 @@ public class AccountService {
 	}
 	
 	public Account findById(int id) {
-		return accountDao.findById(id);
+		return accountDao.find(id);
 	}
 	
-	public boolean insert(Account account) {
-		return accountDao.insert(account);
+	public void insert(Account account) {
+		accountDao.save(account);
 	}
 
-	public boolean update(int id, Account account) {
-		return accountDao.update(id, account);
+	public void update(int id, Account account) {
+		accountDao.update(account);
 	}
 	
-	public boolean delete(int id) {
-		return accountDao.delete(id);
+	public void delete(int id) {
+		accountDao.deleteById(id);
 	}
 }

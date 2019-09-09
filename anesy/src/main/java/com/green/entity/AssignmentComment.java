@@ -9,22 +9,22 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "practices_result")
-public class PracticesResult {
+@Table(name = "assignment_comment")
+public class AssignmentComment {
 	@Id
 	@GeneratedValue
-	@Column(name="id")
+	@Column(name = "id")
 	private int id;
-	
-	@Column(name="practices_id")
-	private int practicesId;
-	
-	@Column(name="author")
+
+	@Column(name = "assignment_id")
+	private int assignmentId;
+
+	@Column(name = "author")
 	private int author;
-	
-	@Column(name = "content")
+
+	@Column(name = "content", columnDefinition = "nvarchar(1000)")
 	private String content;
-	
+
 	@Column(name = "created_at")
 	private Date createdAt;
 
@@ -36,12 +36,12 @@ public class PracticesResult {
 		this.id = id;
 	}
 
-	public int getPracticesId() {
-		return practicesId;
+	public int getAssignmentId() {
+		return assignmentId;
 	}
 
-	public void setPracticesId(int practicesId) {
-		this.practicesId = practicesId;
+	public void setAssignmentId(int assignmentId) {
+		this.assignmentId = assignmentId;
 	}
 
 	public int getAuthor() {
@@ -67,5 +67,5 @@ public class PracticesResult {
 	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
 	}
-	
+
 }
