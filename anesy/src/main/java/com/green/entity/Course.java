@@ -34,6 +34,9 @@ public class Course {
 	@Column(name = "tags", columnDefinition = "nvarchar(500)")
 	private String tags;
 
+	@Column(name = "category_id")
+	private int categoryId;
+
 	public int getId() {
 		return id;
 	}
@@ -88,6 +91,14 @@ public class Course {
 
 	public void setTags(String tags) {
 		this.tags = tags;
+	}
+
+	public int getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
 	}
 
 }
