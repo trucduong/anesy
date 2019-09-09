@@ -11,15 +11,23 @@
 
 </head>
 <body>
-	<jsp:include page="../component/header.jsp"></jsp:include>
-	
-	<div class="container">
-	content
-	</div>
-	
-	<jsp:include page="../component/footer.jsp"></jsp:include>
-	
-	<%-- import js files --%>
-	<jsp:include page="../component/common-js.jsp"></jsp:include>
+<jsp:include page="../component/header.jsp"></jsp:include>
+
+<div class="container">
+<div class="row">
+<div class="col-md-3"><jsp:include page="../component/left.jsp"></jsp:include></div>
+<div class="col-md-6">
+
+<%-- input your content here --%>
+
+</div>
+<div class="col-md-3"><jsp:include page="../component/right.jsp"></jsp:include></div>
+</div>
+</div>
+
+<jsp:include page="../component/footer.jsp"></jsp:include>
+
+<%-- import js files --%>
+<jsp:include page="../component/common-js.jsp"></jsp:include>
 </body>
 </html>
