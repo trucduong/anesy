@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "subjects")
-public class Lesson {
+public class Subjects {
 	@Id
 	@GeneratedValue
 	@Column(name = "id")
@@ -22,17 +22,20 @@ public class Lesson {
 	@Column(name = "description", columnDefinition = "nvarchar(1000)")
 	private String description;
 
-	@Column(name = "subjects_id")
-	private int subjectsId;
-	
 	@Column(name = "author")
 	private int author;
+
+	@Column(name = "like_number")
+	private int like;
+
+	@Column(name = "unlike_number")
+	private int unlike;
 
 	@Column(name = "created_at")
 	private Date createdAt;
 
-	@Column(name = "seq")
-	private int seq;
+	@Column(name = "tags", columnDefinition = "nvarchar(500)")
+	private String tags;
 
 	public int getId() {
 		return id;
@@ -58,20 +61,28 @@ public class Lesson {
 		this.description = description;
 	}
 
-	public int getSubjectsId() {
-		return subjectsId;
-	}
-
-	public void setSubjectsId(int subjectsId) {
-		this.subjectsId = subjectsId;
-	}
-
 	public int getAuthor() {
 		return author;
 	}
 
 	public void setAuthor(int author) {
 		this.author = author;
+	}
+
+	public int getLike() {
+		return like;
+	}
+
+	public void setLike(int like) {
+		this.like = like;
+	}
+
+	public int getUnlike() {
+		return unlike;
+	}
+
+	public void setUnlike(int unlike) {
+		this.unlike = unlike;
 	}
 
 	public Date getCreatedAt() {
@@ -82,12 +93,12 @@ public class Lesson {
 		this.createdAt = createdAt;
 	}
 
-	public int getSeq() {
-		return seq;
+	public String getTags() {
+		return tags;
 	}
 
-	public void setSeq(int seq) {
-		this.seq = seq;
+	public void setTags(String tags) {
+		this.tags = tags;
 	}
 
 }

@@ -13,29 +13,32 @@ import javax.persistence.Table;
 public class Course {
 	@Id
 	@GeneratedValue
-	@Column(name="id")
+	@Column(name = "id")
 	private int id;
-	
-	@Column(name = "name")
+
+	@Column(name = "name", columnDefinition = "nvarchar(500)")
 	private String name;
-	
-	@Column(name = "description")
+
+	@Column(name = "description", columnDefinition = "nvarchar(1000)")
 	private String description;
 
-	@Column(name="author")
+	@Column(name = "author")
 	private int author;
-	
-	@Column(name="price")
+
+	@Column(name = "price")
 	private int price;
-	
-	@Column(name="rank")
-	private int rank;
-	
+
+	@Column(name = "like_number")
+	private int like;
+
+	@Column(name = "unlike_number")
+	private int unlike;
+
 	@Column(name = "created_at")
 	private Date createdAt;
-	
-	@Column(name="group_id")
-	private int groupId;
+
+	@Column(name = "tags", columnDefinition = "nvarchar(500)")
+	private String tags;
 
 	public int getId() {
 		return id;
@@ -77,12 +80,20 @@ public class Course {
 		this.price = price;
 	}
 
-	public int getRank() {
-		return rank;
+	public int getLike() {
+		return like;
 	}
 
-	public void setRank(int rank) {
-		this.rank = rank;
+	public void setLike(int like) {
+		this.like = like;
+	}
+
+	public int getUnlike() {
+		return unlike;
+	}
+
+	public void setUnlike(int unlike) {
+		this.unlike = unlike;
 	}
 
 	public Date getCreatedAt() {
@@ -93,11 +104,12 @@ public class Course {
 		this.createdAt = createdAt;
 	}
 
-	public int getGroupId() {
-		return groupId;
+	public String getTags() {
+		return tags;
 	}
 
-	public void setGroupId(int groupId) {
-		this.groupId = groupId;
+	public void setTags(String tags) {
+		this.tags = tags;
 	}
+
 }

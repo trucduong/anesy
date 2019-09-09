@@ -13,18 +13,18 @@ import javax.persistence.Table;
 public class LessonComment {
 	@Id
 	@GeneratedValue
-	@Column(name="id")
+	@Column(name = "id")
 	private int id;
-	
-	@Column(name="course_id")
-	private int courseId;
-	
-	@Column(name="author")
+
+	@Column(name = "lesson_id")
+	private int lessonId;
+
+	@Column(name = "author")
 	private int author;
-	
-	@Column(name = "content")
+
+	@Column(name = "content", columnDefinition = "nvarchar(1000)")
 	private String content;
-	
+
 	@Column(name = "created_at")
 	private Date createdAt;
 
@@ -36,12 +36,12 @@ public class LessonComment {
 		this.id = id;
 	}
 
-	public int getCourseId() {
-		return courseId;
+	public int getLessonId() {
+		return lessonId;
 	}
 
-	public void setCourseId(int courseId) {
-		this.courseId = courseId;
+	public void setLessonId(int lessonId) {
+		this.lessonId = lessonId;
 	}
 
 	public int getAuthor() {
@@ -67,4 +67,5 @@ public class LessonComment {
 	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
 	}
+
 }
