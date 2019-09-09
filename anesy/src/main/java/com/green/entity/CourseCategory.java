@@ -1,7 +1,5 @@
 package com.green.entity;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,8 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "course")
-public class Course {
+@Table(name = "course_category")
+public class CourseCategory {
 	@Id
 	@GeneratedValue
 	@Column(name = "id")
@@ -21,18 +19,6 @@ public class Course {
 
 	@Column(name = "description", columnDefinition = "nvarchar(1000)")
 	private String description;
-
-	@Column(name = "author")
-	private int author;
-
-	@Column(name = "price")
-	private int price;
-
-	@Column(name = "created_at")
-	private Date createdAt;
-
-	@Column(name = "tags", columnDefinition = "nvarchar(500)")
-	private String tags;
 
 	public int getId() {
 		return id;
@@ -56,38 +42,6 @@ public class Course {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public int getAuthor() {
-		return author;
-	}
-
-	public void setAuthor(int author) {
-		this.author = author;
-	}
-
-	public int getPrice() {
-		return price;
-	}
-
-	public void setPrice(int price) {
-		this.price = price;
-	}
-
-	public Date getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	public String getTags() {
-		return tags;
-	}
-
-	public void setTags(String tags) {
-		this.tags = tags;
 	}
 
 }
