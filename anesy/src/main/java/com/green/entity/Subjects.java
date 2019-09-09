@@ -2,17 +2,15 @@ package com.green.entity;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "course")
-public class Course {
+@Table(name = "subjects")
+public class Subjects {
 	@Id
 	@GeneratedValue
 	@Column(name = "id")
@@ -27,9 +25,6 @@ public class Course {
 	@Column(name = "author")
 	private int author;
 
-	@Column(name = "price")
-	private int price;
-
 	@Column(name = "like_number")
 	private int like;
 
@@ -38,15 +33,9 @@ public class Course {
 
 	@Column(name = "created_at")
 	private Date createdAt;
-<<<<<<< HEAD
-	
-	@ManyToOne(cascade = CascadeType.ALL)
-	private CourseGroup groupId;
-=======
 
 	@Column(name = "tags", columnDefinition = "nvarchar(500)")
 	private String tags;
->>>>>>> refs/remotes/origin/dev
 
 	public int getId() {
 		return id;
@@ -80,14 +69,6 @@ public class Course {
 		this.author = author;
 	}
 
-	public int getPrice() {
-		return price;
-	}
-
-	public void setPrice(int price) {
-		this.price = price;
-	}
-
 	public int getLike() {
 		return like;
 	}
@@ -112,22 +93,12 @@ public class Course {
 		this.createdAt = createdAt;
 	}
 
-<<<<<<< HEAD
-	public CourseGroup getGroupId() {
-		return groupId;
-=======
 	public String getTags() {
 		return tags;
->>>>>>> refs/remotes/origin/dev
 	}
 
-<<<<<<< HEAD
-	public void setGroupId(CourseGroup groupId) {
-		this.groupId = groupId;
-=======
 	public void setTags(String tags) {
 		this.tags = tags;
->>>>>>> refs/remotes/origin/dev
 	}
 
 }

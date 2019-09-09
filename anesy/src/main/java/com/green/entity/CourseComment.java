@@ -15,18 +15,26 @@ import javax.persistence.Table;
 public class CourseComment {
 	@Id
 	@GeneratedValue
-	@Column(name="id")
+	@Column(name = "id")
 	private int id;
+<<<<<<< HEAD
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Course courseId;
 	
 	@Column(name="author")
+=======
+
+	@Column(name = "course_id")
+	private int courseId;
+
+	@Column(name = "author")
+>>>>>>> refs/remotes/origin/dev
 	private int author;
-	
-	@Column(name = "content")
+
+	@Column(name = "content", columnDefinition = "nvarchar(1000)")
 	private String content;
-	
+
 	@Column(name = "created_at")
 	private Date createdAt;
 
@@ -69,5 +77,5 @@ public class CourseComment {
 	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
 	}
-	
+
 }

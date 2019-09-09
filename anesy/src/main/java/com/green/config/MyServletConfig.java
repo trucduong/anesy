@@ -57,7 +57,8 @@ public class MyServletConfig implements WebMvcConfigurer {
 		prop.setProperty("hibernate.id.new_generator_mappings", "false");
 		prop.setProperty("hibernate.current_session_context_class", "thread");
 		prop.setProperty("hibernate.show_sql", "true");
-		prop.setProperty("hibernate.dialect", "org.hibernate.dialect.SQLServerDialect");
+		prop.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL8Dialect");
+		prop.setProperty("hibernate.hbm2ddl.auto", "update");
 		sessionFactory.setHibernateProperties(prop);
 		
 		return sessionFactory;
@@ -67,10 +68,10 @@ public class MyServletConfig implements WebMvcConfigurer {
 	@Qualifier("dataSource")
 	public DataSource dataSource() {
 		DriverManagerDataSource datasource = new DriverManagerDataSource();
-		datasource.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		datasource.setUrl("jdbc:sqlserver://localhost:1433;databaseName=anesy");
-		datasource.setUsername("sa");
-		datasource.setPassword("root");
+		datasource.setDriverClassName("com.mysql.jdbc.Driver");
+		datasource.setUrl("jdbc:mysql://127.0.0.1:3306/anesy");
+		datasource.setUsername("root");
+		datasource.setPassword("dat3142308");
 		
 		return datasource;
 	}

@@ -2,34 +2,24 @@ package com.green.entity;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "lesson_comment")
-public class LessonComment {
+@Table(name = "assignment_comment")
+public class AssignmentComment {
 	@Id
 	@GeneratedValue
 	@Column(name = "id")
 	private int id;
-<<<<<<< HEAD
-	
-	@ManyToOne(cascade = CascadeType.ALL)
-	private Lesson lessonId;
-	
-	@Column(name="author")
-=======
 
-	@Column(name = "lesson_id")
-	private int lessonId;
+	@Column(name = "assignment_id")
+	private int assignmentId;
 
 	@Column(name = "author")
->>>>>>> refs/remotes/origin/dev
 	private int author;
 
 	@Column(name = "content", columnDefinition = "nvarchar(1000)")
@@ -46,20 +36,12 @@ public class LessonComment {
 		this.id = id;
 	}
 
-<<<<<<< HEAD
-	public Lesson getLessonId() {
-=======
-	public int getLessonId() {
->>>>>>> refs/remotes/origin/dev
-		return lessonId;
+	public int getAssignmentId() {
+		return assignmentId;
 	}
 
-<<<<<<< HEAD
-	public void setCourseId(Lesson lessonId) {
-=======
-	public void setLessonId(int lessonId) {
->>>>>>> refs/remotes/origin/dev
-		this.lessonId = lessonId;
+	public void setAssignmentId(int assignmentId) {
+		this.assignmentId = assignmentId;
 	}
 
 	public int getAuthor() {

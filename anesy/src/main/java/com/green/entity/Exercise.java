@@ -7,18 +7,21 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "course_group")
-public class CourseGroup {
+@Table(name = "exercise")
+public class Exercise {
 	@Id
 	@GeneratedValue
-	@Column(name="id")
+	@Column(name = "id")
 	private int id;
-	
-	@Column(name = "name")
+
+	@Column(name = "name", columnDefinition = "nvarchar(500)")
 	private String name;
-	
-	@Column(name = "description")
+
+	@Column(name = "description", columnDefinition = "nvarchar(1000)")
 	private String description;
+
+	@Column(name = "subjects_id")
+	private int subjectsId;
 
 	public int getId() {
 		return id;
@@ -43,4 +46,13 @@ public class CourseGroup {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	public int getSubjectsId() {
+		return subjectsId;
+	}
+
+	public void setSubjectsId(int subjectsId) {
+		this.subjectsId = subjectsId;
+	}
+
 }
