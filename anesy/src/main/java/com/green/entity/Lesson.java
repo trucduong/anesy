@@ -7,9 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
-@Table(name = "subjects")
+@Table(name = "lesson")
 public class Lesson {
 	@Id
 	@GeneratedValue
@@ -24,6 +25,12 @@ public class Lesson {
 
 	@Column(name = "subjects_id")
 	private int subjectsId;
+	
+	@Transient
+	private Subjects subjects;
+	
+	@Transient
+	private String subjectName;
 	
 	@Column(name = "author")
 	private int author;
@@ -90,4 +97,21 @@ public class Lesson {
 		this.seq = seq;
 	}
 
+	public Subjects getSubjects() {
+		return subjects;
+	}
+
+	public void setSubjects(Subjects subjects) {
+		this.subjects = subjects;
+	}
+
+	public String getSubjectName() {
+		return subjectName;
+	}
+
+	public void setSubjectName(String subjectName) {
+		this.subjectName = subjectName;
+	}
+
+	
 }

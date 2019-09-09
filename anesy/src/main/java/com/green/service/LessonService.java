@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.green.dao.LessonDao;
 import com.green.entity.Lesson;
+import com.green.entity.Lesson;
 import com.green.exception.MyException;
 
 @Service
@@ -20,18 +21,23 @@ public class LessonService {
 	}
 	
 	public Lesson findById(int id) {
-		return lessonDao.findById(id);
+		return lessonDao.find(id);
 	}
 	
-	public boolean insert(Lesson account) {
-		return lessonDao.insert(account);
+	public void insert(Lesson lesson) {
+		lessonDao.save(lesson);
 	}
 
-	public boolean update(int id, Lesson account) {
-		return lessonDao.update(id, account);
+	public void update(int id, Lesson lesson) {
+		lessonDao.update(lesson);
 	}
 	
-	public boolean delete(int id) {
-		return lessonDao.delete(id);
+	public void delete(int id) {
+		lessonDao.deleteById(id);
+	}
+	
+	public List<Lesson> findAllWithSubjects() {
+		
+		return lessonDao.findAllWithSubjects();
 	}
 }
