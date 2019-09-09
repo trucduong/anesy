@@ -9,32 +9,32 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.green.entity.Account;
+import com.green.entity.Course;
 
 @Repository
-public class AccountDao {
+public class CourseDao {
 	@Autowired
 	private SessionFactory factory;
 	
-	public Account findById(int id) {
+	public Course findById(int id) {
 		Session session = factory.openSession();		
-		Account account = session.find(Account.class, id);
+		Course course = session.find(Course.class, id);
 		session.close();
-		return account;
+		return course;
 	}
 	
-	public List<Account> findAll() {
+	public List<Course> findAll() {
 		Session session = factory.openSession();
-		Query query = session.createQuery("from Account");
-		List<Account> accounts = query.getResultList();
+		Query query = session.createQuery("from Course");
+		List<Course> courses = query.getResultList();
 		session.close();
-		return accounts;
+		return courses;
 	}
 	
-	public boolean insert(Account account) {
+	public boolean insert(Course course) {
 		try {
 			Session session = factory.openSession();
-			session.save(account);
+			session.save(course);
 			session.close();
 			return true;	
 		} catch (Exception e) {
@@ -42,10 +42,10 @@ public class AccountDao {
 		}
 	}
 	
-	public boolean update(int id, Account account) {
+	public boolean update(int id, Course course) {
 		try {
 			Session session = factory.openSession();
-			session.update(account);
+			session.update(course);
 			session.close();
 			return true;	
 		} catch (Exception e) {
@@ -56,8 +56,8 @@ public class AccountDao {
 	public boolean delete(int id) {
 		try {
 			Session session = factory.openSession();
-			Account account = session.find(Account.class, id);
-			session.remove(account);
+			Course course = session.find(Course.class, id);
+			session.remove(course);
 			session.close();
 			return true;	
 		} catch (Exception e) {

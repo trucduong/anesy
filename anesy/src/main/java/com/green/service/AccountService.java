@@ -23,8 +23,8 @@ public class AccountService {
 		return accountDao.findAll();
 	}
 	
-	public Account login(String username, String password) throws Exception {
-		Account account = accountDao.findByUsername(username);
+	public Account login(int id, String password) throws Exception {
+		Account account = accountDao.findById(id);
 		
 		if (account == null) {
 			throw new MyException("Username khong ton tai.");
@@ -39,19 +39,19 @@ public class AccountService {
 		return account;
 	}
 	
-	public Account findByUsername(String username) {
-		return accountDao.findByUsername(username);
+	public Account findById(int id) {
+		return accountDao.findById(id);
 	}
 	
 	public boolean insert(Account account) {
 		return accountDao.insert(account);
 	}
 
-	public boolean update(String username, Account account) {
-		return accountDao.update(username, account);
+	public boolean update(int id, Account account) {
+		return accountDao.update(id, account);
 	}
 	
-	public boolean delete(String username) {
-		return accountDao.delete(username);
+	public boolean delete(int id) {
+		return accountDao.delete(id);
 	}
 }

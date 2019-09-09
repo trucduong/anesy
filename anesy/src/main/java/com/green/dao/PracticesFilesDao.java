@@ -9,32 +9,32 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.green.entity.Account;
+import com.green.entity.PracticesFiles;
 
 @Repository
-public class AccountDao {
+public class PracticesFilesDao {
 	@Autowired
 	private SessionFactory factory;
 	
-	public Account findById(int id) {
+	public PracticesFiles findById(int id) {
 		Session session = factory.openSession();		
-		Account account = session.find(Account.class, id);
+		PracticesFiles practicesFiles = session.find(PracticesFiles.class, id);
 		session.close();
-		return account;
+		return practicesFiles;
 	}
 	
-	public List<Account> findAll() {
+	public List<PracticesFiles> findAll() {
 		Session session = factory.openSession();
-		Query query = session.createQuery("from Account");
-		List<Account> accounts = query.getResultList();
+		Query query = session.createQuery("from PracticesFiles");
+		List<PracticesFiles> practicesFiless = query.getResultList();
 		session.close();
-		return accounts;
+		return practicesFiless;
 	}
 	
-	public boolean insert(Account account) {
+	public boolean insert(PracticesFiles practicesFiles) {
 		try {
 			Session session = factory.openSession();
-			session.save(account);
+			session.save(practicesFiles);
 			session.close();
 			return true;	
 		} catch (Exception e) {
@@ -42,10 +42,10 @@ public class AccountDao {
 		}
 	}
 	
-	public boolean update(int id, Account account) {
+	public boolean update(int id, PracticesFiles practicesFiles) {
 		try {
 			Session session = factory.openSession();
-			session.update(account);
+			session.update(practicesFiles);
 			session.close();
 			return true;	
 		} catch (Exception e) {
@@ -56,8 +56,8 @@ public class AccountDao {
 	public boolean delete(int id) {
 		try {
 			Session session = factory.openSession();
-			Account account = session.find(Account.class, id);
-			session.remove(account);
+			PracticesFiles practicesFiles = session.find(PracticesFiles.class, id);
+			session.remove(practicesFiles);
 			session.close();
 			return true;	
 		} catch (Exception e) {
