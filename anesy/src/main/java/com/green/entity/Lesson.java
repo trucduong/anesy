@@ -12,7 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "subjects")
+@Table(name = "lesson")
 public class Lesson {
 	@Id
 	@GeneratedValue
@@ -25,10 +25,9 @@ public class Lesson {
 	@Column(name = "description", columnDefinition = "nvarchar(1000)")
 	private String description;
 
-	// TODO: mapping
 	@ManyToOne(cascade=CascadeType.DETACH)
 	@JoinColumn(name = "subjects_id")
-	private Subjects subjectsId;
+	private Subjects subjects;
 	
 	@Column(name = "author")
 	private int author;
@@ -63,15 +62,6 @@ public class Lesson {
 		this.description = description;
 	}
 
-	
-	public Subjects getSubjectsId() {
-		return subjectsId;
-	}
-
-	public void setSubjectsId(Subjects subjectsId) {
-		this.subjectsId = subjectsId;
-	}
-
 	public int getAuthor() {
 		return author;
 	}
@@ -96,4 +86,13 @@ public class Lesson {
 		this.seq = seq;
 	}
 
+	public Subjects getSubjects() {
+		return subjects;
+	}
+
+	public void setSubjects(Subjects subjects) {
+		this.subjects = subjects;
+	}
+
+	
 }
