@@ -16,6 +16,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
+import com.green.dao.BaseDao;
+
 
 /**
  * @ComponentScan("com.green")
@@ -75,5 +77,6 @@ public class MyServletConfig implements WebMvcConfigurer {
 		
 		return datasource;
 	}
+	
 
 }
