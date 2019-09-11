@@ -1,9 +1,12 @@
 package com.green.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,8 +23,10 @@ public class Exercise {
 	@Column(name = "description", columnDefinition = "nvarchar(1000)")
 	private String description;
 
-	@Column(name = "subjects_id")
-	private int subjectsId;
+	// TODO: mapping
+	@ManyToOne(cascade=CascadeType.DETACH)
+	@JoinColumn(name = "subjects_id")
+	private Subjects subjectsId;
 
 	public int getId() {
 		return id;
@@ -47,12 +52,13 @@ public class Exercise {
 		this.description = description;
 	}
 
-	public int getSubjectsId() {
+	public Subjects getSubjectsId() {
 		return subjectsId;
 	}
 
-	public void setSubjectsId(int subjectsId) {
+	public void setSubjectsId(Subjects subjectsId) {
 		this.subjectsId = subjectsId;
 	}
 
+	
 }
