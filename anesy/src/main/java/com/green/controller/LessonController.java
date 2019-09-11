@@ -28,8 +28,7 @@ public class LessonController {
 	
 	@RequestMapping("/lesson-list")
 	public String index(Model model) {
-		List<Lesson> lessonList = lessonService.findAllWithSubjects();
-		
+		List<Lesson> lessonList = lessonService.findAll();
 		
 		model.addAttribute("lesson_list", lessonList);
 		

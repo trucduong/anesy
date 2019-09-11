@@ -19,7 +19,7 @@ public class LessonDao extends BaseDao<Lesson, Integer> {
 		return Lesson.class;
 	}
 	
-	public List<Lesson> findAllWithSubjects() {
+	/*public List<Lesson> findAllWithSubjects() {
 		List<Lesson> lessons = new ArrayList<>();
 		
 		Session session = getFactory().openSession();
@@ -34,5 +34,5 @@ public class LessonDao extends BaseDao<Lesson, Integer> {
 		}
 		
 		return session.createQuery(hql).getResultList();
-	}
+	}*/
 }
