@@ -13,7 +13,7 @@
 <body>
 	<jsp:include page="../component/header.jsp"></jsp:include>
 	
-	<div class="container">
+	<div class="page-container">
 	content
 	</div>
 	
