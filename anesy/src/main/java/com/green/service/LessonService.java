@@ -1,5 +1,6 @@
 package com.green.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class LessonService {
 		lessonDao.save(lesson);
 	}
 
-	public void update(int id, Lesson lesson) {
+	public void update(Lesson lesson) {
 		lessonDao.update(lesson);
 	}
 	
@@ -37,7 +38,14 @@ public class LessonService {
 	}
 	
 	public List<Lesson> findAllWithSubjects() {
+		Lesson lesson1 = new Lesson();
+		lesson1.setId(191);
+		lesson1.setName("Bài học số 1");
+		lesson1.setAuthor(113);
+		List<Lesson> lessons = new ArrayList<>();
+		lessons.add(lesson1);
 		
-		return lessonDao.findAllWithSubjects();
+		return lessons;
+//		return lessonDao.findAllWithSubjects();
 	}
 }

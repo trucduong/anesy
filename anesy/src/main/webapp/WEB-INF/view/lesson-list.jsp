@@ -20,7 +20,7 @@
 			<div class="col-md-3"><jsp:include page="../component/left.jsp"></jsp:include></div>
 			<div class="col-md-6">
 
-				<h1>Tên môn học</h1>
+				<h1></h1>
 
 				<div style="margin-top: 20px">
 					<a href="<%=request.getContextPath()%>/detail">Thêm bài giảng</a>

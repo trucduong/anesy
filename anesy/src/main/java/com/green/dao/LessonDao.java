@@ -23,7 +23,7 @@ public class LessonDao extends BaseDao<Lesson, Integer> {
 		List<Lesson> lessons = new ArrayList<>();
 		
 		Session session = getFactory().openSession();
-		String hql = "select L.id as Lid,  L.*, S.* from Lesson L join inner Subjects S where L.subjectId = S.id";
+		String hql = "select L, S from Lesson L inner join Subjects S on L.subjectsId = S.id";
 		Query q = session.createQuery(hql, Tuple.class);
 		List<Tuple> resultList = q.getResultList();
 		for (Tuple item : resultList) {
