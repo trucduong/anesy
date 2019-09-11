@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" isELIgnored="false"%>
+    pageEncoding="UTF-8" isELIgnored="false"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -13,7 +13,7 @@
 <body>
 	<jsp:include page="../component/header.jsp"></jsp:include>
 
-	<div class="container">
+	<div class="page-container">
 		<div class = "row">
 		<div class="col-md-3">
 	        <div class="list-group">

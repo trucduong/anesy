@@ -1,6 +1,10 @@
 @CHARSET "ISO-8859-1";
-.*{
-	background-color: #e3e3e3;
+body {
+	background: #e3e3e3 !important;
+}
+
+.page-container {
+	min-height: 500px;
 }
 
 .card-body input-group{
