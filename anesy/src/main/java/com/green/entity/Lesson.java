@@ -2,12 +2,14 @@ package com.green.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
 @Table(name = "lesson")
@@ -23,14 +25,9 @@ public class Lesson {
 	@Column(name = "description", columnDefinition = "nvarchar(1000)")
 	private String description;
 
-	@Column(name = "subjects_id")
-	private int subjectsId;
-	
-	@Transient
+	@ManyToOne(cascade=CascadeType.DETACH)
+	@JoinColumn(name = "subjects_id")
 	private Subjects subjects;
-	
-	@Transient
-	private String subjectName;
 	
 	@Column(name = "author")
 	private int author;
@@ -65,14 +62,6 @@ public class Lesson {
 		this.description = description;
 	}
 
-	public int getSubjectsId() {
-		return subjectsId;
-	}
-
-	public void setSubjectsId(int subjectsId) {
-		this.subjectsId = subjectsId;
-	}
-
 	public int getAuthor() {
 		return author;
 	}
@@ -103,14 +92,6 @@ public class Lesson {
 
 	public void setSubjects(Subjects subjects) {
 		this.subjects = subjects;
-	}
-
-	public String getSubjectName() {
-		return subjectName;
-	}
-
-	public void setSubjectName(String subjectName) {
-		this.subjectName = subjectName;
 	}
 
 	

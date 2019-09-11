@@ -13,7 +13,7 @@
 <body>
 <jsp:include page="../component/header.jsp"></jsp:include>
 
-<div class="container">
+<div class="page-container">
 <div class="row">
 <div class="col-md-3"><jsp:include page="../component/left.jsp"></jsp:include></div>
 <div class="col-md-6">

@@ -25,12 +25,6 @@ public class Subjects {
 	@Column(name = "author")
 	private int author;
 
-	@Column(name = "like_number")
-	private int like;
-
-	@Column(name = "unlike_number")
-	private int unlike;
-
 	@Column(name = "created_at")
 	private Date createdAt;
 
@@ -67,22 +61,6 @@ public class Subjects {
 
 	public void setAuthor(int author) {
 		this.author = author;
-	}
-
-	public int getLike() {
-		return like;
-	}
-
-	public void setLike(int like) {
-		this.like = like;
-	}
-
-	public int getUnlike() {
-		return unlike;
-	}
-
-	public void setUnlike(int unlike) {
-		this.unlike = unlike;
 	}
 
 	public Date getCreatedAt() {

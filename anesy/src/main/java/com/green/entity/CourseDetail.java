@@ -1,9 +1,12 @@
 package com.green.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -14,11 +17,31 @@ public class CourseDetail {
 	@Column(name = "id")
 	private int id;
 
-	@Column(name = "course_id")
-	private int courseId;
+	// TODO: mapping
+	@ManyToOne(cascade=CascadeType.DETACH)
+	@JoinColumn(name = "course_id")
+	private CourseCategory courseId;
 
-	@Column(name = "subjects_id")
-	private int subjectsId;
+	public CourseCategory getCourseId() {
+		return courseId;
+	}
+
+	public void setCourseId(CourseCategory courseId) {
+		this.courseId = courseId;
+	}
+
+	public Subjects getSubjectsId() {
+		return subjectsId;
+	}
+
+	public void setSubjectsId(Subjects subjectsId) {
+		this.subjectsId = subjectsId;
+	}
+
+	// TODO: mapping
+	@ManyToOne(cascade=CascadeType.DETACH)
+	@JoinColumn(name = "subjects_id")
+	private Subjects subjectsId;
 
 	@Column(name = "seq")
 	private int seq;
@@ -31,21 +54,7 @@ public class CourseDetail {
 		this.id = id;
 	}
 
-	public int getCourseId() {
-		return courseId;
-	}
-
-	public void setCourseId(int courseId) {
-		this.courseId = courseId;
-	}
-
-	public int getSubjectsId() {
-		return subjectsId;
-	}
-
-	public void setSubjectsId(int subjectsId) {
-		this.subjectsId = subjectsId;
-	}
+	
 
 	public int getSeq() {
 		return seq;

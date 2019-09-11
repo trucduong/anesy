@@ -2,13 +2,18 @@ package com.green.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
 
 @Entity
 @Table(name = "assignment")
@@ -24,11 +29,33 @@ public class Assignment {
 	@Column(name = "description", columnDefinition = "nvarchar(1000)")
 	private String description;
 
-	@Column(name = "excerise_id")
-	private int exerciseId;
+	// assignment.excerise_id -> excerise.id
+	@ManyToOne(cascade=CascadeType.DETACH)
+	@JoinColumn(name = "excerise_id")
+	private Exercise excerise;
 
-	@Column(name = "student_id")
-	private int studentId;
+	
+	@ManyToOne(cascade=CascadeType.DETACH)
+	@JoinColumn(name = "student_id")
+	private Account account;
+	
+	// TODO: mapping
+
+	public Exercise getExcerise() {
+		return excerise;
+	}
+
+	public void setExcerise(Exercise excerise) {
+		this.excerise = excerise;
+	}
+
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
+	}
 
 	@Column(name = "start_date")
 	private Date startDate;
@@ -70,21 +97,9 @@ public class Assignment {
 		this.description = description;
 	}
 
-	public int getExerciseId() {
-		return exerciseId;
-	}
+	
 
-	public void setExerciseId(int exerciseId) {
-		this.exerciseId = exerciseId;
-	}
 
-	public int getStudentId() {
-		return studentId;
-	}
-
-	public void setStudentId(int studentId) {
-		this.studentId = studentId;
-	}
 
 	public Date getStartDate() {
 		return startDate;

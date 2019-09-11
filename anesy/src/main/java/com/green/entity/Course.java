@@ -2,11 +2,16 @@ package com.green.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
 
 @Entity
 @Table(name = "course")
@@ -22,8 +27,10 @@ public class Course {
 	@Column(name = "description", columnDefinition = "nvarchar(1000)")
 	private String description;
 
-	@Column(name = "author")
-	private int author;
+	// TODO: mapping
+	@ManyToOne(cascade=CascadeType.DETACH)
+	@JoinColumn(name = "author")
+	private Account account;
 
 	@Column(name = "price")
 	private int price;
@@ -33,6 +40,11 @@ public class Course {
 
 	@Column(name = "tags", columnDefinition = "nvarchar(500)")
 	private String tags;
+
+	// TODO: mapping
+	@ManyToOne(cascade=CascadeType.DETACH)
+	@JoinColumn(name = "category_id")
+	private CourseCategory category;
 
 	public int getId() {
 		return id;
@@ -58,13 +70,7 @@ public class Course {
 		this.description = description;
 	}
 
-	public int getAuthor() {
-		return author;
-	}
-
-	public void setAuthor(int author) {
-		this.author = author;
-	}
+	
 
 	public int getPrice() {
 		return price;
@@ -90,4 +96,21 @@ public class Course {
 		this.tags = tags;
 	}
 
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
+	}
+
+	public CourseCategory getCategory() {
+		return category;
+	}
+
+	public void setCategory(CourseCategory category) {
+		this.category = category;
+	}
+
+	
 }
