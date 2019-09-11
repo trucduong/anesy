@@ -2,10 +2,13 @@ package com.green.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,8 +25,10 @@ public class Lesson {
 	@Column(name = "description", columnDefinition = "nvarchar(1000)")
 	private String description;
 
-	@Column(name = "subjects_id")
-	private int subjectsId;
+	// TODO: mapping
+	@ManyToOne(cascade=CascadeType.DETACH)
+	@JoinColumn(name = "subjects_id")
+	private Subjects subjectsId;
 	
 	@Column(name = "author")
 	private int author;
@@ -58,11 +63,12 @@ public class Lesson {
 		this.description = description;
 	}
 
-	public int getSubjectsId() {
+	
+	public Subjects getSubjectsId() {
 		return subjectsId;
 	}
 
-	public void setSubjectsId(int subjectsId) {
+	public void setSubjectsId(Subjects subjectsId) {
 		this.subjectsId = subjectsId;
 	}
 
