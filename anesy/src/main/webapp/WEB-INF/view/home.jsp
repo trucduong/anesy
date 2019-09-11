@@ -1,3 +1,4 @@
+<%@ page import="com.green.entity.Profile"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -11,9 +12,12 @@
 
 </head>
 <body>
+	<%
+		Profile profile = (Profile) request.getAttribute("_profile");
+	%> 
 	<jsp:include page="../component/header.jsp"></jsp:include>
 
-	<div class="page-container">
+	<div class="container page">
 		<div class = "row">
 		<div class="col-md-3">
 	        <div class="list-group">

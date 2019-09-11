@@ -3,8 +3,9 @@ body {
 	background: #e3e3e3 !important;
 }
 
-.page-container {
+.page {
 	min-height: 500px;
+	padding-top: 10px;
 }
 
 .card-body input-group{
@@ -25,9 +26,6 @@ body {
 	min-width: 180px;
 }	
 
-.left{
-	min-width: 80px;
-}
 
 .avatar-customer{
 	width: 100px;

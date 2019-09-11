@@ -11,6 +11,7 @@ public class AuthContext {
 	private boolean isAuthenticated=true;
 	private Integer accountId=1;
 	private String email;
+	
 
 	public boolean isAuthenticated() {
 		return isAuthenticated;

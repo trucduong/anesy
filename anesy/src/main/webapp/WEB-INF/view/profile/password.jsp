@@ -7,37 +7,19 @@
 <title>Insert title here</title>
 
 <%-- import css files --%>
-<jsp:include page="../component/common-css.jsp"></jsp:include>
+<jsp:include page="../../component/common-css.jsp"></jsp:include>
 
 </head>
 <body>
-	<jsp:include page="../component/header.jsp"></jsp:include>
+	<jsp:include page="../../component/header.jsp"></jsp:include>
 
-	<div class="container">
+	<div class="container page">
 		<div class="row">
 			<div class="col-md-4">
-				<div class="card">
-					<h5 class="card-header">...</h5>
-					<div class="card-body">
-						<div style="display: inline-block;">
-							<img alt="Ảnh đại diện"
-								src="<%=request.getContextPath()%>/product/image?code=${_product.code}"
-								width="100" height="100">
-						</div>
-						<div>
-							<form
-								action="<%=request.getContextPath()%>/product/image?code=${_product.code}"
-								method="post" enctype="multipart/form-data">
-								<input type="file" name="file" />
-								<button class="btn btn-primary" type="submit">Tải ảnh</button>
-							</form>
-						</div>
-						<jsp:include page="../component/profilelistgroup.jsp"></jsp:include>
-					</div>
-				</div>
+				
+				<jsp:include page="../../component/profilelistgroup.jsp"></jsp:include>
 			</div>
-
-			<div class="col-md-7">
+			<div class="col-md-8">
 				<div class="card">
 					<h5 class="card-header">Tài Khoản</h5>
 					<div class="card-body">
@@ -72,7 +54,7 @@
 
 
 							<div id="success"></div>
-							<button class="btn btn-primary" data-toggle="modal"
+							<button type="button" class="btn btn-primary" data-toggle="modal"
 								data-target="#exampleModal">Xác Nhận</button>
 							<!-- Modal -->
 							<div class="modal fade" id="exampleModal" tabindex="-1"
@@ -98,7 +80,6 @@
 									</div>
 								</div>
 							</div>
-
 						</form>
 					</div>
 				</div>
@@ -106,10 +87,10 @@
 		</div>
 	</div>
 
-	<jsp:include page="../component/footer.jsp"></jsp:include>
+	<jsp:include page="../../component/footer.jsp"></jsp:include>
 
 	<%-- import js files --%>
-	<jsp:include page="../component/common-js.jsp"></jsp:include>
+	<jsp:include page="../../component/common-js.jsp"></jsp:include>
 </body>
 </html>
 

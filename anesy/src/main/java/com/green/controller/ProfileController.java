@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.green.config.AuthContext;
 import com.green.dao.BaseDao;
@@ -36,7 +37,7 @@ public class ProfileController {
 	
 	@GetMapping()
 	public String showDefaultPage() {
-		return "redirect: /profile/info";
+		return "redirect:/profile/info";
 	}
 	
 	@GetMapping("/info")
@@ -56,17 +57,17 @@ public class ProfileController {
 
 	@GetMapping("/password")
 	public String password(HttpServletRequest request, Model model) {
-		return "profile-password";
+		return "profile/password";
 	}
 
 	@GetMapping("/history")
 	public String history() {
-		return "profile-historylearning";
+		return "profile/historylearning";
 	}
 
 	@GetMapping("/certificate")
 	public String certificate() {
-		return "profile-certificate";
+		return "profile/certificate";
 	}
 
 	@PostMapping("/info")
@@ -85,7 +86,7 @@ public class ProfileController {
 			birthdayDate = (Date) sdf.parse(birthday);
 		} catch (ParseException e) {
 			e.printStackTrace();
-			return "profile-info";
+			return "profile/info";
 		}
 		HttpSession session = request.getSession();
 		Account account = (Account) session.getAttribute("current_user");
@@ -100,27 +101,26 @@ public class ProfileController {
 		profile.setBirthDate(birthdayDate);
 
 		profileservice.update(profile);
-		return "profile-info";
+		return "profile/info";
 	}
 
 	@PostMapping("/password")
-	public String updatepassword(Model model, HttpServletRequest request) {
+	public String updatepassword(@RequestParam(name = "oldpass") String oldpass,
+			@RequestParam(name = "newpass") String newpass,
+			@RequestParam(name = "newpass1") String newpass1, Model model) {
 
-		HttpSession session = request.getSession();
-		Account account = (Account) session.getAttribute("current_user");
-		String oldpass = (String) request.getParameter("oldpass");
-		String newpass = (String) request.getParameter("newpass");
-		String newpass1 = (String) request.getParameter("newpass1");
+		int id = authContext.getAccountId();
+		Account account = accountservice.findById(id);
 
 		if (!account.getPassword().equals(oldpass) || account.getPassword().equals(newpass)
 				|| !newpass.equals(newpass1)) {
-			return "profile-password";
+			return "profile/password";
 		}
 		
 		account.setPassword(newpass);
 		accountservice.update(account.getId(), account);
-		session.setAttribute("current_user", account);
-		return "profile-password";
+		
+		return "profile/password";
 	}
 
 }

@@ -12,65 +12,48 @@
 </head>
 <body>
 
-	<% Profile profile =(Profile) request.getAttribute("_profile"); %>
-	
+	<%
+		Profile profile = (Profile) request.getAttribute("_profile");
+	%>
+
 	<jsp:include page="../../component/header.jsp"></jsp:include>
-	
-	<div class="container">
+
+	<div class="container page">
 		<div class="row">
 			<div class="col-md-4">
-				<div class="card">
-					<h5 class="card-header">...</h5>
-					<div class="card-body">
-
-
-
-						<div class="input-group mb-3">
-							<div class="input-group-prepend">
-								<span class="input-group-text left" id="inputGroupFileAddon01">Upload</span>
-							</div>
-							<div class="custom-file">
-								<input type="file" class="custom-file-input"
-									id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
-								<label class="custom-file-label" for="inputGroupFile01">Choose
-									file</label>
-							</div>
-						</div>
 
 
 
 
-						<div style="display: inline-block;">
-							<img alt="Ảnh đại diện"
-								src="<%=request.getContextPath()%>/product/image?code=${_product.code}"
-								width="100" height="100">
-						</div>
-						<div>
-							<form
-								action="<%=request.getContextPath()%>/product/image?code=${_product.code}"
-								method="post" enctype="multipart/form-data">
-								<input type="file" name="file" />
-								<button class="btn btn-primary" type="submit">Tải ảnh</button>
-							</form>
-						</div>
-						<jsp:include page="../../component/profilelistgroup.jsp"></jsp:include>
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text left" id="inputGroupFileAddon01">Upload</span>
+					</div>
+					<div class="custom-file">
+						<input type="file" class="custom-file-input" id="inputGroupFile01"
+							aria-describedby="inputGroupFileAddon01"> <label
+							class="custom-file-label" for="inputGroupFile01">Choose
+							file</label>
 					</div>
 				</div>
 
 
+				<jsp:include page="../../component/profilelistgroup.jsp"></jsp:include>
 			</div>
 			<div class="col-md-7">
 				<div class="card">
 					<h5 class="card-header">Thông Tin Cá Nhân</h5>
 					<div class="card-body">
 
-						<form action="<%=request.getContextPath()%>/profile/info" method="post">
+						<form action="<%=request.getContextPath()%>/profile/info"
+							method="post">
 							<div class="input-group mb-3">
 								<div class="input-group-prepend">
 									<span class="input-group-text" id="inputGroup-sizing-default">Họ
 										và tên</span>
 								</div>
-								<input name="name" type="text" class="form-control" value="<%=profile.getFullName() %>"
+								<input name="name" type="text" class="form-control"
+									value="<%=profile.getFullName()%>"
 									aria-label="Sizing example input"
 									aria-describedby="inputGroup-sizing-default">
 							</div>
@@ -79,7 +62,8 @@
 									<span class="input-group-text" id="inputGroup-sizing-default">Số
 										điện thoại</span>
 								</div>
-								<input name="phone" type="text" class="form-control" value="<%=profile.getPhone() %>"
+								<input name="phone" type="text" class="form-control"
+									value="<%=profile.getPhone()%>"
 									aria-label="Sizing example input"
 									aria-describedby="inputGroup-sizing-default">
 							</div>
@@ -87,7 +71,8 @@
 								<div class="input-group-prepend">
 									<span class="input-group-text" id="inputGroup-sizing-default">Email</span>
 								</div>
-								<input name="email" type="text" class="form-control" value="<%=profile.getEmail() %>"
+								<input name="email" type="text" class="form-control"
+									value="<%=profile.getEmail()%>"
 									aria-label="Sizing example input"
 									aria-describedby="inputGroup-sizing-default">
 							</div>
@@ -96,8 +81,9 @@
 									<span class="input-group-text" id="inputGroup-sizing-default">Ngày
 										sinh </span>
 								</div>
-								<input id="checkin" name="birthday" type="date" value="<%=profile.getBirthDate() %>"
-									class="form-control" aria-label="Sizing example input"
+								<input id="checkin" name="birthday" type="date"
+									value="<%=profile.getBirthDate()%>" class="form-control"
+									aria-label="Sizing example input"
 									aria-describedby="inputGroup-sizing-default">
 							</div>
 							<div class="input-group mb-3">
@@ -105,8 +91,8 @@
 									<label class="input-group-text" for="inputGroupSelect01">Giới
 										tính</label>
 								</div>
-								<select name="gender" class="custom-select" value="<%=profile.getGender() %>"
-									id="inputGroupSelect01">
+								<select name="gender" class="custom-select"
+									value="<%=profile.getGender()%>" id="inputGroupSelect01">
 									<option selected>Vui lòng chọn</option>
 									<option value="1">Nam</option>
 									<option value="2">Nữ</option>
@@ -119,8 +105,8 @@
 									<span class="input-group-text" id="inputGroup-sizing-default">Địa
 										Chỉ</span>
 								</div>
-								<textarea name="address" type="text" class="form-control" id="email" value="<%=profile.getAddress() %>"
-									required=""
+								<textarea name="address" type="text" class="form-control"
+									id="email" value="<%=profile.getAddress()%>" required=""
 									data-validation-required-message="Please enter your email address."></textarea>
 							</div>
 
