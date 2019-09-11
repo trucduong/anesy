@@ -32,16 +32,7 @@
 								<button class="btn btn-primary" type="submit">Tải ảnh</button>
 							</form>
 						</div>
-						<div class="btn-group-vertical">
-							<a href="<%=request.getContextPath()%>/profile/info"><button
-									type="button" class="btn btn-light">Thông Tin Cá Nhân</button></a>
-							<a href="<%=request.getContextPath()%>/profile/password">
-								<button type="button" class="btn btn-light">Tài Khoản</button>
-							</a> <a href="<%=request.getContextPath()%>/profile/history"><button
-									type="button" class="btn btn-light">Lịch Sử Học Tập</button></a> <a
-								href="<%=request.getContextPath()%>/profile/certificate"><button
-									type="button" class="btn btn-light">Chứng Chỉ</button></a>
-						</div>
+						<jsp:include page="../component/profilelistgroup.jsp"></jsp:include>
 					</div>
 				</div>
 			</div>

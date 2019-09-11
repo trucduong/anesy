@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.green.config.AuthContext;
 import com.green.dao.BaseDao;
 import com.green.dao.ProfileDao;
 import com.green.entity.Account;
@@ -30,6 +31,8 @@ public class ProfileController {
 	@Autowired
 	private AccountService accountservice;
 
+	@Autowired
+	private AuthContext authContext;
 	
 	@GetMapping()
 	public String showDefaultPage() {
@@ -38,17 +41,12 @@ public class ProfileController {
 	
 	@GetMapping("/info")
 	public String info(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		// Account account = (Account) session.getAttribute("current_user");
-		Account account = new Account();
-		account.setId(1);
-		account.setEmail("hahaha");
-		session.setAttribute("current_user", account);
+		
+		int id = authContext.getAccountId();
+		Account account = accountservice.findById(id);
 		Profile profile = profileservice.findbyID(account.getId());
-		profile.setAccountId(1);
-		profile.setEmail("hahaha");
-		request.setAttribute("_profile-info", profile);
-		return "profile-info";
+		request.setAttribute("_profile", profile);
+		return "profile/info";
 	}
 
 	@PostMapping("image")

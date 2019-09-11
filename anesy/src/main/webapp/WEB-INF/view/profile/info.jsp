@@ -8,14 +8,13 @@
 <title>Insert title here</title>
 
 <%-- import css files --%>
-<jsp:include page="../component/common-css.jsp"></jsp:include>
-<link href="datepicker/css/datepicker.css" rel="stylesheet" />
+<jsp:include page="../../component/common-css.jsp"></jsp:include>
 </head>
 <body>
 
-	<% Profile profile =(Profile) request.getAttribute("_profile-info"); %>
+	<% Profile profile =(Profile) request.getAttribute("_profile"); %>
 	
-	<jsp:include page="../component/header.jsp"></jsp:include>
+	<jsp:include page="../../component/header.jsp"></jsp:include>
 	
 	<div class="container">
 		<div class="row">
@@ -54,16 +53,7 @@
 								<button class="btn btn-primary" type="submit">Tải ảnh</button>
 							</form>
 						</div>
-						<div class="btn-group-vertical">
-							<a href="<%=request.getContextPath()%>/profile/info"><button
-									type="button" class="btn btn-light">Thông Tin Cá Nhân</button></a>
-							<a href="<%=request.getContextPath()%>/profile/password">
-								<button type="button" class="btn btn-light">Tài Khoản</button>
-							</a> <a href="<%=request.getContextPath()%>/profile/history"><button
-									type="button" class="btn btn-light">Lịch Sử Học Tập</button></a> <a
-								href="<%=request.getContextPath()%>/profile/certificate"><button
-									type="button" class="btn btn-light">Chứng Chỉ</button></a>
-						</div>
+						<jsp:include page="../../component/profilelistgroup.jsp"></jsp:include>
 					</div>
 				</div>
 
@@ -146,36 +136,10 @@
 	</div>
 	</div>
 
-	<jsp:include page="../component/footer.jsp"></jsp:include>
+	<jsp:include page="../../component/footer.jsp"></jsp:include>
 
 	<%-- import js files --%>
-	<jsp:include page="../component/common-js.jsp"></jsp:include>
-	<script src="datepicker/js/jquery.min.js"></script>
-	<script src="datepicker/js/bootstrap.min.js"></script>
-	<script src="datepicker/js/bootstrap-datepicker.js"></script>
-
-
-	<script>
-		$(function() {
-			'use strict';
-			var nowTemp = new Date();
-			var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(),
-					nowTemp.getDate(), 0, 0, 0, 0);
-
-			var checkin = $('#checkin').datepicker({
-				onRender : function(date) {
-					return date.valueOf() < now.valueOf() ? 'disabled' : '';
-				}
-			}).on('changeDate', function(ev) {
-				if (ev.date.valueOf() > checkout.date.valueOf()) {
-					var newDate = new Date(ev.date)
-					newDate.setDate(newDate.getDate() + 1);
-					checkout.setValue(newDate);
-				}
-				checkin.hide();
-			}).data('datepicker');
-		});
-	</script>
+	<jsp:include page="../../component/common-js.jsp"></jsp:include>
 </body>
 </html>
 

@@ -7,8 +7,8 @@ import org.springframework.web.context.WebApplicationContext;
 @Component
 @Scope(WebApplicationContext.SCOPE_SESSION)
 public class AuthContext {
-	private boolean isAuthenticated;
-	private Integer accountId;
+	private boolean isAuthenticated=true;
+	private Integer accountId=1;
 	private String email;
 
 	public boolean isAuthenticated() {
