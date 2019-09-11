@@ -1,9 +1,33 @@
 @CHARSET "ISO-8859-1";
-
 body {
 	background: #e3e3e3 !important;
 }
 
-.page-container {
+.page {
 	min-height: 500px;
+	padding-top: 10px;
+}
+
+.card-body input-group{
+	width: 50%;
+}
+
+.input-group-text{
+	min-width: 155px;
+}
+
+.form-group row{
+	
+}
+
+
+	
+.btn-group-vertical a{
+	min-width: 180px;
+}	
+
+
+.avatar-customer{
+	width: 100px;
+	height: 100px;
 }
