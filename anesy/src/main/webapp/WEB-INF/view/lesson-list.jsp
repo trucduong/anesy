@@ -20,13 +20,13 @@
 			<div class="col-md-3"><jsp:include page="../component/left.jsp"></jsp:include></div>
 			<div class="col-md-6">
 
-				<h1></h1>
+				<h1>Tên bài giảng</h1>
 
 				<div style="margin-top: 20px">
-					<a href="<%=request.getContextPath()%>/detail">Thêm bài giảng</a>
+					<a href="<%=request.getContextPath()%>/lesson/create">Thêm bài giảng</a>
 				</div>
 				<%
-					List<Lesson> lessonList = (List<Lesson>) request.getAttribute("lesson_list");
+					List<Lesson> lessonList = (List<Lesson>) request.getAttribute("lessonList");
 				%>
 				<table border="1" cellspacing="0">
 					<tr>
@@ -44,16 +44,18 @@
 						<td><%=lesson.getCreatedAt()%></td>
 						<td>
 							<!-- Cần chỉnh sửa lại -->
-							<form action="<%=request.getContextPath()%>/detail" method="get">
+							<form action="<%=request.getContextPath()%>/lesson-detail"
+								method="get">
 								<input type="hidden" name="id" value="<%=lesson.getId()%>">
-								<input type="hidden" name="action" value="Cập nhật">
-								<button type="submit">Update</button>
+								<input type="hidden" name="action" value="edit">
+								<button type="submit">Chỉnh sửa</button>
 							</form>
-							<form action="<%=request.getContextPath()%>/detail" method="post">
+							<%-- <form action="<%=request.getContextPath()%>/lesson-detail"
+								method="post">
 								<input type="hidden" name="id" value="<%=lesson.getId()%>">
 								<input type="hidden" name="action" value="Xóa">
 								<button type="submit">Delete</button>
-							</form>
+							</form> --%>
 						</td>
 					</tr>
 					<%
