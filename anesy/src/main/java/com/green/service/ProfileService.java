@@ -34,4 +34,5 @@ public class ProfileService {
 		public void update(Profile profile) {
 			profileDao.update(profile);
 		}
+		
 }

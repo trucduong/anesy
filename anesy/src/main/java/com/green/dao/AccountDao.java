@@ -31,3 +31,4 @@ public class AccountDao extends BaseDao<Account, Integer> {
 	}
 
 }
+

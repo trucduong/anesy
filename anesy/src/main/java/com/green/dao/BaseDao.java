@@ -2,6 +2,8 @@ package com.green.dao;
 
 import java.util.List;
 
+import javax.persistence.Query;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,5 +58,14 @@ public abstract class BaseDao<E, ID> {
 		Session session = factory.openSession();
 		E entity = session.find(entityClass, id);
 		session.remove(entity);
+	}
+	
+	public boolean isExist(String email) {
+		Session session = factory.openSession();
+			String hql = "select email from Account where email = :_email";
+			Query query = session.createQuery(hql);
+			query.setParameter("_email", email);
+			return false;
+	
 	}
 }
