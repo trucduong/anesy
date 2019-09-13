@@ -40,12 +40,13 @@ public class ProfileController {
 		return "redirect:/profile/info";
 	}
 	
+	
+	
 	@GetMapping("/info")
 	public String info(HttpServletRequest request) {
 		
 		int id = authContext.getAccountId();
-		Account account = accountservice.findById(id);
-		Profile profile = profileservice.findbyID(account.getId());
+		Profile profile = profileservice.findbyID(id);
 		request.setAttribute("_profile", profile);
 		return "profile/info";
 	}
@@ -89,11 +90,12 @@ public class ProfileController {
 			return "profile/info";
 		}
 		HttpSession session = request.getSession();
-		Account account = (Account) session.getAttribute("current_user");
+		int id = authContext.getAccountId();
+		String email = authContext.getEmail();
 		Profile profile = new Profile();
-		profile.setAccountId(account.getId());
+		profile.setAccountId(id);
 		profile.setAddress(address);
-		profile.setEmail(account.getEmail());
+		profile.setEmail(email);
 		profile.setFullName(name);
 		profile.setGender(gender);
 		profile.setPhone(phone);
@@ -101,7 +103,7 @@ public class ProfileController {
 		profile.setBirthDate(birthdayDate);
 
 		profileservice.update(profile);
-		return "profile/info";
+		return "redirect:/profile/info";
 	}
 
 	@PostMapping("/password")

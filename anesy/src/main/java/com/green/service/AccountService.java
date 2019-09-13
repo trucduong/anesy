@@ -39,6 +39,11 @@ public class AccountService {
 		return account;
 	}
 	
+	public Account findByEmail(String email) {
+		return accountDao.findByEmail(email);
+		
+	}
+	
 	public Account findById(int id) {
 		return accountDao.find(id);
 	}

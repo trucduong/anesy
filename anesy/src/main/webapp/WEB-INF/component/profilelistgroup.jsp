@@ -1,3 +1,4 @@
+<%@ page import="com.green.entity.Profile"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -5,6 +6,9 @@
 <%
 	String currentPage = request.getAttribute("javax.servlet.forward.request_uri").toString()
 			.substring(request.getContextPath().length());
+%>
+<%
+	Profile profile = (Profile) request.getAttribute("_info");
 %>
 <div class="card">
 	<div class="card-body">
@@ -21,7 +25,7 @@
 				<button class="btn btn-primary" type="submit">Tải ảnh</button>
 			</form>
 		</div>
-
+		
 	</div>
 
 </div>

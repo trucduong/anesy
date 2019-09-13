@@ -8,8 +8,8 @@ import org.springframework.web.context.WebApplicationContext;
 @Component
 @Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class AuthContext {
-	private boolean isAuthenticated=true;
-	private Integer accountId=1;
+	private boolean isAuthenticated;
+	private Integer accountId;
 	private String email;
 	
 

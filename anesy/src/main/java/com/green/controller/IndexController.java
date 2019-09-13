@@ -16,7 +16,7 @@ import com.green.service.AccountService;
 import com.green.service.ProfileService;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("")
 public class IndexController {
 	@Autowired
 	private AuthContext authContext;
@@ -27,12 +27,20 @@ public class IndexController {
 	@Autowired
 	private ProfileService profileService;
 	
-	@GetMapping()
+	@GetMapping("/home")
 	public String index(Model model) {
-//		int id = authContext.getAccountId();
-//		Profile profile = profileService.findbyID(id);
-//		model.addAttribute("_profile", profile);
+		int id = authContext.getAccountId();
+		Profile profile = profileService.findbyID(id);
+		model.addAttribute("_profile", profile);
 		return "home";
+	}
+	
+	@GetMapping("")
+	public String index1(Model model) {
+		if(!authContext.isAuthenticated()) {
+			return "home";
+		}
+		return "redirect:/home";
 	}
 	
 	
