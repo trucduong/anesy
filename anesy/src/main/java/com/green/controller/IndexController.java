@@ -9,17 +9,25 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.green.config.Alert;
 import com.green.config.AuthContext;
-import com.green.entity.Account;
-import com.green.entity.Profile;
+import com.green.config.MessageBox;
+import com.green.config.MsgType;
 import com.green.service.AccountService;
 import com.green.service.ProfileService;
 
 @Controller
 @RequestMapping("")
 public class IndexController {
+	
 	@Autowired
 	private AuthContext authContext;
+	
+	@Autowired
+	private Alert alert;
+	
+	@Autowired
+	private MessageBox messageBox;
 	
 	@Autowired
 	private AccountService accountService;

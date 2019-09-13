@@ -11,7 +11,8 @@ public class AuthContext {
 	private boolean isAuthenticated;
 	private Integer accountId;
 	private String email;
-	
+
+	private String fullName;
 
 	public boolean isAuthenticated() {
 		return isAuthenticated;
@@ -35,6 +36,14 @@ public class AuthContext {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getFullName() {
+		return fullName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
 	}
 
 }
