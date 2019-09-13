@@ -1,7 +1,46 @@
+<%@page import="com.green.config.MessageBox"%>
 <%@page import="com.green.util.SpringContextUtil"%>
 <%@page import="com.green.config.Alert"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<div class="container" style="padding-top: 10px">
+<%
+	Alert alert = SpringContextUtil.getBean(Alert.class);
+	for (int i = 0; i < alert.getMessages().size(); i++) {
+		String message = alert.getMessages().get(i);
+		String type = alert.getTypes().get(i).name();
+%>
+	<div class="alert alert-<%=type %> alert-dismissible fade show" role="alert"><%=message %>
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    		<span aria-hidden="true">&times;</span>
+  		</button>
+	</div>
+<%
+	}
+%>
+</div>
+
+<%
+	MessageBox msgBox = SpringContextUtil.getBean(MessageBox.class);
+	if (msgBox.hasMessage()) {
+%>
+<div class="modal fade" id="msgBoxModal" tabindex="-1" role="dialog" aria-labelledby="msgBoxModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <%=msgBox.getMessage() %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<%
+	}
+%>
+
 <header>
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
@@ -59,15 +98,3 @@
     </div>
   </nav>
 </header>
-<div class="row">
-<%
-	Alert alert = SpringContextUtil.getBean(Alert.class);
-	for (int i = 0; i < alert.getMessages().size(); i++) {
-		String message = alert.getMessages().get(i);
-		String type = alert.getTypes().get(i).name();
-%>
-	<div class="alert alert-<%=type %>" role="alert"><%=message %></div>
-<%
-	}
-%>
-</div>

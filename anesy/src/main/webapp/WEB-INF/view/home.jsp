@@ -1,3 +1,5 @@
+<%@page import="com.green.util.SpringContextUtil"%>
+<%@page import="com.green.config.AuthContext"%>
 <%@ page import="com.green.entity.Profile"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>

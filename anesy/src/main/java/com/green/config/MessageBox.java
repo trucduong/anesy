@@ -3,6 +3,7 @@ package com.green.config;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import org.springframework.web.context.WebApplicationContext;
 
 @Component
@@ -18,4 +19,7 @@ public class MessageBox {
 		this.message = message;
 	}
 
+	public boolean hasMessage() {
+		return !StringUtils.isEmpty(message);
+	}
 }

@@ -8,10 +8,11 @@ import org.springframework.web.context.WebApplicationContext;
 @Component
 @Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class AuthContext {
-	private boolean isAuthenticated=true;
-	private Integer accountId=1;
+	private boolean isAuthenticated = false;
+	private Integer accountId = 1;
 	private String email;
-	
+
+	private String fullName;
 
 	public boolean isAuthenticated() {
 		return isAuthenticated;
@@ -35,6 +36,14 @@ public class AuthContext {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getFullName() {
+		return fullName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
 	}
 
 }
