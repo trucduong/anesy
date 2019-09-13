@@ -9,16 +9,14 @@ import org.springframework.stereotype.Service;
 import com.green.dao.ProfileDao;
 import com.green.entity.Profile;
 
-
+@Service
 public class ProfileService {
-	@Service
-	public class CourseService {
+	
 		@Autowired
 		private ProfileDao profileDao;
 
 		public List<Profile> findAll() {
 			return profileDao.findAll();
-
 		}
 
 		public Profile findById(int id) {
@@ -36,5 +34,4 @@ public class ProfileService {
 		public void update(Profile profile) {
 			profileDao.update(profile);
 		}
-	}
 }
