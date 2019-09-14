@@ -7,11 +7,20 @@ import org.springframework.stereotype.Service;
 
 import com.green.dao.CouseDao;
 import com.green.entity.Course;
+import com.green.model.CourseFilter;
 
 @Service
 public class CourseService {
 	@Autowired
 	private CouseDao courseDao;
+	
+	public List<Course> search(CourseFilter filter) {
+		if (filter == null) {
+			return courseDao.findAll();
+		}
+		
+		return courseDao.search(filter);
+	}
 
 	public List<Course> findAll() {
 		return courseDao.findAll();
