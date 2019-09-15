@@ -12,11 +12,4 @@ public class AccountDao extends BaseDao<Account, Integer> {
 	protected Class<Account> getEntityClass() {
 		return Account.class;
 	}
-	
-	public Account findByEmail(String email) {
-		Session session = getFactory().openSession();
-		Account account = session.find(Account.class, email);
-		session.close();
-		return account;
-	}
 }

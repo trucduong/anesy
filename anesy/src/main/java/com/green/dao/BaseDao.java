@@ -8,6 +8,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.green.entity.Account;
+
 public abstract class BaseDao<E, ID> {
 
 	@Autowired
@@ -62,10 +64,28 @@ public abstract class BaseDao<E, ID> {
 	
 	public boolean isExist(String email) {
 		Session session = factory.openSession();
-			String hql = "select email from Account where email = :_email";
-			Query query = session.createQuery(hql);
-			query.setParameter("_email", email);
-			return false;
-	
+		String hql = "select email from Account where email = :_email";
+		Query query = session.createQuery(hql);
+		query.setParameter("_email", email);
+		return false;
+	}
+	public Account findByEmail(String email) {
+		Session session = factory.openSession();
+		String hql = "FROM Account WHERE email = :email";
+		Query query = session.createQuery(hql);
+		query.setParameter("email", email);
+		List results = query.getResultList();
+		if(email.isEmpty()) {
+			return null;
+		}
+		    return (Account) results.get(0);
+	}
+	public Account findById(int id) {
+		Session session = factory.openSession();
+		String hql = "FROM Account WHERE id = :id";
+		Query query = session.createQuery(hql);
+		query.setParameter("id", id);
+		List results = query.getResultList();
+		return (Account) results.get(0);
 	}
 }

@@ -54,4 +54,7 @@ public class AccountService {
 	public void delete(int id) {
 		accountDao.deleteById(id);
 	}
+	public Account findByEmail(String email) {
+		return accountDao.findByEmail(email);
+	}
 }
