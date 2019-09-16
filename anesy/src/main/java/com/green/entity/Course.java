@@ -5,13 +5,12 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.Cascade;
 
 @Entity
 @Table(name = "course")
@@ -24,13 +23,15 @@ public class Course {
 	@Column(name = "name", columnDefinition = "nvarchar(500)")
 	private String name;
 
+	@Column(name = "shortdesc", columnDefinition = "nvarchar(500)")
+	private String shortdesc;
+
 	@Column(name = "description", columnDefinition = "nvarchar(1000)")
 	private String description;
 
-	// TODO: mapping
-	@ManyToOne(cascade=CascadeType.DETACH)
+	@ManyToOne(cascade = CascadeType.DETACH)
 	@JoinColumn(name = "author")
-	private Account account;
+	private Account author;
 
 	@Column(name = "price")
 	private int price;
@@ -41,8 +42,7 @@ public class Course {
 	@Column(name = "tags", columnDefinition = "nvarchar(500)")
 	private String tags;
 
-	// TODO: mapping
-	@ManyToOne(cascade=CascadeType.DETACH)
+	@ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
 	@JoinColumn(name = "category_id")
 	private CourseCategory category;
 
@@ -70,8 +70,6 @@ public class Course {
 		this.description = description;
 	}
 
-	
-
 	public int getPrice() {
 		return price;
 	}
@@ -96,12 +94,12 @@ public class Course {
 		this.tags = tags;
 	}
 
-	public Account getAccount() {
-		return account;
+	public Account getAuthor() {
+		return author;
 	}
 
-	public void setAccount(Account account) {
-		this.account = account;
+	public void setAuthor(Account author) {
+		this.author = author;
 	}
 
 	public CourseCategory getCategory() {
@@ -112,5 +110,12 @@ public class Course {
 		this.category = category;
 	}
 
-	
+	public String getShortdesc() {
+		return shortdesc;
+	}
+
+	public void setShortdesc(String shortdesc) {
+		this.shortdesc = shortdesc;
+	}
+
 }

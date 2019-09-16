@@ -3,6 +3,9 @@
 <%@ page import="com.green.entity.Profile"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
+    
+<%@ taglib prefix = "anesy" uri="/WEB-INF/anesy.tld"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -19,8 +22,14 @@
 	%> 
 	<jsp:include page="../component/header.jsp"></jsp:include>
 
-	<div class="container page">
-		<div class = "row">
+<div class="container page">
+	<div class="row">
+		<div class="col-md-12">
+			<anesy:course-list></anesy:course-list>
+		</div>
+	</div>
+	
+	<div class = "row">
 		<div class="col-md-3">
 	        <div class="list-group">
 	          <a href="index.html" class="list-group-item">Home</a>
@@ -41,8 +50,8 @@
 	          <a href="404.html" class="list-group-item">404</a>
 	          <a href="pricing.html" class="list-group-item">Pricing Table</a>
 	        </div>
-      </div>
-      <div class="col-md-6">
+	     </div>
+	     <div class="col-md-6">
 	      <div class="card-body">
 	            <div class="input-group">
 	              <input type="text" class="form-control" placeholder="Tìm kiếm khóa học"  role="combobox">
@@ -56,8 +65,7 @@
 	      â
 		</div>
 	</div>
-	</div>
-	</div>
+</div>
 	
 	
 	
