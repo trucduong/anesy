@@ -5,15 +5,21 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.green.dao.CourseCategoryDao;
 import com.green.dao.CouseDao;
 import com.green.entity.Course;
+import com.green.entity.CourseCategory;
 import com.green.model.CourseFilter;
 
 @Service
 public class CourseService {
 	@Autowired
+	private CourseCategoryDao courseCategoryDao;
+	
+	@Autowired
 	private CouseDao courseDao;
 	
+
 	public List<Course> search(CourseFilter filter) {
 		if (filter == null) {
 			return courseDao.findAll();
@@ -41,5 +47,9 @@ public class CourseService {
 
 	public void update(Course course) {
 		courseDao.update(course);
+	}
+
+	public List<CourseCategory> findCategories() {
+		return courseCategoryDao.findAll();
 	}
 }

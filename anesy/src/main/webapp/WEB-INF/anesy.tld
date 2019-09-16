@@ -25,5 +25,11 @@
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
+	
+	<tag>
+		<name>category-dropdown</name>
+		<tag-class>com.green.taglib.CategoryDropdownTag</tag-class>
+		<body-content>scriptless</body-content>
+	</tag>
 
 </taglib>

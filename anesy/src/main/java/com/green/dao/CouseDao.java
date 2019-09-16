@@ -36,4 +36,5 @@ public class CouseDao extends BaseDao<Course, Integer> {
 		Query query = getFactory().openSession().createQuery(hql.toString(), Course.class);
 		return query.getResultList();
 	}
+	
 }
