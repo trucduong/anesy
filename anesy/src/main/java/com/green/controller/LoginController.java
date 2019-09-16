@@ -8,22 +8,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.green.config.AuthContext;
+import com.green.config.MessageBox;
 import com.green.entity.Account;
 import com.green.service.AccountService;
+import com.green.service.ProfileService;
 
 @Controller
 @RequestMapping("/login")
 public class LoginController {
 
+	@Autowired
+	private MessageBox msgBox;
 	
 	@Autowired
 	private AuthContext authContext;
 
 	@Autowired
 	private AccountService accountService;
+	
+	@Autowired
+	private ProfileService profileService;
 
 	@GetMapping()
 	public String getlogin() {
+		authContext.setAuthenticated(false);
 		return "login";
 	}
 
@@ -31,14 +39,18 @@ public class LoginController {
 	public String postlogin(@RequestParam(name = "email") String email,
 			@RequestParam(name = "password") String password) {
 		Account account = accountService.findByEmail(email);
-		if (!account.getPassword().equals(password)) {
+		
+		if (account== null ||!account.getPassword().equals(password)) {
+			msgBox.setMessage("Tài khoản hoặc mật khẩu không đúng");
 			return "login";
 		}
 		authContext.setAccountId(account.getId());
 		authContext.setEmail(account.getEmail());
 		authContext.setAuthenticated(true);
-
-		return "redirect:/home";
+		authContext.setFullName(profileService.findbyID(account.getId()).getFullName());
+		authContext.setUserType(profileService.findbyID(account.getId()).getUserType());
+		
+		return "redirect:/";
 	}
 
 }
