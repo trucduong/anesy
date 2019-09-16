@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Welcome to anesy</title>
 
 <%-- import css files --%>
 <jsp:include page="../component/common-css.jsp"></jsp:include>

@@ -7,3 +7,4 @@
 <link href="<%=request.getContextPath() %>/resources/lib/bootstrap/css/modern-business.css" rel="stylesheet" type="text/css" media="all">
 
 <link href="<%=request.getContextPath() %>/resources/main/css/main.css"" rel="stylesheet" type="text/css" media="all">
+<link href="<%=request.getContextPath() %>/resources/main/image/Logo.jpg"" rel="icon" type="image/jpg">
