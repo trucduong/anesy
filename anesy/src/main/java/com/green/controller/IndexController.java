@@ -40,7 +40,7 @@ public class IndexController {
 	public String index(Model model) {
 		if (authContext.isAuthenticated()) {
 			int id = authContext.getAccountId();
-			Profile profile = profileService.findbyID(id);
+			Profile profile = profileService.findById(id);
 			model.addAttribute("_profile", profile);
 
 		}

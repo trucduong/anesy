@@ -47,8 +47,8 @@ public class LoginController {
 		authContext.setAccountId(account.getId());
 		authContext.setEmail(account.getEmail());
 		authContext.setAuthenticated(true);
-		authContext.setFullName(profileService.findbyID(account.getId()).getFullName());
-		authContext.setUserType(profileService.findbyID(account.getId()).getUserType());
+		authContext.setFullName(profileService.findById(account.getId()).getFullName());
+		authContext.setUserType(profileService.findById(account.getId()).getUserType());
 		
 		return "redirect:/";
 	}

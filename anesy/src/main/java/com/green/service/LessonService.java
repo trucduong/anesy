@@ -8,8 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.green.dao.LessonDao;
 import com.green.entity.Lesson;
-import com.green.entity.Lesson;
-import com.green.exception.MyException;
 
 @Service
 public class LessonService {
