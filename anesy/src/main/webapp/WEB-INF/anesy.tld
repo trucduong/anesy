@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>  
+
+<taglib>
+	<tlib-version>1.0</tlib-version>
+	<jsp-version>2.2</jsp-version>
+	<short-name>Anesy</short-name>
+	<description>Anesy taglib</description>
+
+	<tag>
+		<name>course-list</name>
+		<tag-class>com.green.taglib.CourseListTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>	
+			<name>filter</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>com.green.taglib.CourseListTagFilter</type>
+		</attribute>
+		<attribute>
+			<name>courses</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	
+	<tag>
+		<name>category-dropdown</name>
+		<tag-class>com.green.taglib.CategoryDropdownTag</tag-class>
+		<body-content>scriptless</body-content>
+	</tag>
+
+</taglib>

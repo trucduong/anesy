@@ -7,27 +7,27 @@
 <title>Insert title here</title>
 
 <%-- import css files --%>
-<jsp:include page="../component/common-css.jsp"></jsp:include>
+<jsp:include page="../../component/common-css.jsp"></jsp:include>
 
 </head>
 <body>
-<jsp:include page="../component/header.jsp"></jsp:include>
+<jsp:include page="../../component/header.jsp"></jsp:include>
 
-<div class="container page">
+<div class="page-container">
 <div class="row">
-<div class="col-md-3"><jsp:include page="../component/left.jsp"></jsp:include></div>
+<div class="col-md-3"><jsp:include page="../../component/left.jsp"></jsp:include></div>
 <div class="col-md-6">
 
 <%-- input your content here --%>
 
 </div>
-<div class="col-md-3"><jsp:include page="../component/right.jsp"></jsp:include></div>
+<div class="col-md-3"><jsp:include page="../../component/right.jsp"></jsp:include></div>
 </div>
 </div>
 
-<jsp:include page="../component/footer.jsp"></jsp:include>
+<jsp:include page="../../component/footer.jsp"></jsp:include>
 
 <%-- import js files --%>
-<jsp:include page="../component/common-js.jsp"></jsp:include>
+<jsp:include page="../../component/common-js.jsp"></jsp:include>
 </body>
 </html>
