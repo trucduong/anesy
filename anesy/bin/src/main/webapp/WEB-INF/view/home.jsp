@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-
+<title>HomePage</title>
+ <link rel="icon" type="image/png" href="<%=request.getContextPath() %>/resources/main/image/e-learning.png" size="100x100"/>
 <%-- import css files --%>
 <jsp:include page="../component/common-css.jsp"></jsp:include>
 
@@ -51,7 +51,7 @@
 	       </div>
 		</div>
 		<div class="col-md-3">
-	      â
+	       
 		</div>
 	</div>
 	</div>

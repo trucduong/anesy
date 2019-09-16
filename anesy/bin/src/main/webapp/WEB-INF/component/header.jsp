@@ -1,5 +1,3 @@
-<%@page import="com.green.util.SpringContextUtil"%>
-<%@page import="com.green.config.Alert"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <header>
@@ -59,15 +57,3 @@
     </div>
   </nav>
 </header>
-<div class="row">
-<%
-	Alert alert = SpringContextUtil.getBean(Alert.class);
-	for (int i = 0; i < alert.getMessages().size(); i++) {
-		String message = alert.getMessages().get(i);
-		String type = alert.getTypes().get(i).name();
-%>
-	<div class="alert alert-<%=type %>" role="alert"><%=message %></div>
-<%
-	}
-%>
-</div>
