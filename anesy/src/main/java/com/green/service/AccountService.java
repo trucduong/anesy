@@ -3,8 +3,6 @@ package com.green.service;
 import java.util.List;
 import java.util.UUID;
 
-import javax.servlet.ServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +16,7 @@ import com.green.util.EmailUtils;
 //@Component
 @Service
 public class AccountService {
-
+	
 	@Autowired
 	private AccountDao accountDao;
 	
@@ -28,17 +26,17 @@ public class AccountService {
 	public List<Account> findAll() {
 //		List<Account> list = accountDao.findAll();
 //		return list;
-
+		
 		return accountDao.findAll();
 	}
-
+	
 	public Account login(int id, String password) throws Exception {
 		Account account = accountDao.find(id);
-
+		
 		if (account == null) {
 			throw new MyException("Username khong ton tai.");
 		}
-
+		
 //		if (!password.equals(account.getPassword())) {
 //			System.out.println("pass=" + password + "END");
 //			System.out.println("DPpa=" + account.getPassword() + "END");
@@ -90,11 +88,16 @@ public class AccountService {
 		if (!EmailUtils.send(email, "Reset your password", "Your new password is: " + password))
 			throw new MyException("Gui mail that bai!");
 	}
-
+	
+	public Account findByEmail(String email) {
+		return accountDao.findByEmail(email);
+		
+	}
+	
 	public Account findById(int id) {
 		return accountDao.find(id);
 	}
-
+	
 	public void insert(Account account) {
 		accountDao.save(account);
 	}
@@ -102,7 +105,7 @@ public class AccountService {
 	public void update(Account account) {
 		accountDao.update(account);
 	}
-
+	
 	public void delete(int id) {
 		accountDao.deleteById(id);
 	}

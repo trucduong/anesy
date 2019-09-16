@@ -1,18 +1,34 @@
 package com.green.config;
 
+import java.util.ArrayList;
+
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 
+import com.green.entity.CourseCategory;
+
 @Component
 @Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class AuthContext {
-	private boolean isAuthenticated = false;
-	private Integer accountId = 1;
+	private boolean isAuthenticated;
+	private Integer accountId;
 	private String email;
-
 	private String fullName;
+	private int userType;
+
+
+	public int getUserType() {
+		return userType;
+	}
+
+	/**
+	 * @param userType the userType to set
+	 */
+	public void setUserType(int userType) {
+		this.userType = userType;
+	}
 
 	public boolean isAuthenticated() {
 		return isAuthenticated;
