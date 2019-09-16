@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.green.config.Alert;
+import com.green.config.MessageBox;
+import com.green.config.MsgType;
 import com.green.entity.Account;
 import com.green.entity.Profile;
 import com.green.exception.MyException;
@@ -30,6 +33,16 @@ public class RegisController extends HttpServlet{
 	
 	@Autowired
 	private AccountService accountService;
+	
+	@Autowired
+	private ProfileService profileService;
+	
+	@Autowired
+	private Alert alert;
+	
+	@Autowired
+	private MessageBox messageBox;
+	
 	@GetMapping
 	public String showLoginPage() {
 		return REGIS_VIEW_NAME;
@@ -39,26 +52,28 @@ public class RegisController extends HttpServlet{
 									Model model, ServletRequest request) {
 		// kiem tra
 		if (regisModel.getEmail() == null || regisModel.getEmail().isEmpty()) {
-			model.addAttribute("error", "Vui long nhap email!");
+			alert.addMessage("Vui long nhap email!", MsgType.warning);
 			return REGIS_VIEW_NAME;
 		}
 		
 		if (regisModel.getFullName() == null || regisModel.getFullName().isEmpty()) {
-			model.addAttribute("error", "Vui long nhap ho ten!");
+			alert.addMessage("Vui long nhap ho ten!", MsgType.warning);
 			return REGIS_VIEW_NAME;
 		}
 		
 		try {
 			accountService.regis(regisModel.getEmail(), regisModel.getFullName(), regisModel.getUserType());
 		} catch(MyException le) {
-			model.addAttribute("error", le.getMessage());
+			alert.addMessage(le.getMessage(), MsgType.danger);
 			return REGIS_VIEW_NAME;
 		} catch (Exception e) {
-			model.addAttribute("error", "Loi, vui long thu lai");
+			alert.addMessage("Loi, vui long thu lai",MsgType.danger);
 			return REGIS_VIEW_NAME;
 		}
 		
-		return "redirect:/";
+		messageBox.setMessage("Vui long kiem tra email de nhan mat khau!");
+		
+		return "redirect:/login";
 	}
 
 }

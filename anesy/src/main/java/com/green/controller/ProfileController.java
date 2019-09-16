@@ -118,7 +118,7 @@ public class ProfileController {
 		}
 		
 		account.setPassword(newpass);
-		accountservice.update(account.getId(), account);
+		accountservice.update(account);
 		
 		return "profile/password";
 	}
