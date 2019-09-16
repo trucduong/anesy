@@ -29,7 +29,7 @@ public abstract class BaseDao<E, ID> {
 		Session session = factory.openSession();
 		return session.find(entityClass, id);
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	public List<E> findAll() {
 		Session session = factory.openSession();

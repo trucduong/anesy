@@ -45,7 +45,7 @@ public class ProfileController {
 		
 		int id = authContext.getAccountId();
 		Account account = accountservice.findById(id);
-		Profile profile = profileservice.findbyID(account.getId());
+		Profile profile = profileservice.findById(account.getId());
 		request.setAttribute("_profile", profile);
 		return "profile/info";
 	}
@@ -118,7 +118,7 @@ public class ProfileController {
 		}
 		
 		account.setPassword(newpass);
-		accountservice.update(account.getId(), account);
+		accountservice.update(account);
 		
 		return "profile/password";
 	}
