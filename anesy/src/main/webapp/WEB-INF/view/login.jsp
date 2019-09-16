@@ -18,6 +18,7 @@
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <title>Login</title>
+<link href="<%=request.getContextPath() %>/resources/main/image/Logo.jpg"" rel="icon" type="image/jpg">
 </head>
 <style>
 p {

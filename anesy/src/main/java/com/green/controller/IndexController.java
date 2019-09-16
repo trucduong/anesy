@@ -13,6 +13,7 @@ import com.green.config.Alert;
 import com.green.config.AuthContext;
 import com.green.config.MessageBox;
 import com.green.config.MsgType;
+import com.green.entity.Profile;
 import com.green.service.AccountService;
 import com.green.service.ProfileService;
 
