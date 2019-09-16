@@ -26,7 +26,7 @@
 
 	<div class="row hinh" >
 		<div class="col-md-6">
-		<div style="margin-top: 200px; color: red;">
+		<div style="margin-top: 200px; color: red">
 		<div>
 		<h2><b>haha</b></h2>
 		<p>Anywhere, anytime. Enjoy risk-free with our 30-day, money-back guarantee.</p>
@@ -42,6 +42,10 @@
 		</div>
 	</div>
 	<div class="container page">
+
+		<div class="row">
+		Slogan
+		</div>
 
 		<div class="row category">
 			<div class="col-md-12">
@@ -154,8 +158,24 @@
 			</div>
 		
 	</div>
-
-</div>
+		
+		<div class="row">
+		Top categories
+		</div>
+		
+		<div class="row">
+		Feedback
+		</div>
+		
+		<div class="row">
+		partners
+		</div>
+		
+		<div class="row">
+		become to..
+		</div>
+		
+	</div>
 	
 
 	<jsp:include page="../component/footer.jsp"></jsp:include>
