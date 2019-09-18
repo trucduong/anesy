@@ -32,10 +32,10 @@ h2 {
 	<jsp:include page="../component/header.jsp"></jsp:include>
 	<div class="container" style="min-height: 622px">
 		<div class="row">
-			<div class="col-md-3"></div>
-			<div class="col-md-6" style="padding: 2.75rem;">
+			<div class="col-md-2"></div>
+			<div class="col-md-8" style="padding: 2.75rem;">
 				<div class="card text-center">
-					<div class="card-header">Register an account</div>
+					<div class="card-header">Đăng ký tài khoản</div>
 					<div class="card-body">
 						<form action="<%=request.getContextPath()%>/regis" method="post">
 							<table align="center">
@@ -44,31 +44,24 @@ h2 {
 									<td><input name="email" type="text"></td>
 								</tr>
 								<tr>
-									<td>Full Name</td>
+									<td>Họ và tên</td>
 									<td><input name="fullName" type="text"></td>
 								</tr>
-								<tr>
-									<td>User Type</td>
-									<td><select name="userType">
-											<option value="0">Học viên</option>
-											<option value="1">Giáo viên</option>
-											<option value="2">Trung tâm</option>
-									</select></td>
-								</tr>
+								
 								<tr>
 									<td colspan="2" style="text-align: center;">
-										<button class="btn btn-primary" type="submit">Submit</button>
+										<button class="btn btn-primary" type="submit">Đăng ký</button>
 									</td>
 								</tr>
 							</table>
 						</form>
 					</div>
 					<div class="card-footer text-muted">
-						<a href="<%=request.getContextPath()%>">Back to Home page</a>
+						<a href="<%=request.getContextPath()%>">Trở Về Trang Chủ</a>
 					</div>
 				</div>
 			</div>
-			<div class="col-md-3"></div>
+			
 		</div>
 	</div>
 

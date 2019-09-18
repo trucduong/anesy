@@ -24,29 +24,31 @@
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item"><a class="nav-link" href="#">Đăng ký</a></li>
+				<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/regis">Bạn có tài khoản Anesy chưa ?</a></li>
 			</ul>
 
 		</div>
 	</div>
 	</nav>
 
-	<main class="login-form">
-	<div class="cotainer">
-		<div class="row justify-content-center">
-			<div class="col-md-8">
-				<div class="card">
-					<div class="card-header">Login</div>
-					<div class="card-body">
-						<form action="<%=request.getContextPath()%>/login" method="post">
-							<p>${message}</p>
-							<div class="form-group row">
-								<label for="email_address"
-									class="col-md-4 col-form-label text-md-right">E-Mail
-									</label>
-								<div class="col-md-6">
-									<input type="text" id="email_address" class="form-control"
-										name="email" required>
+	<div class="login-form">
+		<form action="<%=request.getContextPath()%>/login" method="post">
+			<div class="cotainer">
+				<div class="row justify-content-center">
+					<div class="col-md-8 ">
+						<div class="card">
+							<div class="card-header" style="text-align: center;">Login</div>
+							<div class="card-body">
+
+								<p>${message}</p>
+								<div class="form-group row">
+									<label for="email_address"
+										class="col-md-4 col-form-label text-md-right">E-Mail </label>
+									<div class="col-md-6">
+										<input type="text" id="email_address" class="form-control"
+											name="email" required>
+									</div>
+
 								</div>
 							</div>
 

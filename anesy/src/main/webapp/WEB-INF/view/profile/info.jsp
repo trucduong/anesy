@@ -53,7 +53,7 @@
 										và tên</span>
 								</div>
 								<input name="name" type="text" class="form-control"
-									value="${ profile.getFullName()}"
+									value="${_profile.fullName}"
 									aria-label="Sizing example input"
 									aria-describedby="inputGroup-sizing-default">
 							</div>
@@ -63,7 +63,7 @@
 										điện thoại</span>
 								</div>
 								<input name="phone" type="text" class="form-control"
-									value="${ profile.getPhone()}"
+									value="${ _profile.phone}"
 									aria-label="Sizing example input"
 									aria-describedby="inputGroup-sizing-default">
 							</div>
@@ -72,7 +72,7 @@
 									<span class="input-group-text" id="inputGroup-sizing-default">Email</span>
 								</div>
 								<input name="email" type="text" class="form-control"
-									value="${ profile.getEmail()}"
+									value="${ _profile.email}"
 									aria-label="Sizing example input"
 									aria-describedby="inputGroup-sizing-default" disabled>
 							</div>
@@ -82,7 +82,7 @@
 										sinh </span>
 								</div>
 								<input id="checkin" name="birthday" type="date"
-									value="${ profile.getBirthDate()}" class="form-control"
+									value="${ _profile.birthDate}" class="form-control"
 									aria-label="Sizing example input"
 									aria-describedby="inputGroup-sizing-default">
 							</div>
@@ -92,7 +92,7 @@
 										tính</label>
 								</div>
 								<select name="gender" class="custom-select"
-									value="${ profile.getGender()}" id="inputGroupSelect01">
+									value="${ _profile.gender}" id="inputGroupSelect01">
 									<option selected>Vui lòng chọn</option>
 									<option value="1">Nam</option>
 									<option value="2">Nữ</option>
@@ -106,7 +106,7 @@
 										Chỉ</span>
 								</div>
 								<textarea name="address" type="text" class="form-control"
-									id="email" value="${ profile.getAddress()}" required=""
+									id="email" value="${ _profile.address}" required=""
 									data-validation-required-message="Please enter your email address."></textarea>
 							</div>
 

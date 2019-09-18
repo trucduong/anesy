@@ -1,3 +1,5 @@
+<%@page import="com.green.config.Alert"%>
+<%@page import="com.green.util.SpringContextUtil"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -11,6 +13,29 @@
 
 </head>
 <body>
+<%
+	Alert alert = SpringContextUtil.getBean(Alert.class);
+	if (!alert.getMessages().isEmpty()) {
+%>
+	<div class="container" style="padding-top: 10px">
+<%
+	for (int i = 0; i < alert.getMessages().size(); i++) {
+		String message = alert.getMessages().get(i);
+		String type = alert.getTypes().get(i).name();
+%>
+
+	<div class="alert alert-<%=type %> alert-dismissible fade show" role="alert"><%=message %>
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    		<span aria-hidden="true">&times;</span>
+  		</button>
+	</div>
+<%
+	}
+%>
+</div>
+<%
+	}
+%>
 	<jsp:include page="../../component/header.jsp"></jsp:include>
 
 	<div class="container page">
@@ -23,13 +48,13 @@
 				<div class="card">
 					<h5 class="card-header">Tài Khoản</h5>
 					<div class="card-body">
-						<form >
+						<form method="post">
 							<div class="input-group mb-3">
 								<div class="input-group-prepend">
 									<span class="input-group-text" id="inputGroup-sizing-default">Mật
 										Khẩu Hiện Tại</span>
 								</div>
-								<input name="oldpass" type="text" class="form-control"
+								<input name="oldpass" type="password" class="form-control"
 									aria-label="Sizing example input"
 									aria-describedby="inputGroup-sizing-default">
 							</div>
@@ -38,7 +63,7 @@
 									<span class="input-group-text" id="inputGroup-sizing-default">Mật
 										khẩu mới</span>
 								</div>
-								<input name="newpass" type="text" class="form-control"
+								<input name="newpass" type="password" class="form-control"
 									aria-label="Sizing example input"
 									aria-describedby="inputGroup-sizing-default">
 							</div>
@@ -47,7 +72,7 @@
 									<span class="input-group-text" id="inputGroup-sizing-default">Nhập
 										lại mật khẩu</span>
 								</div>
-								<input name="newpass1" type="text" class="form-control"
+								<input name="newpass1" type="password" class="form-control"
 									aria-label="Sizing example input"
 									aria-describedby="inputGroup-sizing-default">
 							</div>
@@ -70,7 +95,7 @@
 												<span aria-hidden="true">&times;</span>
 											</button>
 										</div>
-										<div class="modal-body">...</div>
+										<div class="modal-body">Bạn có chắc chắn thay đổi mật khẩu hiện tại ?</div>
 										<div class="modal-footer">
 											<button type="button" class="btn btn-secondary"
 												data-dismiss="modal">Thoát</button>

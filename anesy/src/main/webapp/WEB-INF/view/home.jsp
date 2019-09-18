@@ -25,6 +25,9 @@
 	<%
 		Profile profile = (Profile) request.getAttribute("_profile");
 	%>
+	<%
+		AuthContext authContext = SpringContextUtil.getBean(AuthContext.class);
+	%>
 	<jsp:include page="../component/header.jsp"></jsp:include>
 
 	<div class="row hinh" >
@@ -200,21 +203,98 @@
 		Top categories
 		</div>
 		
+		
 		<div class="row">
-		Feedback
+			<h2>Bình luận của học sinh</h2>
+		</div>
+		<div class="row justify-content-center">
+			<div class="col-4">
+				<div class="card comment-card">
+				  	<div class="card-body">
+					    <div class=comment-card-info>
+					    	<div>
+					    		<img alt="" src="<%=request.getContextPath()%>/resources/image/hoc-tap-2.jpg" width="64" height="64">
+					    	</div>
+					    	<div class=comment-card-name style="padding-left: 15px;">
+					    		<div>Trọng Anh</div>
+					    	</div>					    	
+					    </div>
+					    <p class="card-text" >Trung tâm hay quá tui muốn .................................................................</p>
+				  </div>
+				</div>
+			</div>
+			
+			<div class="col-4">
+				<div class="card comment-card">
+				  	<div class="card-body">
+					    <div class=comment-card-info>
+					    	<div>
+					    		<img alt="" src="<%=request.getContextPath()%>/resources/image/hoc-tap-2.jpg" width="64" height="64">
+					    	</div>
+					    	<div class=comment-card-name style="padding-left: 15px;">
+					    		<div>Trọng Anh</div>
+					    	</div>					    	
+					    </div>
+					    <p class="card-text" >Trung tâm hay quá tui muốn .................................................................</p>
+				  </div>
+				</div>
+			</div>
+			
+			<div class="col-4">
+				<div class="card comment-card">
+				  	<div class="card-body">
+					    <div class=comment-card-info>
+					    	<div>
+					    		<img alt="" src="<%=request.getContextPath()%>/resources/image/hoc-tap-2.jpg" width="64" height="64">
+					    	</div>
+					    	<div class=comment-card-name style="padding-left: 15px;">
+					    		<div>Trọng Anh</div>
+					    	</div>					    	
+					    </div>
+					    <p class="card-text" >Trung tâm hay quá tui muốn .................................................................</p>
+				  </div>
+				</div>
+			</div>
 		</div>
 		
 		<div class="row">
 		partners
 		</div>
 		
-		<div class="row">
-		become to..
+		<div class="row" style="height: 50px"></div>
+		
+		<%if(authContext.getUserType()!=2 && authContext.getUserType()!=2 ){ %>
+
+		<div class="row justify-content-center">
+			<div class="col-5">
+				<div class="card text-center">
+				  	<div class="card-body">
+					    <h5 class="card-title"  >Trở Thành Giáo Viên</h5>
+					    <p class="card-text" > Dạy những gì bạn yêu thích thông qua công cụ của Anesy</p>
+					    
+					    <a href="#" class="btn btn-primary" >Đăng Ký </a>
+				  </div>
+				</div>
+			</div>
+			
+			<div class="col-5">
+				<div class="card text-center">
+				  	<div class="card-body">
+				    <h5 class="card-title" >Trở Thành Trung Tâm</h5>
+				    <p class="card-text" >Trở thành trung tâm online thông qua công cụ của Anesy</p>
+				    <a href="#" class="btn btn-primary">Đăng Ký </a>
+			  </div>
+			</div>
+			
+			
+			</div>
 		</div>
 		
+		<%} %>
+		
+		<div class="row" style="height: 50px"></div>
 	</div>
 	
-
 	<jsp:include page="../component/footer.jsp"></jsp:include>
 
 	<%-- import js files --%>
