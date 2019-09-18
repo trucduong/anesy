@@ -1,3 +1,5 @@
+<%@page import="com.green.util.SpringContextUtil"%>
+<%@page import="com.green.config.MessageBox"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -83,6 +85,27 @@
 			</div>
 		</form>
 	</div>
+
+<%
+	MessageBox msgBox = SpringContextUtil.getBean(MessageBox.class);
+	if (msgBox.hasMessage()) {
+%>
+<div class="modal fade" id="msgBoxModal" tabindex="-1" role="dialog" aria-labelledby="msgBoxModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <%=msgBox.getMessage() %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<%
+	msgBox.clear();
+	}
+%>
 
 </body>
 </html>
