@@ -24,7 +24,7 @@
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item"><a class="nav-link" href="#">Đăng ký</a></li>
+				<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/regis">Bạn có tài khoản Anesy chưa ?</a></li>
 			</ul>
 
 		</div>
@@ -35,9 +35,9 @@
 		<form action="<%=request.getContextPath()%>/login" method="post">
 			<div class="cotainer">
 				<div class="row justify-content-center">
-					<div class="col-md-8">
+					<div class="col-md-8 ">
 						<div class="card">
-							<div class="card-header">Login</div>
+							<div class="card-header" style="text-align: center;">Login</div>
 							<div class="card-body">
 
 								<p>${message}</p>

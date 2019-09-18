@@ -1,6 +1,7 @@
 @CHARSET "ISO-8859-1";
 body {
-	background: #e3e3e3 !important;
+	/*background: #e3e3e3 !important;*/
+	background: rgb(247, 248, 250) !important;
 }
 
 .page {
@@ -67,6 +68,19 @@ div.course-item course-image img{
 	height: 560px;
 	width: 100%;
 	margin: 0;
+}
+
+.comment-card{
+	min-height: 260px;
+}
+
+.comment-card-info{
+	font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5em;
+    align-items: center;
+    display: flex;
+    margin-bottom: 21px;
 }
 
 

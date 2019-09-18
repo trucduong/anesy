@@ -71,18 +71,7 @@ if (!alert.getMessages().isEmpty()) {
           <li class="nav-item">
             <a class="nav-link" href="about.html">Khóa học của tôi</a>
           </li>
-          <%if(authContext.getUserType()!=2){ %>
-          <li class="nav-item">
-            <a class="nav-link" href="services.html">Trở thành trung tâm</a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="contact.html">Trở thành giảng viên</a>
-          </li>
-          <%}else{ %>
-          <li class="nav-item active">
-            <a class="nav-link" href="contact.html">Quản lý khóa học</a>
-          </li>
-          <%} %>
+          
          
          
           <%if(authContext.isAuthenticated()) {%>
@@ -95,6 +84,9 @@ if (!alert.getMessages().isEmpty()) {
               <a class="dropdown-item" href="<%= request.getContextPath()%>/profile/password">Đổi Mật Khẩu</a>
               <a class="dropdown-item" href="<%= request.getContextPath()%>/profile/history">Lịch Sử Học Tập</a>
               <a class="dropdown-item" href="<%= request.getContextPath()%>/profile/certificate">Chứng Chỉ</a>
+              <%if(authContext.getUserType()!=0) {%>
+              <a class="dropdown-item" href="<%= request.getContextPath()%>/profile/certificate">Quản lý khóa học</a>
+              <%} %>
               <a class="dropdown-item" href="<%=request.getContextPath()%>/login">Logout</a>
             </div>
           </li>
