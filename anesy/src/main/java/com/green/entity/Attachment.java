@@ -19,10 +19,10 @@ public class Attachment {
 	@Column(name = "target_id")
 	private int targetId;
 
-	@Column(name = "attachment_name")
+	@Column(name = "attachment_name",columnDefinition = "nvarchar(500)")
 	private String name;
 
-	@Column(name = "file_path")
+	@Column(name = "file_path",columnDefinition = "nvarchar(500)")
 	private String path;
 
 	@Column(name = "attachment_type")

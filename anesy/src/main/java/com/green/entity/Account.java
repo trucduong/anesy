@@ -14,10 +14,10 @@ public class Account {
 	@Column(name="id")
 	private int id;
 	
-	@Column(name = "password")
+	@Column(name = "password", columnDefinition = "nvarchar(50)")
 	private String password;
 	
-	@Column(name = "email")
+	@Column(name = "email", columnDefinition = "nvarchar(50)")
 	private String email;
 	
 	@Column(name = "isActive")

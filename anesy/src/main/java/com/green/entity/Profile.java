@@ -17,25 +17,25 @@ public class Profile {
 	@Column(name="user_type")
 	private int userType;
 	
-	@Column(name = "full_name")
+	@Column(name = "full_name",columnDefinition = "nvarchar(100)")
 	private String fullName;
 	
-	@Column(name = "phone")
+	@Column(name = "phone",columnDefinition = "varchar(15)")
 	private String phone;
 	
-	@Column(name = "email")
+	@Column(name = "email",columnDefinition = "nvarchar(100)")
 	private String email;
 	
-	@Column(name = "gender")
+	@Column(name = "gender",columnDefinition = "char(1)")
 	private String gender;
 	
 	@Column(name = "birth_date")
 	private Date birthDate;
 	
-	@Column(name = "address")
+	@Column(name = "address",columnDefinition = "nvarchar(200)")
 	private String address;
 	
-	@Column(name = "certificates")
+	@Column(name = "certificates",columnDefinition = "text")
 	private String certificates;
 
 	public int getAccountId() {
