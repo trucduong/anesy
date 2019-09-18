@@ -33,6 +33,7 @@ if (!alert.getMessages().isEmpty()) {
 %>
 </div>
 <%
+alert.clear();
 }
 %>
 
@@ -53,6 +54,7 @@ if (!alert.getMessages().isEmpty()) {
   </div>
 </div>
 <%
+msgBox.clear();
 	}
 %>
 

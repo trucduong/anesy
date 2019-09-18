@@ -1,3 +1,6 @@
+<%@page import="com.green.model.CourseFilter"%>
+<%@page import="com.green.entity.CourseCategory"%>
+<%@page import="java.util.List"%>
 <%@page import="com.green.util.SpringContextUtil"%>
 <%@page import="com.green.config.AuthContext"%>
 <%@ page import="com.green.entity.Profile"%>
@@ -47,6 +50,40 @@
 		Slogan
 		</div>
 
+		<div class="row">
+		<%
+		List<CourseCategory> categories = (List<CourseCategory>) request.getAttribute("_categories");
+		if (categories.size() > 0) {
+		%>
+			<div class="col-md-12">
+				<div class="bd-example bd-example-tabs">
+				  <nav>
+				    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+				    <%
+				    	for(int i=0; i < categories.size(); i++) {
+				    		CourseCategory category = categories.get(i);
+				    %>
+				    	<a class="nav-item nav-link <%=i==0?"active show":"" %>" id="nav-cat-<%=category.getId() %>-tab" data-toggle="tab" href="#nav-cat-<%=category.getId() %>" role="tab" aria-controls="nav-cat-<%=category.getId() %>" aria-selected="true"><%=category.getName() %></a>
+				    <% } %>
+				    </div>
+				  </nav>
+				  <div class="tab-content" id="nav-tabContent" style="margin-top: 10px;">
+				  	<%
+				    	for(int i=0; i < categories.size(); i++) {
+				    		CourseCategory category = categories.get(i);
+				    		CourseFilter filter = new CourseFilter();
+				    		filter.setCategory(category.getId());
+				    		pageContext.setAttribute("_courseFilter", filter);
+				    %>
+			    	<div class="tab-pane fade <%=i==0?"active show":"" %>" id="nav-cat-<%=category.getId() %>" role="tabpanel" aria-labelledby="nav-cat-<%=category.getId() %>-tab">
+				      <anesy:course-list filter="${_courseFilter}" limit="9"></anesy:course-list>
+				    </div>
+				    <% } %>
+				  </div>
+				</div>
+			</div>
+		<% } %>
+		</div>
 		<div class="row category">
 			<div class="col-md-12">
 			<div class="title">

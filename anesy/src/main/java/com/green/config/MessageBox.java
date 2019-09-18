@@ -22,4 +22,8 @@ public class MessageBox {
 	public boolean hasMessage() {
 		return !StringUtils.isEmpty(message);
 	}
+	
+	public void clear() {
+		message = null;
+	}
 }
