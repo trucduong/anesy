@@ -10,7 +10,8 @@
 <jsp:include page="../component/common-css.jsp"></jsp:include>
 
 
-<link href="<%=request.getContextPath() %>/resources/main/image/Logo.jpg"" rel="icon" type="image/jpg">
+<link href="<%=request.getContextPath()%>/resources/main/image/Logo.jpg"
+	rel="icon" type="image/jpg">
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light navbar-laravel">
@@ -24,7 +25,8 @@
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/regis">Bạn có tài khoản Anesy chưa ?</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="<%=request.getContextPath()%>/regis">Bạn có tài khoản Anesy chưa ?</a></li>
 			</ul>
 
 		</div>
@@ -75,14 +77,12 @@
 								<button type="submit" class="btn btn-primary">Login</button>
 								<a href="#" class="btn btn-link"> Forgot Your Password? </a>
 							</div>
+						</div>
 					</div>
-					</form>
 				</div>
 			</div>
-		</div>
-	</div>
+		</form>
 	</div>
 
-	</main>
 </body>
 </html>
