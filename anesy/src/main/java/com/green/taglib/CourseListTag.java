@@ -13,9 +13,11 @@ import com.green.util.MyFormater;
 import com.green.util.SpringContextUtil;
 
 public class CourseListTag extends BaseTag {
-
+	
 	private CourseFilter filter;
 	private List<Course> courses;
+	
+	private int limit = -1;
 	
 	private CourseService courseService;
 	
@@ -27,10 +29,14 @@ public class CourseListTag extends BaseTag {
 	public void doTag() throws JspException, IOException {
 		JspWriter out = getJspContext().getOut();
 		
-		out.println("<div class='card-deck'>");
+		out.println("<div class='card-columns'>");
 		
 		if (courses == null) {
 			courses = courseService.search(filter);
+		}
+		
+		if (limit > 0 && courses.size() > limit) {
+			courses = courses.subList(0, limit);
 		}
 		
 		for (Course course : courses) {
@@ -69,5 +75,12 @@ public class CourseListTag extends BaseTag {
 		this.courses = courses;
 	}
 	
+	public int getLimit() {
+		return limit;
+	}
+	
+	public void setLimit(int limit) {
+		this.limit = limit;
+	}
 	
 }
