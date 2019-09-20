@@ -1,5 +1,7 @@
 package com.green.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +15,10 @@ import com.green.config.Alert;
 import com.green.config.AuthContext;
 import com.green.config.MessageBox;
 import com.green.config.MsgType;
+import com.green.entity.CourseCategory;
 import com.green.entity.Profile;
 import com.green.service.AccountService;
+import com.green.service.CourseService;
 import com.green.service.ProfileService;
 
 @Controller
@@ -35,6 +39,9 @@ public class IndexController {
 
 	@Autowired
 	private ProfileService profileService;
+	
+	@Autowired
+	private CourseService courseService;
 
 	@GetMapping()
 	public String index(Model model) {
@@ -44,6 +51,9 @@ public class IndexController {
 			model.addAttribute("_profile", profile);
 
 		}
+		
+		List<CourseCategory> category_list = (List<CourseCategory>) courseService.findCategories();
+		model.addAttribute("_categoryList",category_list);
 
 		return "home";
 	}

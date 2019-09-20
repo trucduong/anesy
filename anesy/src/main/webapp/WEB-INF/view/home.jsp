@@ -159,9 +159,7 @@
 		
 	</div>
 		
-		<div class="row">
-		Top categories
-		</div>
+		<div><jsp:include page="../component/top-category.jsp"></jsp:include></div>
 		
 		<div class="row">
 		Feedback
