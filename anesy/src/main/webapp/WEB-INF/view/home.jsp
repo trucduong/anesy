@@ -47,12 +47,29 @@
 		</div>	
 		</div>
 	</div>
-	<div class="container page">
+	
 
-		<div class="row">
-		Slogan
+		<div class="row slogan">
+			<div class="col-sm-4 text-content text-center ">
+	      		<b>100.000 khóa học trực tuyến</b>
+	      		<div>
+	      		  Khám phá nhiều chủ đề mới
+	   			</div>
+	   		</div>
+	    	<div class="col-sm-4 text-content text-center ">
+	      		<b>Hướng dẫn chuyên môn</b>
+	      		<div>
+	      		  Tìm người hướng dẫn phù hợp với bạn
+	   			</div>
+	     	</div>
+	    	<div class="col-sm-4 text-content text-center ">
+	      		<b>Truy cập trọn đời</b>
+	      		<div>
+	      		  Học theo lịch trình của bạn
+	   			</div>
+	    	</div>
 		</div>
-
+	<div class="container page">
 		<div class="row">
 		<%
 		List<CourseCategory> categories = (List<CourseCategory>) request.getAttribute("_categories");
@@ -88,12 +105,13 @@
 		<% } %>
 		</div>
 		
+		
 		<div class="row">
 		Top categories
 		</div>
 		
 		
-		<div class="row">
+		<div class="row comment-stu">
 			<h2>Bình luận của học sinh</h2>
 		</div>
 		<div class="row justify-content-center">
@@ -102,13 +120,13 @@
 				  	<div class="card-body">
 					    <div class=comment-card-info>
 					    	<div>
-					    		<img alt="" src="<%=request.getContextPath()%>/resources/image/hoc-tap-2.jpg" width="64" height="64">
+					    		<img alt="" src="<%=request.getContextPath()%>/resources/image/avatar-comment-image/hinh1.jpg" width="64" height="64">
 					    	</div>
 					    	<div class=comment-card-name style="padding-left: 15px;">
-					    		<div>Trọng Anh</div>
+					    		<div>Trân Bội Huân</div>
 					    	</div>					    	
 					    </div>
-					    <p class="card-text" >Trung tâm hay quá tui muốn .................................................................</p>
+					    <p class="card-text" >Tôi đã tham gia khóa học, các thầy cô đã chia sẽ kiến thức rất thực tế, hiện tại, tay nghề tôi vững vàng hơn sau mỗi ngày học, nếu bạn đang cần môi trường học chuyên nghiệp, tôi khuyên bạn nên đăng ký tham gia</p>
 				  </div>
 				</div>
 			</div>
@@ -118,13 +136,13 @@
 				  	<div class="card-body">
 					    <div class=comment-card-info>
 					    	<div>
-					    		<img alt="" src="<%=request.getContextPath()%>/resources/image/hoc-tap-2.jpg" width="64" height="64">
+					    		<img alt="" src="<%=request.getContextPath()%>/resources/image/avatar-comment-image/hinh2.jpg" width="64" height="64">
 					    	</div>
 					    	<div class=comment-card-name style="padding-left: 15px;">
-					    		<div>Trọng Anh</div>
+					    		<div>Lê Thị Ý Lan</div>
 					    	</div>					    	
 					    </div>
-					    <p class="card-text" >Trung tâm hay quá tui muốn .................................................................</p>
+					    <p class="card-text" >Thông qua người bạn giới thiệu tôi đã tham gia khóa học Tiếng Anh tại Anesy, thật sự các thầy cô đã chia sẻ kiến thức rất hay, đã giúp tôi học tập hiệu quả tốt hơn trước đây rất nhiều.</p>
 				  </div>
 				</div>
 			</div>
@@ -134,20 +152,38 @@
 				  	<div class="card-body">
 					    <div class=comment-card-info>
 					    	<div>
-					    		<img alt="" src="<%=request.getContextPath()%>/resources/image/hoc-tap-2.jpg" width="64" height="64">
+					    		<img alt="" src="<%=request.getContextPath()%>/resources/image/avatar-comment-image/hinh3.jpg" width="64" height="64">
 					    	</div>
 					    	<div class=comment-card-name style="padding-left: 15px;">
-					    		<div>Trọng Anh</div>
+					    		<div>Nguyễn Song Gia Bảo</div>
 					    	</div>					    	
 					    </div>
-					    <p class="card-text" >Trung tâm hay quá tui muốn .................................................................</p>
+					    <p class="card-text" >Mình thích nhất là được thầy hỗ trợ mình nếu không hiểu gì có thể liên hệ trực tiếp với thầy cô, giờ mình tự tin hành nghề Thiết Kế, thu nhập mỗi tháng từ việc làm thêm cũng hơn 10 Triệu.</p>
 				  </div>
 				</div>
 			</div>
 		</div>
 		
-		<div class="row">
-		partners
+		<div class="row partner">
+		
+		<div class="logo-partner">
+			<img alt="booking" src="<%=request.getContextPath()%>/resources/image/logo-partner-image/booking-logo.svg" width="156" height="26"">
+		</div>
+		<div class="logo-partner">
+			<img alt="adidas" src="<%=request.getContextPath()%>/resources/image/logo-partner-image/adidas-logo.svg" width="156" height="26"">
+		</div>
+		<div class="logo-partner">
+			<img alt="eventbrite" src="<%=request.getContextPath()%>/resources/image/logo-partner-image/eventbrite-logo.svg" width="156" height="26"">
+		</div>
+		<div class="logo-partner">
+			<img alt="mercedes" src="<%=request.getContextPath()%>/resources/image/logo-partner-image/mercedes-logo.svg" width="156" height="26"">
+		</div>
+		<div class="logo-partner">
+			<img alt="pinterest" src="<%=request.getContextPath()%>/resources/image/logo-partner-image/pinterest-logo.svg" width="156" height="26"">
+		</div>
+		<div class="logo-partner">
+			<img alt="volkswagen" src="<%=request.getContextPath()%>/resources/image/logo-partner-image/volkswagen-logo.svg" width="156" height="26"">
+		</div>
 		</div>
 		
 		<div class="row" style="height: 50px"></div>
@@ -161,7 +197,7 @@
 					    <h5 class="card-title"  >Trở Thành Giáo Viên</h5>
 					    <p class="card-text" > Dạy những gì bạn yêu thích thông qua công cụ của Anesy</p>
 					    
-					    <a href="#" class="btn btn-primary" >Đăng Ký </a>
+					    <a href="<%=request.getContextPath()%>/become" class="btn btn-primary" >Đăng Ký </a>
 				  </div>
 				</div>
 			</div>
@@ -169,12 +205,11 @@
 			<div class="col-5">
 				<div class="card text-center">
 				  	<div class="card-body">
-				    <h5 class="card-title" >Trở Thành Trung Tâm</h5>
-				    <p class="card-text" >Trở thành trung tâm online thông qua công cụ của Anesy</p>
-				    <a href="#" class="btn btn-primary">Đăng Ký </a>
+				    <h5 class="card-title" >Trở Thành Trung Tâm Giảng Viên</h5>
+				    <p class="card-text" >Trở thành trung tâm giảng viên thông qua công cụ của Anesy</p>
+				    <a href="<%=request.getContextPath()%>/become" class="btn btn-primary">Đăng Ký </a>
 			  </div>
 			</div>
-			
 			
 			</div>
 		</div>

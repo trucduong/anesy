@@ -44,7 +44,6 @@
 							<div class="card-header" style="text-align: center;">Login</div>
 							<div class="card-body">
 
-								<p>${message}</p>
 								<div class="form-group row">
 									<label for="email_address"
 										class="col-md-4 col-form-label text-md-right">E-Mail </label>
@@ -77,7 +76,7 @@
 
 							<div class="col-md-6 offset-md-4">
 								<button type="submit" class="btn btn-primary">Login</button>
-								<a href="#" class="btn btn-link"> Forgot Your Password? </a>
+								<a href="<%=request.getContextPath()%>/resetpass" class="btn btn-link"> Forgot Your Password? </a>
 							</div>
 						</div>
 					</div>
