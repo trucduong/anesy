@@ -107,8 +107,7 @@ for(int i = 0; i < slideCount; i++) {
 <%} %>
 
 
-<script type="text/javascript"
-	src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js">
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js">
 	$('.multi-item-carousel .item').each(
 			function() {
 				var next = $(this).next();
