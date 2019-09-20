@@ -40,7 +40,7 @@ public abstract class BaseDao<E, ID> {
 
 	public void save(E entity) {
 		Session session = factory.openSession();
-		session.save(entity);
+		session.saveOrUpdate(entity);
 		session.close();
 	}
 
