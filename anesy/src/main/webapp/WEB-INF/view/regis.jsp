@@ -32,8 +32,8 @@ h2 {
 	<jsp:include page="../component/header.jsp"></jsp:include>
 	<div class="container" style="min-height: 622px">
 		<div class="row">
-			<div class="col-md-2"></div>
-			<div class="col-md-8" style="padding: 2.75rem;">
+			<div class="col-md-3"></div>
+			<div class="col-md-6" style="padding: 2.75rem;">
 				<div class="card text-center">
 					<div class="card-header">Đăng ký tài khoản</div>
 					<div class="card-body">
@@ -47,7 +47,14 @@ h2 {
 									<td>Họ và tên</td>
 									<td><input name="fullName" type="text"></td>
 								</tr>
-								
+								<tr>
+									<td>User Type</td>
+									<td><select name="userType">
+											<option value="0">Học viên</option>
+											<option value="1">Giáo viên</option>
+											<option value="2">Trung tâm</option>
+									</select></td>
+								</tr>
 								<tr>
 									<td colspan="2" style="text-align: center;">
 										<button class="btn btn-primary" type="submit">Đăng ký</button>
@@ -61,7 +68,7 @@ h2 {
 					</div>
 				</div>
 			</div>
-			
+			<div class="col-md-3"></div>
 		</div>
 	</div>
 
