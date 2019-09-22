@@ -70,6 +70,6 @@ public class AdminCourseCategoryController {
 	public String handleDelete(@PathVariable("id") int id) {
 		
 		
-		return "redirect:/course-category";
+		return "redirect:/admin/course-category";
 	}
 }
