@@ -4,8 +4,22 @@ body {
 	background: rgb(247, 248, 250) !important;
 }
 
+form {
+	display: inline-block !important;
+}
+
 .page {
 	min-height: 500px;
+}
+
+.page-title {
+	border-bottom: solid darkgray;
+	padding-bottom: 10px;
+}
+
+.row-content {
+	padding-top: 5px;
+	padding-bottom: 5px;
 }
 
 .card-body input-group {
