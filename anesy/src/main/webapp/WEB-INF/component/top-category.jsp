@@ -16,18 +16,18 @@
 	width: 100%;
 }
 
-.top-categories-container{
-    margin-bottom: 32px;
-    padding-left: 16px;
-    padding-right: 16px;
+.top-categories-container {
+	margin-bottom: 32px;
+	padding-left: 16px;
+	padding-right: 16px;
 }
 
-.top-category-header{
-    font-size: 24px;
-    font-weight: 600;
-    line-height: 1.33em;
-    margin-bottom: 5px;
-    margin-top: 15px;
+.top-category-header {
+	font-size: 24px;
+	font-weight: 600;
+	line-height: 1.33em;
+	margin-bottom: 5px;
+	margin-top: 15px;
 }
 
 .panel-default {
@@ -79,12 +79,15 @@
 
 <%
 	List<CourseCategory> list = (List<CourseCategory>) request.getAttribute("_categoryList");
+	int count = 8;
+	if (list.size() < count)
+		count = list.size();
 %>
 <div class="top-categories-container">
 	<div class="top-category-header">Top Categories</div>
 	<div class="row">
 		<%
-			for (int i = 0; i < list.size(); i++) {
+			for (int i = 0; i < count; i++) {
 				CourseCategory category = list.get(i);
 		%>
 		<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
