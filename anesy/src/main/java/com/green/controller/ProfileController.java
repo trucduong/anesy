@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.green.config.Alert;
 import com.green.config.AuthContext;
+import com.green.config.MsgType;
 import com.green.dao.BaseDao;
 import com.green.dao.ProfileDao;
 import com.green.entity.Account;
@@ -26,6 +28,9 @@ import com.green.service.ProfileService;
 @Controller
 @RequestMapping("/profile")
 public class ProfileController {
+	@Autowired
+	private Alert alert;
+	
 	@Autowired
 	private ProfileService profileservice;
 	
@@ -116,12 +121,13 @@ public class ProfileController {
 
 		if (!account.getPassword().equals(oldpass) || account.getPassword().equals(newpass)
 				|| !newpass.equals(newpass1)) {
+			alert.addMessage("Cập nhật thất bại", MsgType.danger );
 			return "profile/password";
 		}
 		
 		account.setPassword(newpass);
 		accountservice.update(account);
-		
+		alert.addMessage("Cập nhật thành công");
 		return "profile/password";
 	}
 

@@ -49,11 +49,13 @@ public class IndexController {
 			int id = authContext.getAccountId();
 			Profile profile = profileService.findById(id);
 			model.addAttribute("_profile", profile);
-
 		}
 		
 		List<CourseCategory> category_list = (List<CourseCategory>) courseService.findCategories();
 		model.addAttribute("_categoryList",category_list);
+
+		// get category list
+		model.addAttribute("_categories", courseService.findCategories());
 
 		return "home";
 	}

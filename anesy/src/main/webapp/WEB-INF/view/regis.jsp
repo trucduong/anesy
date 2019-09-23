@@ -35,7 +35,7 @@ h2 {
 			<div class="col-md-3"></div>
 			<div class="col-md-6" style="padding: 2.75rem;">
 				<div class="card text-center">
-					<div class="card-header">Register an account</div>
+					<div class="card-header">Đăng ký tài khoản</div>
 					<div class="card-body">
 						<form action="<%=request.getContextPath()%>/regis" method="post">
 							<table align="center">
@@ -44,7 +44,7 @@ h2 {
 									<td><input name="email" type="text"></td>
 								</tr>
 								<tr>
-									<td>Full Name</td>
+									<td>Họ và tên</td>
 									<td><input name="fullName" type="text"></td>
 								</tr>
 								<tr>
@@ -57,14 +57,14 @@ h2 {
 								</tr>
 								<tr>
 									<td colspan="2" style="text-align: center;">
-										<button class="btn btn-primary" type="submit">Submit</button>
+										<button class="btn btn-primary" type="submit">Đăng ký</button>
 									</td>
 								</tr>
 							</table>
 						</form>
 					</div>
 					<div class="card-footer text-muted">
-						<a href="<%=request.getContextPath()%>">Back to Home page</a>
+						<a href="<%=request.getContextPath()%>">Trở Về Trang Chủ</a>
 					</div>
 				</div>
 			</div>
