@@ -49,4 +49,5 @@ public class SubjectsDao extends BaseDao<Subjects, Integer> {
 		Number val = (Number) query.getSingleResult();
 		return val.longValue();
 	}
+	
 }
