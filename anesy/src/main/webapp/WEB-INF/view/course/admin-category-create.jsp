@@ -24,10 +24,23 @@
 	
 %>
 
-<h1 class="page-title">Course Category List</h1>
+<h1 class="page-title">Course Category</h1>
 
-<div class="row">
-	
+<div class="row justify-content-center">
+	<div class="col-md-12">
+		<form >
+		  <div class="form-group">
+		    <label for="catName">Category Name</label>
+		    <input type="text" class="form-control" id="catName" placeholder="Enter course category name">
+		  </div>
+		  <div class="form-group">
+		    <label for="catDescription">Password</label>
+		    <input type="password" class="form-control" id="catDescription" placeholder="Description">
+		  </div>
+		  <button type="submit" class="btn btn-primary">Submit</button>
+		  <button type="button" onclick="window.href=<%=request.getContextPath() %>/admin/course-category" class="btn btn-default">Cancel</button>
+		</form>
+	</div>
 </div>
 
 </div>
