@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.green.dao.SubjectsDao;
 import com.green.entity.Subjects;
+import com.green.model.Page;
 
 @Service
 public class SubjectsService {
@@ -32,6 +33,20 @@ public class SubjectsService {
 
 	public void update(Subjects subjects) {
 		subjectsDao.update(subjects);
+	}
+	public Page<Subjects> findSubject(String filter, int page) {
+		Page<Subjects> result = new Page<>();
+		long totalRows = subjectsDao.count(filter);
+		if (totalRows <= 0) {
+			return result;
+		}
+		
+		List<Subjects> list = subjectsDao.search(filter, page);
+		
+		result.setCurrent(page);
+		result.setList(list);
+		result.setTotalRows(totalRows);
+		return result;
 	}
 
 }
