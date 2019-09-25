@@ -26,7 +26,7 @@ public class SubjectsDao extends BaseDao<Subjects, Integer> {
 	
 	public List<Subjects> search(String filter, int page) {
 		StringBuilder hql = new StringBuilder();
-		hql.append("from subjects ca where 1=1");
+		hql.append("from Subjects ca where 1=1");
 		if (filter != null) {
 			hql.append(" and ca.name like '%").append(filter).append("%'");
 		}
@@ -40,7 +40,7 @@ public class SubjectsDao extends BaseDao<Subjects, Integer> {
 
 	public long count(String filter) {
 		StringBuilder hql = new StringBuilder();
-		hql.append("select count(ca) from subjects ca where 1=1");
+		hql.append("select count(ca) from Subjects ca where 1=1");
 		if (filter != null) {
 			hql.append(" and ca.name like '%").append(filter).append("%'");
 		}

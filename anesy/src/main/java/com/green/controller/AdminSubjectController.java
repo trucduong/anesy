@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.green.entity.CourseCategory;
 import com.green.entity.Subjects;
 import com.green.model.Page;
 import com.green.service.SubjectsService;
@@ -31,6 +30,6 @@ public class AdminSubjectController {
 		Page<Subjects> pageData = subjectsService.findSubject(filter,page);
 		model.addAttribute("_pageData", pageData);
 		
-		return "/course/subjects";
+		return "subjects/subjects-list";
 	}
 }
