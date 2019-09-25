@@ -5,7 +5,7 @@
 <script type="text/javascript" src="<%=request.getContextPath() %>/resources/lib/jquery/jquery.slim.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath() %>/resources/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath() %>/resources/lib/bootstrap/js/bootstrap.min.js"></script>
-
+<script type="text/javascript" src="<%=request.getContextPath() %>/resources/lib/bootstrap/js/bootstrap-tagsinput.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath() %>/resources/main/js/main.js"></script>
 
 

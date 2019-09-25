@@ -40,7 +40,7 @@
 			</div>
 		</form>
 		<div class="input-group-append">
-			<form action="course-category/create" method="get" style="display: flex !important;">
+			<form action="subjects/create" method="get" style="display: flex !important;">
 				<button type="submit" class="btn btn-primary">Tạo mới</button>
 			</form>
 		</div>
@@ -67,10 +67,10 @@
 	      <td><%=subjects.getName() %></td>
 	      <td><%=subjects.getDescription() %></td>
 	      <td>
-	      	<form action="course-category/<%=subjects.getId() %>" method="get">
+	      	<form action="subjects/<%=subjects.getId() %>" method="get">
 	      		<button type="submit">Update</button>
 	      	</form>
-	      	<form action="course-category/delete/<%=subjects.getId() %>" method="post">
+	      	<form action="subjects/delete/<%=subjects.getId() %>" method="post">
 	      		<button type="submit">Delete</button>
 	      	</form>
 	      </td>
