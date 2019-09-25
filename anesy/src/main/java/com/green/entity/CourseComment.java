@@ -2,10 +2,13 @@ package com.green.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -18,9 +21,10 @@ public class CourseComment {
 
 	@Column(name = "course_id")
 	private int courseId;
-
-	@Column(name = "author")
-	private int author;
+	
+	@ManyToOne(cascade = CascadeType.DETACH)
+	@JoinColumn(name = "author")
+	private Profile author;
 
 	@Column(name = "content", columnDefinition = "nvarchar(1000)")
 	private String content;
@@ -44,11 +48,19 @@ public class CourseComment {
 		this.courseId = courseId;
 	}
 
-	public int getAuthor() {
+	
+
+	/**
+	 * @return the author
+	 */
+	public Profile getAuthor() {
 		return author;
 	}
 
-	public void setAuthor(int author) {
+	/**
+	 * @param author the author to set
+	 */
+	public void setAuthor(Profile author) {
 		this.author = author;
 	}
 

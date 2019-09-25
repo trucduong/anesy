@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.green.dao.CourseCategoryDao;
+import com.green.dao.CourseCommentDao;
 import com.green.dao.CouseDao;
 import com.green.entity.Course;
 import com.green.entity.CourseCategory;
+import com.green.entity.CourseComment;
 import com.green.model.CourseFilter;
 
 @Service
@@ -18,6 +20,10 @@ public class CourseService {
 	
 	@Autowired
 	private CouseDao courseDao;
+	
+	
+	@Autowired
+	private CourseCommentDao courseCommentDao;
 	
 
 	public List<Course> search(CourseFilter filter) {
@@ -51,5 +57,9 @@ public class CourseService {
 
 	public List<CourseCategory> findCategories() {
 		return courseCategoryDao.findAll();
+	}
+	
+	public List<CourseComment> findAllComments(int id) {
+		return courseCommentDao.findbyCourseID(id);
 	}
 }
