@@ -75,6 +75,10 @@
 	min-width: 1px;
 	margin-top: 7px;
 }
+
+.ex2:hover, .ex2:active {
+	font-size: 150%;
+}
 </style>
 
 <%
@@ -90,7 +94,7 @@
 			for (int i = 0; i < count; i++) {
 				CourseCategory category = list.get(i);
 		%>
-		<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+		<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 ex2">
 			<div class="top-category panel panel-default">
 				<div class="panel-body">
 					<a
