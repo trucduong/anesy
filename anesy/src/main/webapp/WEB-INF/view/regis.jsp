@@ -31,13 +31,12 @@ h2 {
 <body>
 	<jsp:include page="../component/header.jsp"></jsp:include>
 	<div class="container" style="min-height: 622px">
-		<div class="row">
-			<div class="col-md-3"></div>
-			<div class="col-md-6" style="padding: 2.75rem;">
+		<div class="row justify-content-center">
+			<div class="col-md-6 mt-5">
+			<form action="<%=request.getContextPath()%>/regis" method="post" style="display: unset !important;">
 				<div class="card text-center">
 					<div class="card-header">Đăng ký tài khoản</div>
 					<div class="card-body">
-						<form action="<%=request.getContextPath()%>/regis" method="post">
 							<table align="center">
 								<tr>
 									<td>Email</td>
@@ -61,14 +60,13 @@ h2 {
 									</td>
 								</tr>
 							</table>
-						</form>
 					</div>
 					<div class="card-footer text-muted">
 						<a href="<%=request.getContextPath()%>">Trở Về Trang Chủ</a>
 					</div>
 				</div>
+				</form>
 			</div>
-			<div class="col-md-3"></div>
 		</div>
 	</div>
 

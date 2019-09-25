@@ -37,48 +37,48 @@
 	</nav>
 
 	<div class="login-form">
-		<form action="<%=request.getContextPath()%>/login" method="post">
-			<div class="cotainer">
-				<div class="row justify-content-center">
-					<div class="col-md-5">
-						<div class="card">
-							<div class="card-header" style="text-align: center;">Login</div>
-							<div class="card-body">
-								<div class="form-group row">
-									<label for="email_address"
-										class="col-md-4 col-form-label text-md-right">E-Mail </label>
-									<div class="col-md-6">
-										<input type="text" id="email_address" class="form-control"
-											name="email" required>
-									</div>
+		<div class="cotainer">
+			<div class="row justify-content-center">
+				<div class="col-md-5">
+				<form action="<%=request.getContextPath()%>/login" method="post">
+					<div class="card">
+						<div class="card-header" style="text-align: center;">Login</div>
+						<div class="card-body">
+							<div class="form-group row">
+								<label for="email_address"
+									class="col-md-4 col-form-label text-md-right">E-Mail </label>
+								<div class="col-md-6">
+									<input type="text" id="email_address" class="form-control"
+										name="email" required>
 								</div>
-								<div class="form-group row">
-									<label for="password"
-										class="col-md-4 col-form-label text-md-right">Password</label>
-									<div class="col-md-6">
-										<input type="password" id="password" class="form-control"
-											name="password" required>
-									</div>
+							</div>
+							<div class="form-group row">
+								<label for="password"
+									class="col-md-4 col-form-label text-md-right">Password</label>
+								<div class="col-md-6">
+									<input type="password" id="password" class="form-control"
+										name="password" required>
 								</div>
+							</div>
 
-								<div class="form-group row">
-									<div class="col-md-10 offset-md-2">
-										<a href="<%=request.getContextPath()%>/resetpass"
-										class="btn btn-link">Forgot Your Password?</a>
-									</div>
+							<div class="form-group row">
+								<div class="col-md-10 offset-md-2">
+									<a href="<%=request.getContextPath()%>/resetpass"
+									class="btn btn-link">Forgot Your Password?</a>
 								</div>
+							</div>
 
-								<div class="row">
-									<div class="col-md-6 offset-md-4">
-										<button style="width:150px" type="submit" class="btn btn-primary">Login</button>
-									</div>
+							<div class="row">
+								<div class="col-md-6 offset-md-4">
+									<button style="width:150px" type="submit" class="btn btn-primary">Login</button>
 								</div>
 							</div>
 						</div>
 					</div>
+					</form>
 				</div>
 			</div>
-		</form>
+		</div>
 	</div>
 
 	<%
