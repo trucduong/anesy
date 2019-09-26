@@ -7,6 +7,7 @@
 <script type="text/javascript" src="<%=request.getContextPath() %>/resources/lib/bootstrap/js/bootstrap.min.js"></script>
 
 <script type="text/javascript" src="<%=request.getContextPath() %>/resources/lib/ckeditor/ckeditor.js"></script>
+
 <script type="text/javascript" src="<%=request.getContextPath() %>/resources/main/js/main.js"></script>
 
 

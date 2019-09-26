@@ -6,21 +6,23 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.UUID;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.green.util.ApplicationConfig;
@@ -43,18 +45,23 @@ public class ImageController {
 		}
 
 	}
+	
+	@RequestMapping(value = "/{target}", method = RequestMethod.GET)
+	public void download(HttpServletResponse response, @PathVariable(name = "target") String target) throws IOException {
+		download(response, target, "none");
+	}
 
 	@RequestMapping(value = "/{target}/{targetId}", method = RequestMethod.GET)
-	public void download(HttpServletRequest request, HttpServletResponse response,
-			@PathVariable(name = "target") String target, @PathVariable(name = "targetId") String targetId)
-			throws IOException {
+	public void download(HttpServletResponse response,
+			@PathVariable(name = "target") String target,
+			@PathVariable(name = "targetId") String targetId) throws IOException {
 
 		String fileName = getFilePath(target, targetId);
 
 		File file = new File(fileName);
 		// nếu không tồn tại thì lấy hình đại diện mặc định
 		if (!file.exists()) {
-			file = new File(context.getRealPath("resources/image/naruto.png"));
+			file = new File(context.getRealPath("resources/image/none.svg"));
 		}
 
 		InputStream fis = new FileInputStream(file);
@@ -74,14 +81,15 @@ public class ImageController {
 		fis.close();
 	}
 
-	@RequestMapping(value = "/{target}/{targetId}", method = RequestMethod.POST)
-	public void upload(@RequestParam("file") MultipartFile file, @PathVariable(name = "target") String target,
-			@PathVariable(name = "targetId") String targetId,
-			HttpServletResponse response) throws ServletException, IOException {
+	@RequestMapping(value = "/{target}", method = RequestMethod.POST, consumes = {"multipart/form-data"})
+	@ResponseBody
+	public ResponseEntity<Object> upload(@RequestParam("file") MultipartFile file, @PathVariable(name = "target") String target) 
+			throws ServletException, IOException {
 
+		String targetId = UUID.randomUUID().toString();
+		
 		if (file.isEmpty()) {
-			response.setStatus(HttpStatus.BAD_REQUEST.value());
-			return;
+			return ResponseEntity.badRequest().build();
 		}
 		
 		try {
@@ -98,9 +106,11 @@ public class ImageController {
 			BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
 			stream.write(bytes);
 			stream.close();
+			
+			return ResponseEntity.ok().body(targetId);
 
 		} catch (Exception e) {
-			response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 		}
 	}
 

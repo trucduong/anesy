@@ -19,6 +19,10 @@ public class CourseCategory {
 
 	@Column(name = "description", columnDefinition = "nvarchar(1000)")
 	private String description;
+	
+	@Column(name = "avatar", columnDefinition = "nvarchar(100)")
+	private String avatar;
+	
 
 	public int getId() {
 		return id;
@@ -44,4 +48,11 @@ public class CourseCategory {
 		this.description = description;
 	}
 
+	public String getAvatar() {
+		return avatar;
+	}
+	
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
 }

@@ -43,16 +43,17 @@ public class AdminCourseCategoryController {
 	////////////////////////////////////////////////////////////////////////////////
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String showCreatePage(Model model) {
-		model.addAttribute("category", new CourseCategory());
-		return "/course/admin-category-create";
+		model.addAttribute("_category", new CourseCategory());
+		return "/course/admin-category-detail";
 	}
 	
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public String handleCreate(@ModelAttribute(name="category") CategoryModel catModel) {
+	public String handleCreate(@ModelAttribute CategoryModel catModel) {
 		
 		CourseCategory cat = new CourseCategory();
 		cat.setName(catModel.getName());
 		cat.setDescription(catModel.getDescription());
+		cat.setAvatar(catModel.getAvatar());
 		
 		courseService.saveCategory(cat);
 		
@@ -69,14 +70,14 @@ public class AdminCourseCategoryController {
 			return "redirect:/admin/course-category";
 		}
 		
-		model.addAttribute("category", cat);
+		model.addAttribute("_category", cat);
 		
-		return "/course/admin-category-update";
+		return "/course/admin-category-detail";
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
 	public String handleUpdate(@PathVariable("id") int id,
-			@ModelAttribute(name="category") CategoryModel catModel) {
+			@ModelAttribute CategoryModel catModel) {
 		
 		CourseCategory cat = courseService.findCategory(id);
 		if (cat == null) {
@@ -86,6 +87,7 @@ public class AdminCourseCategoryController {
 
 		cat.setName(catModel.getName());
 		cat.setDescription(catModel.getDescription());
+		cat.setAvatar(catModel.getAvatar());
 		
 		courseService.saveCategory(cat);
 		

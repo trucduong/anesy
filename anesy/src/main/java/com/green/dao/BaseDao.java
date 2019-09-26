@@ -6,9 +6,12 @@ import javax.persistence.Query;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.green.entity.Account;
+
+import antlr.debug.TraceAdapter;
 
 public abstract class BaseDao<E, ID> {
 
@@ -40,25 +43,34 @@ public abstract class BaseDao<E, ID> {
 
 	public void save(E entity) {
 		Session session = factory.openSession();
+		Transaction tran = session.beginTransaction();
 		session.saveOrUpdate(entity);
+		tran.commit();
 		session.close();
 	}
 
 	public void update(E entity) {
 		Session session = factory.openSession();
+		Transaction tran = session.beginTransaction();
 		session.update(entity);
+		tran.commit();
 		session.close();
 	}
 
 	public void delete(E entity) {
 		Session session = factory.openSession();
+		Transaction tran = session.beginTransaction();
 		session.remove(entity);
+		tran.commit();
 		session.close();
 	}
 
 	public void deleteById(ID id) {
 		Session session = factory.openSession();
+		Transaction tran = session.beginTransaction();
 		E entity = session.find(entityClass, id);
+		session.remove(entity);
+		tran.commit();
 		session.remove(entity);
 	}
 

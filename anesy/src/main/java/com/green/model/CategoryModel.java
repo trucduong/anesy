@@ -1,17 +1,19 @@
 package com.green.model;
 
 public class CategoryModel {
-	private int id;
+	private String id;
 
 	private String name;
 
+	private String avatar;
+
 	private String description;
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -29,6 +31,14 @@ public class CategoryModel {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public String getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
 	}
 
 }
