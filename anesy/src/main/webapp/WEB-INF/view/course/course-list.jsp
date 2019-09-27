@@ -40,7 +40,7 @@
 					</div>
 					<input name="filter" placeholder="Tìm kiếm khóa học" type="text" value="<%=request.getParameter("filter") %>" class="form-control">
 					<div class="input-group-prepend">
-						<button class="btn btn-outline-primary" type="submit" >Search</button>
+						<button class="btn btn-outline-primary" type="submit" >Tìm kiếm</button>
 					</div>
 				</div>
 			</form>

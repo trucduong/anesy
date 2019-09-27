@@ -40,7 +40,8 @@
 						<div class="price" style="margin-bottom: 20px;"><b><h2><%=course.getPrice() %>  VNĐ</h2></b>
 						</div>
 						<div class="buy-button">
-							<button type="button" class="btn btn-danger btn-lg btn-block">Thêm vào giỏ hàng</button>
+							<button type="button" class="btn btn-danger btn-lg btn-block">Thêm vào giỏ hàng </button>
+							
 							<button type="button" class="btn btn-light btn-lg btn-block" style="border: 1px solid;">Mua ngay</button>
 						</div>
 					</div>
@@ -168,7 +169,7 @@
 		</div>
 		<div class="col-md-6" style="margin-left: 50px; ">
 			<div class="course-author-name" style="text-decoration: none;">
-				<a href=""><b><h3><%=course.getAuthor().getFullName() %></h3></b></a>
+				<a href="<%=request.getContextPath()%>/profile/<%=course.getAuthor().getAccountId()%>"><b><h3><%=course.getAuthor().getFullName() %></h3></b></a>
 				<b>Java Python Android and C# Expert Developer - 532K+ students</b>
 			</div>
 			<div class="course-author-decription" style="margin-top: 30px;">

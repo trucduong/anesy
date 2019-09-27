@@ -3,6 +3,7 @@ package com.green.controller;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -22,8 +23,10 @@ import com.green.config.MsgType;
 import com.green.dao.BaseDao;
 import com.green.dao.ProfileDao;
 import com.green.entity.Account;
+import com.green.entity.Course;
 import com.green.entity.Profile;
 import com.green.service.AccountService;
+import com.green.service.CourseService;
 import com.green.service.ProfileService;
 
 @Controller
@@ -40,6 +43,9 @@ public class ProfileController {
 
 	@Autowired
 	private AuthContext authContext;
+	
+	@Autowired
+	private CourseService courseService;
 	
 	@GetMapping()
 	public String showDefaultPage() {
@@ -136,6 +142,9 @@ public class ProfileController {
 	@GetMapping("/{idteacher}")
 	public String showTeacher(@PathVariable(name = "idteacher")int id, Model model) {
 		Profile profile = profileservice.findById(id);
+		List<Course> courselist = courseService.findByAuthor(profile);
+		model.addAttribute("_courselist", courselist);
+		model.addAttribute("_teacherprofile", profile);
 		return "teacher-profile";
 	}
 

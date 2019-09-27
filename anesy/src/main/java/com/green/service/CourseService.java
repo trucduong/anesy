@@ -11,7 +11,9 @@ import com.green.dao.CouseDao;
 import com.green.entity.Course;
 import com.green.entity.CourseCategory;
 import com.green.entity.CourseComment;
+import com.green.entity.Profile;
 import com.green.model.CourseFilter;
+import com.green.model.Page;
 
 @Service
 public class CourseService {
@@ -59,7 +61,29 @@ public class CourseService {
 		return courseCategoryDao.findAll();
 	}
 	
+
 	public List<CourseComment> findAllComments(int id) {
 		return courseCommentDao.findbyCourseID(id);
 	}
+	
+	public Page<CourseCategory> findCategories(String filter, int page) {
+		Page<CourseCategory> result = new Page<>();
+		long totalRows = courseCategoryDao.count(filter);
+		if (totalRows <= 0) {
+			return result;
+		}
+		
+		List<CourseCategory> list = courseCategoryDao.search(filter, page);
+		
+		result.setCurrent(page);
+		result.setList(list);
+		result.setTotalRows(totalRows);
+		return result;
+	}
+	
+	public List<Course> findByAuthor(Profile profile) {
+		return courseDao.findByAuthor(profile);
+	}
+	
+	
 }

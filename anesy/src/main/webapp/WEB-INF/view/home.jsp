@@ -15,7 +15,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Welcome to anesy</title>
+<title>Learn IT, Make IT - ANESY</title>
 
 <%-- import css files --%>
 <jsp:include page="../component/common-css.jsp"></jsp:include>
@@ -108,9 +108,7 @@
 		</div>
 		
 		
-		<div class="row">
-		Top categories
-		</div>
+		<div><jsp:include page="../component/top-category.jsp"></jsp:include></div>
 		
 		
 		<div class="row comment-stu">

@@ -16,6 +16,7 @@ import com.green.config.Alert;
 import com.green.config.AuthContext;
 import com.green.config.MessageBox;
 import com.green.config.MsgType;
+import com.green.entity.CourseCategory;
 import com.green.entity.Profile;
 import com.green.service.AccountService;
 import com.green.service.CourseService;
@@ -50,6 +51,9 @@ public class IndexController {
 			Profile profile = profileService.findById(id);
 			model.addAttribute("_profile", profile);
 		}
+		
+		List<CourseCategory> category_list = (List<CourseCategory>) courseService.findCategories();
+		model.addAttribute("_categoryList",category_list);
 
 		// get category list
 		model.addAttribute("_categories", courseService.findCategories());

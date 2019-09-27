@@ -1,7 +1,5 @@
 package com.green.controller;
 
-import java.util.UUID;
-
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServlet;
 
@@ -16,13 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.green.config.Alert;
 import com.green.config.MessageBox;
 import com.green.config.MsgType;
-import com.green.entity.Account;
-import com.green.entity.Profile;
 import com.green.exception.MyException;
 import com.green.model.RegisModel;
 import com.green.service.AccountService;
-import com.green.service.ProfileService;
-import com.green.util.EmailUtils;
 
 @Controller
 @RequestMapping("/regis")
@@ -33,9 +27,6 @@ public class RegisController extends HttpServlet{
 	
 	@Autowired
 	private AccountService accountService;
-	
-	@Autowired
-	private ProfileService profileService;
 	
 	@Autowired
 	private Alert alert;
@@ -71,9 +62,9 @@ public class RegisController extends HttpServlet{
 			return REGIS_VIEW_NAME;
 		}
 		
-		messageBox.setMessage("Vui long kiem tra email de nhan mat khau!");
+		messageBox.setMessage("Đăng ký thành công.<br>Mật khẩu đã được gửi vào email <strong>"+regisModel.getEmail()+"</strong>");
 		
-		return "redirect:/login";
+		return "redirect:/";
 	}
 
 }
