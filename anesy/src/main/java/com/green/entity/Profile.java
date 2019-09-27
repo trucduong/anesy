@@ -14,28 +14,31 @@ public class Profile {
 	@Column(name="account_id")
 	private int accountId;
 	
+	@Column(name = "avatar", columnDefinition = "nvarchar(50)")
+	private String avatar;
+	
 	@Column(name="user_type")
 	private int userType;
 	
-	@Column(name = "full_name")
+	@Column(name = "full_name", columnDefinition = "nvarchar(100)")
 	private String fullName;
 	
-	@Column(name = "phone")
+	@Column(name = "phone", columnDefinition = "nvarchar(50)")
 	private String phone;
 	
-	@Column(name = "email")
+	@Column(name = "email", columnDefinition = "nvarchar(100)")
 	private String email;
 	
-	@Column(name = "gender")
+	@Column(name = "gender", columnDefinition = "nvarchar(50)")
 	private String gender;
 	
 	@Column(name = "birth_date")
 	private Date birthDate;
 	
-	@Column(name = "address")
+	@Column(name = "address", columnDefinition = "nvarchar(500)")
 	private String address;
 	
-	@Column(name = "certificates")
+	@Column(name = "certificates", columnDefinition = "nvarchar(1000)")
 	private String certificates;
 
 	public int getAccountId() {
@@ -110,6 +113,12 @@ public class Profile {
 		this.birthDate = birthDate;
 	}
 	
+	public String getAvatar() {
+		return avatar;
+	}
 	
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
 }	
 	

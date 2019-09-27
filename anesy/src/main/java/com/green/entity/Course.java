@@ -20,6 +20,9 @@ public class Course {
 	@Column(name = "id")
 	private int id;
 
+	@Column(name = "avatar", columnDefinition = "nvarchar(50)")
+	private String avatar;
+	
 	@Column(name = "name", columnDefinition = "nvarchar(500)")
 	private String name;
 
@@ -118,4 +121,12 @@ public class Course {
 		this.shortdesc = shortdesc;
 	}
 
+	public String getAvatar() {
+		return avatar;
+	}
+	
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
+	
 }

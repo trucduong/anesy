@@ -13,8 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Cascade;
-
 @Entity
 @Table(name = "assignment")
 public class Assignment {
@@ -30,32 +28,13 @@ public class Assignment {
 	private String description;
 
 	// assignment.excerise_id -> excerise.id
-	@ManyToOne(cascade=CascadeType.DETACH)
+	@ManyToOne(cascade = CascadeType.DETACH)
 	@JoinColumn(name = "excerise_id")
 	private Exercise excerise;
 
-	
-	@ManyToOne(cascade=CascadeType.DETACH)
+	@ManyToOne(cascade = CascadeType.DETACH)
 	@JoinColumn(name = "student_id")
-	private Account account;
-	
-	// TODO: mapping
-
-	public Exercise getExcerise() {
-		return excerise;
-	}
-
-	public void setExcerise(Exercise excerise) {
-		this.excerise = excerise;
-	}
-
-	public Account getAccount() {
-		return account;
-	}
-
-	public void setAccount(Account account) {
-		this.account = account;
-	}
+	private Account student;
 
 	@Column(name = "start_date")
 	private Date startDate;
@@ -97,9 +76,21 @@ public class Assignment {
 		this.description = description;
 	}
 
-	
+	public Exercise getExcerise() {
+		return excerise;
+	}
 
+	public void setExcerise(Exercise excerise) {
+		this.excerise = excerise;
+	}
 
+	public Account getStudent() {
+		return student;
+	}
+
+	public void setStudent(Account student) {
+		this.student = student;
+	}
 
 	public Date getStartDate() {
 		return startDate;

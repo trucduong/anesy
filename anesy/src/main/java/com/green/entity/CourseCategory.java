@@ -20,7 +20,7 @@ public class CourseCategory {
 	@Column(name = "description", columnDefinition = "nvarchar(1000)")
 	private String description;
 	
-	@Column(name = "avatar", columnDefinition = "nvarchar(100)")
+	@Column(name = "avatar", columnDefinition = "nvarchar(50)")
 	private String avatar;
 	
 
