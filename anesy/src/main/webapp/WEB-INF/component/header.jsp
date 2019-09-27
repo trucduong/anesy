@@ -88,15 +88,12 @@ msgBox.clear();
           <%if(authContext.isAuthenticated()) {%>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-             <img alt=" " src="#"> <%=authContext.getFullName() %>
+             <img width="20" alt="Avatar" src="<%=request.getContextPath() %>/image/profile/<%=authContext.getAvatar() %>"> <%=authContext.getAccountId() %>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
               <a class="dropdown-item" href="<%= request.getContextPath()%>/profile/info">Thông Tin Tài Khoản</a>
-              <a class="dropdown-item" href="<%= request.getContextPath()%>/profile/password">Đổi Mật Khẩu</a>
-              <a class="dropdown-item" href="<%= request.getContextPath()%>/profile/history">Lịch Sử Học Tập</a>
-              <a class="dropdown-item" href="<%= request.getContextPath()%>/profile/certificate">Chứng Chỉ</a>
               <%if(authContext.getUserType()!=0) {%>
-              <a class="dropdown-item" href="<%= request.getContextPath()%>/profile/certificate">Quản lý khóa học</a>
+              <a class="dropdown-item" href="<%= request.getContextPath()%>/admin/course-category">Quản lý</a>
               <%} %>
               <a class="dropdown-item" href="<%=request.getContextPath()%>/login">Logout</a>
             </div>

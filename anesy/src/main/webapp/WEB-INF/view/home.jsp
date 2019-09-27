@@ -37,12 +37,12 @@
 		<h2><b>haha</b></h2>
 		<p>Anywhere, anytime. Enjoy risk-free with our 30-day, money-back guarantee.</p>
 		</div>
-		<form action="<%=request.getContextPath()%>" method="post">
+		<form action="<%=request.getContextPath()%>/course" method="get">
 		<div class="input-group" >
-			<input name="searchname" type="text" class="form-control"
+			<input name="filter" type="text" class="form-control"
 				placeholder="Tìm kiếm khóa học" role="combobox"> <span
 				class="input-group-btn">
-				<button class="btn btn-secondary" type="button">Tìm kiếm</button>
+				<button class="btn btn-secondary" type="submit">Tìm kiếm</button>
 			</span>
 		</div>
 		</form>
