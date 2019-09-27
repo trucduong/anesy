@@ -15,6 +15,9 @@ public class Subjects {
 	@GeneratedValue
 	@Column(name = "id")
 	private int id;
+	
+	@Column(name = "avatar", columnDefinition = "nvarchar(50)")
+	private String avatar;
 
 	@Column(name = "name", columnDefinition = "nvarchar(500)")
 	private String name;
@@ -77,6 +80,14 @@ public class Subjects {
 
 	public void setTags(String tags) {
 		this.tags = tags;
+	}
+	
+	public String getAvatar() {
+		return avatar;
+	}
+	
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
 	}
 
 }

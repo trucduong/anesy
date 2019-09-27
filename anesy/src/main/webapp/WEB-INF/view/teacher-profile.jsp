@@ -61,7 +61,7 @@
 		</div>
 
 		<div class="row teacher-course">
-			<div class="title">Các khóa học của Truc Duong</div>
+			<div class="title">Các khóa học của <%=profile.getFullName() %></div>
 			<div class="col-md-12">
 				<div class="tab-content" id="nav-tabContent"
 					style="margin-top: 10px;">

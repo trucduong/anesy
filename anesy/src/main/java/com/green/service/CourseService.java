@@ -86,4 +86,16 @@ public class CourseService {
 	}
 	
 	
+	
+	public void saveCategory(CourseCategory category) {
+		courseCategoryDao.save(category);
+	}
+	
+	public CourseCategory findCategory(int catId) {
+		return courseCategoryDao.find(catId);
+	}
+	
+	public void deleteCategory(int catId) {
+		courseCategoryDao.deleteById(catId);
+	}
 }

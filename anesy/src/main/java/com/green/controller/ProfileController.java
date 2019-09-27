@@ -143,6 +143,11 @@ public class ProfileController {
 	public String showTeacher(@PathVariable(name = "idteacher")int id, Model model) {
 		Profile profile = profileservice.findById(id);
 		List<Course> courselist = courseService.findByAuthor(profile);
+		int stutotal;
+		int commenttotal;
+		for(Course course : courselist) {
+			
+		}
 		model.addAttribute("_courselist", courselist);
 		model.addAttribute("_teacherprofile", profile);
 		return "teacher-profile";

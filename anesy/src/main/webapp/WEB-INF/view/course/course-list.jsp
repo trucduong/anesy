@@ -35,7 +35,7 @@
 						<div class="dropdown-menu">
 							<%for(CourseCategory category: categorylist ){%>
 								<a class="dropdown-item" href="#"><%=category.getName() %></a>
-							<%} %>
+							<%}%>
 						</div>
 					</div>
 					<input name="filter" placeholder="Tìm kiếm khóa học" type="text" value="<%=request.getParameter("filter") %>" class="form-control">

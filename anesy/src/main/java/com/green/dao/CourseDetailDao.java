@@ -2,13 +2,13 @@ package com.green.dao;
 
 import org.springframework.stereotype.Repository;
 
-import com.green.entity.CourseDetail;
+import com.green.entity.CourseSubjects;
 
 @Repository
-public class CourseDetailDao extends BaseDao<CourseDetail, Integer> {
+public class CourseDetailDao extends BaseDao<CourseSubjects, Integer> {
 	
 	@Override
-	protected Class<CourseDetail> getEntityClass() {
-		return CourseDetail.class;
+	protected Class<CourseSubjects> getEntityClass() {
+		return CourseSubjects.class;
 	}
 }

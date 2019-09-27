@@ -10,38 +10,20 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "course_detail")
-public class CourseDetail {
+@Table(name = "course_subjects")
+public class CourseSubjects {
 	@Id
 	@GeneratedValue
 	@Column(name = "id")
 	private int id;
 
-	// TODO: mapping
-	@ManyToOne(cascade=CascadeType.DETACH)
+	@ManyToOne(cascade = CascadeType.DETACH)
 	@JoinColumn(name = "course_id")
-	private CourseCategory courseId;
+	private Course course;
 
-	public CourseCategory getCourseId() {
-		return courseId;
-	}
-
-	public void setCourseId(CourseCategory courseId) {
-		this.courseId = courseId;
-	}
-
-	public Subjects getSubjectsId() {
-		return subjectsId;
-	}
-
-	public void setSubjectsId(Subjects subjectsId) {
-		this.subjectsId = subjectsId;
-	}
-
-	// TODO: mapping
-	@ManyToOne(cascade=CascadeType.DETACH)
+	@ManyToOne(cascade = CascadeType.DETACH)
 	@JoinColumn(name = "subjects_id")
-	private Subjects subjectsId;
+	private Subjects subjects;
 
 	@Column(name = "seq")
 	private int seq;
@@ -54,7 +36,21 @@ public class CourseDetail {
 		this.id = id;
 	}
 
-	
+	public Course getCourse() {
+		return course;
+	}
+
+	public void setCourse(Course course) {
+		this.course = course;
+	}
+
+	public Subjects getSubjects() {
+		return subjects;
+	}
+
+	public void setSubjects(Subjects subjects) {
+		this.subjects = subjects;
+	}
 
 	public int getSeq() {
 		return seq;

@@ -32,7 +32,7 @@
 
 <div class="row">
 	<div class="input-group mb-1">
-		<form method="get" style="display: flex !important;">
+		<form class="action-form" method="get" style="display: flex !important;">
 			<input name="page" type="hidden" value="1">
 			<input name="filter" type="text" class="form-control" placeholder="..." value="<%=filter %>">
 			<div class="input-group-append">
@@ -40,7 +40,7 @@
 			</div>
 		</form>
 		<div class="input-group-append">
-			<form action="course-category/create" method="get" style="display: flex !important;">
+			<form class="action-form" action="course-category/create" method="get" style="display: flex !important;">
 				<button type="submit" class="btn btn-primary">Tạo mới</button>
 			</form>
 		</div>
@@ -67,10 +67,10 @@
 	      <td><%=category.getName() %></td>
 	      <td><%=category.getDescription() %></td>
 	      <td>
-	      	<form action="course-category/<%=category.getId() %>" method="get">
+	      	<form class="action-form" action="course-category/<%=category.getId() %>" method="get">
 	      		<button type="submit">Update</button>
 	      	</form>
-	      	<form action="course-category/delete/<%=category.getId() %>" method="post">
+	      	<form class="action-form" action="course-category/delete/<%=category.getId() %>" method="post">
 	      		<button type="submit">Delete</button>
 	      	</form>
 	      </td>
@@ -86,7 +86,7 @@
 		<nav>
 			<ul class="pagination justify-content-center">
 				<li class="page-item <%=pageData.getCurrent()<=1?"disabled": "" %>">
-					<form id="pagingFormPrevious" method="get">
+					<form class="action-form" id="pagingFormPrevious" method="get">
 						<input name="filter" type="hidden" type="text" value="<%=filter %>">
 						<input name="page" type="hidden" type="text" value="<%=(pageData.getCurrent() - 1) %>">
 						<a class="page-link" href="#" onclick="javascript:$('#pagingFormPrevious').submit();">&laquo;</a>
@@ -96,7 +96,7 @@
 	for (int i = 1; i <= pageData.getTotal(); i++) {
 %>
 				<li class="page-item <%=i==pageData.getCurrent()?"active": "" %>">
-					<form id="pagingForm<%=i %>" method="get">
+					<form class="action-form" id="pagingForm<%=i %>" method="get">
 						<input name="filter" type="hidden" type="text" value="<%=filter %>">
 						<input name="page" type="hidden" type="text" value="<%=(i) %>">
 						<a class="page-link" href="#" onclick="javascript:$('#pagingForm<%=i %>').submit();"><%=i %></a>
@@ -104,7 +104,7 @@
 				</li>
 <% } %>
 				<li class="page-item <%=pageData.getCurrent()>=pageData.getTotal()?"disabled": "" %>">
-					<form id="pagingFormNext" method="get">
+					<form class="action-form" id="pagingFormNext" method="get">
 						<input name="filter" type="hidden" type="text" value="<%=filter %>">
 						<input name="page" type="hidden" type="text" value="<%=(pageData.getCurrent() + 1) %>">
 						<a class="page-link" href="#" onclick="javascript:$('#pagingFormNext').submit();">&raquo;</a>

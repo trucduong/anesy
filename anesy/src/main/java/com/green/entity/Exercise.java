@@ -23,10 +23,9 @@ public class Exercise {
 	@Column(name = "description", columnDefinition = "nvarchar(1000)")
 	private String description;
 
-	// TODO: mapping
-	@ManyToOne(cascade=CascadeType.DETACH)
+	@ManyToOne(cascade = CascadeType.DETACH)
 	@JoinColumn(name = "subjects_id")
-	private Subjects subjectsId;
+	private Subjects subjects;
 
 	public int getId() {
 		return id;
@@ -52,13 +51,12 @@ public class Exercise {
 		this.description = description;
 	}
 
-	public Subjects getSubjectsId() {
-		return subjectsId;
+	public Subjects getSubjects() {
+		return subjects;
 	}
 
-	public void setSubjectsId(Subjects subjectsId) {
-		this.subjectsId = subjectsId;
+	public void setSubjects(Subjects subjects) {
+		this.subjects = subjects;
 	}
 
-	
 }
