@@ -40,6 +40,12 @@ public class Profile {
 	
 	@Column(name = "certificates", columnDefinition = "nvarchar(1000)")
 	private String certificates;
+	
+	@Column(name = "specialize")
+	private String specialize;
+	
+	@Column(name = "description", columnDefinition = "nvarchar(1000)")
+	private String description;
 
 	public int getAccountId() {
 		return accountId;

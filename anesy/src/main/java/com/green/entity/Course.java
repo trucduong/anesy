@@ -54,31 +54,37 @@ public class Course {
 	
 	@Column(name = "requiment")
 	private String requiment;
+	
+	@Column(name ="include")
+	private String include;
+	
+	/**
+	 * @return the include
+	 */
+	public String getInclude() {
+		return include;
+	}
 
 	/**
-	 * @return the requiment
+	 * @param include the include to set
 	 */
+	public void setInclude(String include) {
+		this.include = include;
+	}
+
 	public String getRequiment() {
 		return requiment;
 	}
 
-	/**
-	 * @param requiment the requiment to set
-	 */
 	public void setRequiment(String requiment) {
 		this.requiment = requiment;
 	}
 
-	/**
-	 * @return the benefit
-	 */
 	public String getBenefit() {
 		return benefit;
 	}
 
-	/**
-	 * @param benefit the benefit to set
-	 */
+
 	public void setBenefit(String benefit) {
 		this.benefit = benefit;
 	}
