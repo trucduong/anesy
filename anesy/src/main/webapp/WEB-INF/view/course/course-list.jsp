@@ -17,6 +17,11 @@
 	<%
 	List<CourseCategory> categorylist =  (List<CourseCategory>)request.getAttribute("_categories"); 
 	List<Course> courselist = (List<Course>)request.getAttribute("_courses");
+	
+	String catId = request.getParameter("catId");
+	if (catId == null) {
+		catId = "";
+	}
 	%>
 	
 	<jsp:include page="../../component/header.jsp"></jsp:include>
@@ -26,19 +31,18 @@
 		<div class="row">
 			<div class="col-md-8 offset-md-2">
 			<form method="get">
-				<input type="hidden" name="catId" value="<%=request.getParameter("catId")%>">
+				<%-- <input type="hidden" name="catId" value="${param.catId}"> --%>
 				<div class="input-group mb-3">
 					<div class="input-group-prepend">
-						<button class="btn btn-outline-secondary dropdown-toggle"
-							type="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false">Dropdown</button>
-						<div class="dropdown-menu">
-							<%for(CourseCategory category: categorylist ){%>
-								<a class="dropdown-item" href="#"><%=category.getName() %></a>
-							<%}%>
-						</div>
+						<select class="form-control" name="catId">
+							<option value="" <%="".equals(catId)?"selected":"" %>>Tất cả</option>
+						<%for(CourseCategory category: categorylist ){%>
+					      <option value="<%=category.getId() %>" <%=String.valueOf(category.getId()).equals(catId)?"selected":"" %>
+					      	><%=category.getName() %></option>
+					      <%}%>
+					    </select>
 					</div>
-					<input name="filter" placeholder="Tìm kiếm khóa học" type="text" value="<%=request.getParameter("filter") %>" class="form-control">
+					<input name="filter" placeholder="Tìm kiếm khóa học" type="text" value="${param.filter}" class="form-control">
 					<div class="input-group-prepend">
 						<button class="btn btn-outline-primary" type="submit" >Tìm kiếm</button>
 					</div>
@@ -48,18 +52,17 @@
 		</div>
 		<div class="row">
 			<div class="col-md-12">
-				<h4>Tìm được 3 kết quả</h4>
+				<h4>Tìm được <%=courselist.size() %> kết quả</h4>
 			</div>
 		</div>
 		
 		<%for(Course course:courselist) {%>
-		<a href="<%=request.getContextPath()%>/course/<%=course.getId()%>">
 		<div class="row">
-			<div class="card mb-3">
+			<div class="card mb-3" style="cursor: pointer;" onclick="location.href='<%=request.getContextPath()%>/course/<%=course.getId()%>'">
 				<div class="row no-gutters">
 					<div class="col-md-2">
 						<img
-							src="<%=request.getContextPath()%>/resources/image/avatar-comment-image/hinh2.jpg"
+							src="<%=request.getContextPath()%>/image/course/<%=course.getAvatar() %>"
 							class="card-img" alt="" >
 					</div>
 					<div class="col-md-8">
@@ -69,7 +72,7 @@
 								<small class="text-muted"></small>
 							</p>
 							<p class="card-text"><%=course.getShortdesc() %></p>
-							<p class="card-text"><%=course.getAuthor().getFullName() %></p>
+							<p class="card-text">Giáo viên: <%=course.getAuthor().getFullName() %></p>
 						</div>
 					</div>
 					<div class="col-md-2">
@@ -83,7 +86,6 @@
 				</div>
 			</div>
 		</div>
-		</a>
 		<%} %>
 
 

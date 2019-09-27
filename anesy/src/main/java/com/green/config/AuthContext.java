@@ -1,65 +1,65 @@
 package com.green.config;
 
-import java.util.ArrayList;
-
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 
-import com.green.entity.CourseCategory;
+import com.green.entity.Account;
+import com.green.entity.Profile;
 
 @Component
 @Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class AuthContext {
 	private boolean isAuthenticated;
-	private Integer accountId;
-	private String email;
-	private String fullName;
-	private int userType;
+	
+	private Account account = new Account();
+	private Profile profile = new Profile();
 
-
+	public void setContext(Account account, Profile profile) {
+		this.account = account;
+		this.profile = profile;
+		isAuthenticated = true;
+	}
+	
+	public void clearContext() {
+		this.account = new Account();
+		this.profile = new Profile();
+		isAuthenticated = false;
+	}
+	
+	
+	public Account getAccount() {
+		return account;
+	}
+	
 	public int getUserType() {
-		return userType;
+		return profile.getUserType();
 	}
 
-	/**
-	 * @param userType the userType to set
-	 */
-	public void setUserType(int userType) {
-		this.userType = userType;
-	}
 
 	public boolean isAuthenticated() {
 		return isAuthenticated;
 	}
-
-	public void setAuthenticated(boolean isAuthenticated) {
-		this.isAuthenticated = isAuthenticated;
-	}
-
+	
 	public Integer getAccountId() {
-		return accountId;
-	}
-
-	public void setAccountId(Integer accountId) {
-		this.accountId = accountId;
+		return account.getId();
 	}
 
 	public String getEmail() {
-		return email;
+		return account.getEmail();
 	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
+	
 	public String getFullName() {
-		return fullName;
+		return profile.getFullName();
 	}
 
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
+	public Profile getProfile() {
+		return profile;
 	}
-
+	
+	public String getAvatar() {
+		return profile.getAvatar();
+	}
+	
 }
