@@ -133,12 +133,77 @@ div.course-item course-image img {
 	margin-bottom: 30px;
 }
 
+
 .partner{
 	margin-top: 30px;
 	padding-left: 120px;
 }
 
+.justify-content-center{
+	margin-bottom: 50px;
+}
 
 .comment-stu{
 	margin-bottom: 20px;
+}
+
+.motkhoa{
+	border-top: 1px solid;
+	padding-top: 15px;
+	 margin-top: 40px;
+	 max-width: 900px;
+}
+
+.giatien{
+	padding-top:20px;
+	text-align: center;
+}
+
+.row search input-group{
+	width: 65%;
+	padding-left: 170px;
+	
+}
+
+.full-width{
+	background-color: #505763;
+	width: 100%;
+	height: 400px;
+}
+.course-intro{
+	color: white;
+}
+
+.course-content{
+	background-color: white;
+	border-radius: 4px;
+	color: #505763;
+	padding: 3px;
+}
+
+.author-avatar{
+	-moz-border-radius: 25px;
+	-webkit-border-radius: 25px;
+    --border-radius: 25px;
+	border-radius: 60px;
+}
+
+.people-avatar{
+	-moz-border-radius: 25px;
+	-webkit-border-radius: 25px;
+    --border-radius: 25px;
+	border-radius: 25px;
+}
+.thong-so{
+	margin-right: 25px;
+	border-left: 1px solid;
+	padding-left : 5px; 
+	
+}
+.so{
+	font-size: 20px;
+}
+
+.card-img{
+	height: 130px;
 }

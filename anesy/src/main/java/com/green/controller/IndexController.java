@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.green.config.Alert;
 import com.green.config.AuthContext;
@@ -58,6 +59,12 @@ public class IndexController {
 		model.addAttribute("_categories", courseService.findCategories());
 
 		return "home";
+	}
+	
+	@PostMapping
+	public String search(@RequestParam(name="searchname")String searchname, Model model) {
+		model.addAttribute("searchname", searchname);
+		return "course/course-list";
 	}
 
 }

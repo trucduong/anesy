@@ -34,7 +34,7 @@ public class Course {
 
 	@ManyToOne(cascade = CascadeType.DETACH)
 	@JoinColumn(name = "author")
-	private Account author;
+	private Profile author;
 
 	@Column(name = "price")
 	private int price;
@@ -48,6 +48,40 @@ public class Course {
 	@ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
 	@JoinColumn(name = "category_id")
 	private CourseCategory category;
+	
+	@Column(name = "benefit")
+	private String benefit;
+	
+	@Column(name = "requiment")
+	private String requiment;
+
+	/**
+	 * @return the requiment
+	 */
+	public String getRequiment() {
+		return requiment;
+	}
+
+	/**
+	 * @param requiment the requiment to set
+	 */
+	public void setRequiment(String requiment) {
+		this.requiment = requiment;
+	}
+
+	/**
+	 * @return the benefit
+	 */
+	public String getBenefit() {
+		return benefit;
+	}
+
+	/**
+	 * @param benefit the benefit to set
+	 */
+	public void setBenefit(String benefit) {
+		this.benefit = benefit;
+	}
 
 	public int getId() {
 		return id;
@@ -97,11 +131,11 @@ public class Course {
 		this.tags = tags;
 	}
 
-	public Account getAuthor() {
+	public Profile getAuthor() {
 		return author;
 	}
 
-	public void setAuthor(Account author) {
+	public void setAuthor(Profile author) {
 		this.author = author;
 	}
 

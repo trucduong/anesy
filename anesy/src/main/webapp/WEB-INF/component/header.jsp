@@ -69,10 +69,19 @@ msgBox.clear();
       </button>
       
       <div class="collapse navbar-collapse" id="navbarResponsive">
+      
         <ul class="navbar-nav ml-auto">
+       	<li class="nav-item">
+        	<a class="nav-link" href="">
+        	<i class="material-icons">add_shopping_cart</i>
+			</a>
+		</li>
+          <span aria-label="1 item" class="badge" style="color: red;margin-left: -18px;font-size: 15px;">1</span>
+        
           <li class="nav-item">
             <a class="nav-link" href="about.html">Khóa học của tôi</a>
           </li>
+          
           
          
          

@@ -6,9 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.green.dao.CourseCategoryDao;
+import com.green.dao.CourseCommentDao;
 import com.green.dao.CouseDao;
 import com.green.entity.Course;
 import com.green.entity.CourseCategory;
+import com.green.entity.CourseComment;
+import com.green.entity.Profile;
 import com.green.model.CourseFilter;
 import com.green.model.Page;
 
@@ -19,6 +22,10 @@ public class CourseService {
 	
 	@Autowired
 	private CouseDao courseDao;
+	
+	
+	@Autowired
+	private CourseCommentDao courseCommentDao;
 	
 
 	public List<Course> search(CourseFilter filter) {
@@ -54,6 +61,11 @@ public class CourseService {
 		return courseCategoryDao.findAll();
 	}
 	
+
+	public List<CourseComment> findAllComments(int id) {
+		return courseCommentDao.findbyCourseID(id);
+	}
+	
 	public Page<CourseCategory> findCategories(String filter, int page) {
 		Page<CourseCategory> result = new Page<>();
 		long totalRows = courseCategoryDao.count(filter);
@@ -68,6 +80,12 @@ public class CourseService {
 		result.setTotalRows(totalRows);
 		return result;
 	}
+	
+	public List<Course> findByAuthor(Profile profile) {
+		return courseDao.findByAuthor(profile);
+	}
+	
+	
 	
 	public void saveCategory(CourseCategory category) {
 		courseCategoryDao.save(category);

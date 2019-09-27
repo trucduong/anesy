@@ -32,18 +32,20 @@
 
 	<div class="row hinh" >
 		<div class="col-md-6">
-		<div style="margin-top: 200px; color: red">
+		<div style="margin-top: 200px; color: red; ">
 		<div>
 		<h2><b>haha</b></h2>
 		<p>Anywhere, anytime. Enjoy risk-free with our 30-day, money-back guarantee.</p>
 		</div>
+		<form action="<%=request.getContextPath()%>" method="post">
 		<div class="input-group" >
-			<input type="text" class="form-control"
+			<input name="searchname" type="text" class="form-control"
 				placeholder="Tìm kiếm khóa học" role="combobox"> <span
 				class="input-group-btn">
 				<button class="btn btn-secondary" type="button">Tìm kiếm</button>
 			</span>
 		</div>
+		</form>
 		</div>	
 		</div>
 	</div>
