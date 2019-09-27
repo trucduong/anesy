@@ -78,6 +78,12 @@ public class CourseService {
 	}
 	
 	public void deleteCategory(int catId) {
+		List<Course> courses = courseDao.findAll(catId);
+		for (Course course : courses) {
+			course.setCategory(null);
+			courseDao.save(course);
+		}
+		
 		courseCategoryDao.deleteById(catId);
 	}
 }

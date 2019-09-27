@@ -17,6 +17,16 @@ public class CouseDao extends BaseDao<Course, Integer> {
 		return Course.class;
 	}
 	
+	public List<Course> findAll(int catId) {
+		StringBuilder hql = new StringBuilder();
+		hql.append("select co from Course co where co.category.id = :catId");
+		
+		Query query = getFactory().openSession().createQuery(hql.toString(), Course.class);
+		query.setParameter("catId", catId);
+		
+		return query.getResultList();
+	}
+	
 	public List<Course> search(CourseFilter filter) {
 		StringBuilder hql = new StringBuilder();
 		hql.append("select co from Course co where 1=1");
