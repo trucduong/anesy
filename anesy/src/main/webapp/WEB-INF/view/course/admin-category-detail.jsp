@@ -35,7 +35,7 @@
 			<div class="form-group">
 				<div class="custom-file image-box" >
 					<input id="catImgVal" name="avatar" type="hidden" value="${_category.avatar}">
-					<input id="catImgFile" type="file" class="custom-file-input" onchange="doUpload('category', 'catImgFile', onUploadSuccess);">
+					<input id="catImgFile" type="file" class="custom-file-input" onchange="doUpload('category', 'cat');">
 					<img id="catImg" alt="Category" src="<%=request.getContextPath()%>/image/category/${_category.avatar}">
 				</div>
 			</div>
@@ -68,11 +68,6 @@
 <jsp:include page="../../component/common-js.jsp"></jsp:include>
 
 <script type="text/javascript">
-function onUploadSuccess(imageId) {
-	var url = '<%=request.getContextPath()%>/image/category/';
-	document.getElementById('catImg').src = url + imageId;
-	document.getElementById('catImgVal').value = imageId;
-}
 
 function handleCancel() {
 	location.href="<%=request.getContextPath()%>/admin/course-category";

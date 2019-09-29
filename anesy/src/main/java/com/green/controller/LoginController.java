@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.green.config.AuthContext;
 import com.green.config.MessageBox;
 import com.green.entity.Account;
+import com.green.entity.Profile;
 import com.green.service.AccountService;
 import com.green.service.ProfileService;
 
@@ -31,7 +32,7 @@ public class LoginController {
 
 	@GetMapping()
 	public String getlogin() {
-		authContext.setAuthenticated(false);
+		authContext.clear();
 		return "login";
 	}
 
@@ -44,11 +45,9 @@ public class LoginController {
 			msgBox.setMessage("Tài khoản hoặc mật khẩu không đúng");
 			return "login";
 		}
-		authContext.setAccountId(account.getId());
-		authContext.setEmail(account.getEmail());
-		authContext.setAuthenticated(true);
-		authContext.setFullName(profileService.findById(account.getId()).getFullName());
-		authContext.setUserType(profileService.findById(account.getId()).getUserType());
+		
+		Profile profile = profileService.findById(account.getId());
+		authContext.setContext(account, profile);
 		
 		return "redirect:/";
 	}

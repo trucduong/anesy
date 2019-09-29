@@ -21,78 +21,44 @@
 	<div class="container page">
 		<div class="row">
 			<div class="col-md-4">
-
-
-
-
-				<div class="input-group mb-3">
-					<div class="input-group-prepend">
-						<span class="input-group-text left" id="inputGroupFileAddon01">Upload</span>
-					</div>
-					<div class="custom-file">
-						<input type="file" class="custom-file-input" id="inputGroupFile01"
-							aria-describedby="inputGroupFileAddon01"> <label
-							class="custom-file-label" for="inputGroupFile01">Choose
-							file</label>
-					</div>
-				</div>
-
-
 				<jsp:include page="../../component/profilelistgroup.jsp"></jsp:include>
 			</div>
-			<div class="col-md-7">
+			<div class="col-md-8">
 				<div class="card">
 					<h5 class="card-header">Thông Tin Cá Nhân</h5>
 					<div class="card-body">
 
-						<form action="<%=request.getContextPath()%>/profile/info"
-							method="post">
+						<form method="post">
 							<div class="input-group mb-3">
 								<div class="input-group-prepend">
-									<span class="input-group-text" id="inputGroup-sizing-default">Họ
-										và tên</span>
+									<span class="input-group-text" >Họ và tên</span>
 								</div>
-								<input name="name" type="text" class="form-control"
-									value="${_profile.fullName}"
-									aria-label="Sizing example input"
-									aria-describedby="inputGroup-sizing-default">
+								<input name="fullName" type="text" class="form-control" 
+									value="${_profile.fullName}">
 							</div>
 							<div class="input-group mb-3">
 								<div class="input-group-prepend">
-									<span class="input-group-text" id="inputGroup-sizing-default">Số
-										điện thoại</span>
+									<span class="input-group-text">Số điện thoại</span>
 								</div>
-								<input name="phone" type="text" class="form-control"
-									value="${ _profile.phone}"
-									aria-label="Sizing example input"
-									aria-describedby="inputGroup-sizing-default">
+								<input name="phone" type="text" class="form-control" value="${ _profile.phone}">
 							</div>
 							<div class="input-group mb-3">
 								<div class="input-group-prepend">
-									<span class="input-group-text" id="inputGroup-sizing-default">Email</span>
+									<span class="input-group-text" >Email</span>
 								</div>
-								<input name="email" type="text" class="form-control"
-									value="${ _profile.email}"
-									aria-label="Sizing example input"
-									aria-describedby="inputGroup-sizing-default" disabled>
+								<input name="email" type="text" class="form-control" value="${ _profile.email}">
 							</div>
 							<div class="input-group mb-3">
 								<div class="input-group-prepend">
-									<span class="input-group-text" id="inputGroup-sizing-default">Ngày
-										sinh </span>
+									<span class="input-group-text" >Ngày sinh </span>
 								</div>
-								<input id="checkin" name="birthday" type="date"
-									value="${ _profile.birthDate}" class="form-control"
-									aria-label="Sizing example input"
-									aria-describedby="inputGroup-sizing-default">
+								<input name="birthDate" type="date" value="${ _profile.birthDate}" class="form-control">
 							</div>
 							<div class="input-group mb-3">
 								<div class="input-group-prepend">
-									<label class="input-group-text" for="inputGroupSelect01">Giới
-										tính</label>
+									<label class="input-group-text" >Giới tính</label>
 								</div>
-								<select name="gender" class="custom-select"
-									value="${ _profile.gender}" id="inputGroupSelect01">
+								<select name="gender" class="custom-select" value="${ _profile.gender}" >
 									<option selected>Vui lòng chọn</option>
 									<option value="1">Nam</option>
 									<option value="2">Nữ</option>
@@ -102,18 +68,14 @@
 
 							<div class="input-group mb-3">
 								<div class="input-group-prepend">
-									<span class="input-group-text" id="inputGroup-sizing-default">Địa
-										Chỉ</span>
+									<span class="input-group-text">Địa Chỉ</span>
 								</div>
-								<textarea name="address" type="text" class="form-control"
-									id="email" value="${ _profile.address}" required=""
-									data-validation-required-message="Please enter your email address."></textarea>
+								<textarea name="address" type="text" class="form-control">${_profile.address}</textarea>
 							</div>
 
 
 							<div id="success"></div>
-							<button type="submit" class="btn btn-primary"
-								id="sendMessageButton">Cập Nhật</button>
+							<button type="submit" class="btn btn-primary">Cập Nhật</button>
 						</form>
 					</div>
 				</div>

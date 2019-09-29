@@ -1,65 +1,70 @@
 package com.green.config;
 
-import java.util.ArrayList;
-
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 
-import com.green.entity.CourseCategory;
+import com.green.entity.Account;
+import com.green.entity.Profile;
 
 @Component
 @Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class AuthContext {
 	private boolean isAuthenticated;
-	private Integer accountId;
-	private String email;
-	private String fullName;
-	private int userType;
-
+	private Account account = new Account();
+	private Profile profile = new Profile();
+	
+	public void setContext(Account account, Profile profile) {
+		this.account = account;
+		this.profile = profile;
+		this.isAuthenticated = true;
+	}
+	
+	public void clear() {
+		this.isAuthenticated = false;
+		this.account = new Account();
+		this.profile = new Profile();
+	}
+	
+	public Account getAccount() {
+		return account;
+	}
+	
+	public Profile getProfile() {
+		return profile;
+	}
+	
+	public void setAccount(Account account) {
+		this.account = account;
+	}
+	
+	public void setProfile(Profile profile) {
+		this.profile = profile;
+	}
+	
 
 	public int getUserType() {
-		return userType;
+		return profile.getUserType();
 	}
 
-	/**
-	 * @param userType the userType to set
-	 */
-	public void setUserType(int userType) {
-		this.userType = userType;
-	}
 
 	public boolean isAuthenticated() {
 		return isAuthenticated;
 	}
 
-	public void setAuthenticated(boolean isAuthenticated) {
-		this.isAuthenticated = isAuthenticated;
-	}
-
 	public Integer getAccountId() {
-		return accountId;
+		return account.getId();
 	}
 
-	public void setAccountId(Integer accountId) {
-		this.accountId = accountId;
-	}
 
 	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
+		return profile.getEmail();
 	}
 
 	public String getFullName() {
-		return fullName;
+		return profile.getFullName();
 	}
 
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
-	}
 
 }
