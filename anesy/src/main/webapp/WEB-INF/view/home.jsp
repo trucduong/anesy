@@ -37,12 +37,12 @@
 		<h2><b>haha</b></h2>
 		<p>Anywhere, anytime. Enjoy risk-free with our 30-day, money-back guarantee.</p>
 		</div>
-		<form action="<%=request.getContextPath()%>" method="post">
+		<form action="<%=request.getContextPath()%>/course" method="get">
 		<div class="input-group" >
-			<input name="searchname" type="text" class="form-control"
+			<input name="filter" type="text" class="form-control"
 				placeholder="Tìm kiếm khóa học" role="combobox"> <span
 				class="input-group-btn">
-				<button class="btn btn-secondary" type="button">Tìm kiếm</button>
+				<button class="btn btn-secondary" type="submit">Tìm kiếm</button>
 			</span>
 		</div>
 		</form>
@@ -197,7 +197,7 @@
 					    <h5 class="card-title"  >Trở Thành Giáo Viên</h5>
 					    <p class="card-text" > Dạy những gì bạn yêu thích thông qua công cụ của Anesy</p>
 					    
-					    <a href="<%=request.getContextPath()%>/become" class="btn btn-primary" >Đăng Ký </a>
+					    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Đăng ký</button>
 				  </div>
 				</div>
 			</div>
@@ -207,7 +207,50 @@
 				  	<div class="card-body">
 				    <h5 class="card-title" >Trở Thành Trung Tâm Giảng Viên</h5>
 				    <p class="card-text" >Trở thành trung tâm giảng viên thông qua công cụ của Anesy</p>
-				    <a href="<%=request.getContextPath()%>/become" class="btn btn-primary">Đăng Ký </a>
+				    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Đăng ký</button>
+				    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Đăng ký trở thành giảng viên</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Họ và tên:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Email:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Số điện thoại:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Chủ đề giảng dạy của bạn là gì ?</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Bạn đã có kinh nghiệm tạo video khóa học chưa ?</label><br>
+              <input type="radio" name="gender" value="male"> Mới bắt đầu<br>
+  			  <input type="radio" name="gender" value="female">Một chút<br>
+ 			  <input type="radio" name="gender" value="other">Đã có kinh nghiệm<br>
+ 			  <input type="radio" name="gender" value="other">Đã có video và sẵn sàng tải lên Anesy<br>   
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
 			  </div>
 			</div>
 			

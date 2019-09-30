@@ -32,7 +32,7 @@
 			<div class="col-md-2" style="margin-left: 50px; min-height: 300px;">
 				<div style="margin-left: 20px;">
 					<img class="author-avatar" alt=""
-						src="<%=request.getContextPath()%>/resources/image/avatar-comment-image/hinh2.jpg"
+						src="<%=request.getContextPath()%>/image/profile/<%=profile.getAvatar() %>"
 						width="120" height="120">
 				</div>
 			</div>
@@ -45,15 +45,15 @@
 				</div>
 				<ul class="nav justify-content-center" style="padding-top: 50px;">
 					<li class="nav-item thong-so">
-						<div class="medium">Tổng số học sinh</div>
-						<div class="so"">50</div>
-					</li>
-					<li class="nav-item thong-so">
 						<div class="medium">Khóa học</div>
-						<div class="so">1</div>
+						<div class="so"><%=courseList.size() %></div>
 					</li>
 					<li class="nav-item thong-so">
-						<div class="medium">Đánh giá</div>
+						<div class="medium">Like</div>
+						<div class="so">130,175</div>
+					</li>
+					<li class="nav-item thong-so">
+						<div class="medium">Unlike</div>
 						<div class="so">130,175</div>
 					</li>
 				</ul>

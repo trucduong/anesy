@@ -34,27 +34,25 @@
 			<div class="col-md-4">
 				<div class="course-content" >
 					<div class="course-pic" style="width: 100%; height: 200px;" >
-					<img alt="" src="<%=request.getContextPath()%>/resources/image/avatar-comment-image/hinh2.jpg" style="width: 100%; height: 100%;">
+					<img alt="" src="<%=request.getContextPath()%>/image/course/<%=course.getAvatar() %> %>" style="width: 100%; height: 100%;">
 					</div>
 					<div class="buy-group" style="text-align: center; padding: 20px;">
 						<div class="price" style="margin-bottom: 20px;"><b><h2><%=course.getPrice() %>  VNĐ</h2></b>
 						</div>
 						<div class="buy-button">
-							<button type="button" class="btn btn-danger btn-lg btn-block">Thêm vào giỏ hàng </button>
-							
+						<form action="<%=request.getContextPath()%>/cart/add" method="post">
+						<input type="hidden" name="courseId" value="<%=course.getId()%>">
+						<input type="hidden" name="mode" value="add">
+							<button type="submit" class="btn btn-danger btn-lg btn-block">Thêm vào giỏ hàng </button>
+						</form>	
 							<button type="button" class="btn btn-light btn-lg btn-block" style="border: 1px solid;">Mua ngay</button>
 						</div>
 					</div>
 					<div class="course-include" style="padding: 20px;">
 						<div class="this-course-include" style="font-size: 20px; padding-left: 10px;"><i>Khóa học bao gồm</i></div>
-						<ul>
-							<li>78.5 hours on-demand video</li>
-							<li>5 articles</li>
-							<li>36 coding exercises</li>
-							<li>Full lifetime access</li>
-							<li>Access on mobile and TV</li>
-							<li>Certificate of Completion</li>
-						</ul>
+						<div class="this-course-include-content">
+							<%=course.getInclude() %>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -185,7 +183,7 @@
 		<div class="row course-comment">		
 			<div class="col-md-2">
 			<div style="margin-left: 20px;">
-				<img class="people-avatar" alt="" src="<%=request.getContextPath()%>/resources/image/avatar-comment-image/hinh2.jpg" width="50" height="50">
+				<img class="people-avatar" alt="" src="<%=request.getContextPath()%>/image/profile/<%=comment.getAuthor().getAvatar() %>" width="50" height="50">
 			</div>
 			<div style="font-size: 14px; margin-top: 10px; " >
 				<div><b><%=comment.getAuthor().getFullName() %></b></div>
@@ -199,6 +197,7 @@
 			</div>
 		</div>
 		</div>
+		<hr>
 		<%} %>
 </div>
 

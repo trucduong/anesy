@@ -1,3 +1,6 @@
+<%@page import="java.util.Map"%>
+<%@page import="com.green.entity.Cart"%>
+<%@page import="com.green.entity.Course"%>
 <%@page import="com.green.config.AuthContext"%>
 <%@page import="com.green.config.MessageBox"%>
 <%@page import="com.green.util.SpringContextUtil"%>
@@ -57,7 +60,19 @@ alert.clear();
 msgBox.clear();
 	}
 %>
-
+<% 
+	Cart cart = (Cart) session.getAttribute("CART");
+		if (cart == null) {
+			cart = new Cart();
+		}
+		
+		int count = 0;	
+		Map<Integer, Course> map = cart.getDetails();
+		for (Map.Entry<Integer, Course> entry : map.entrySet()) {
+			
+			count = count + 1; // CartDetail
+		}
+		%>
 <header>
 
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -72,12 +87,13 @@ msgBox.clear();
       
         <ul class="navbar-nav ml-auto">
        	<li class="nav-item">
-        	<a class="nav-link" href="">
+        	<a class="nav-link" href="<%=request.getContextPath()%>/cart">
         	<i class="material-icons">add_shopping_cart</i>
 			</a>
 		</li>
-          <span aria-label="1 item" class="badge" style="color: red;margin-left: -18px;font-size: 15px;">1</span>
-        
+		  <%if(count > 0){ %>
+          <span aria-label="1 item" class="badge" style="color: red;margin-left: -18px;font-size: 15px;"><%=count %></span>
+          <%} %>	
           <li class="nav-item">
             <a class="nav-link" href="about.html">Khóa học của tôi</a>
           </li>
@@ -88,15 +104,12 @@ msgBox.clear();
           <%if(authContext.isAuthenticated()) {%>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-             <img alt=" " src="#"> <%=authContext.getFullName() %>
+             <img width="20px" alt="Avatar" src="<%=request.getContextPath() %>/image/profile/<%=authContext.getAccountId() %>"> <%=authContext.getFullName() %>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
               <a class="dropdown-item" href="<%= request.getContextPath()%>/profile/info">Thông Tin Tài Khoản</a>
-              <a class="dropdown-item" href="<%= request.getContextPath()%>/profile/password">Đổi Mật Khẩu</a>
-              <a class="dropdown-item" href="<%= request.getContextPath()%>/profile/history">Lịch Sử Học Tập</a>
-              <a class="dropdown-item" href="<%= request.getContextPath()%>/profile/certificate">Chứng Chỉ</a>
               <%if(authContext.getUserType()!=0) {%>
-              <a class="dropdown-item" href="<%= request.getContextPath()%>/profile/certificate">Quản lý khóa học</a>
+              <a class="dropdown-item" href="<%= request.getContextPath()%>/admin/course-category">Quản lý</a>
               <%} %>
               <a class="dropdown-item" href="<%=request.getContextPath()%>/login">Logout</a>
             </div>

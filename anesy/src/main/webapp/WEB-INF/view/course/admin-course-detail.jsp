@@ -35,7 +35,7 @@
 			<div class="form-group">
 				<div class="custom-file image-box" >
 					<input id="catImgVal" name="avatar" type="hidden" value="${_category.avatar}">
-					<input id="catImgFile" type="file" class="custom-file-input" onchange="doUpload('category', 'cat');">
+					<input id="catImgFile" type="file" class="custom-file-input" onchange="doUpload('category', 'catImgFile', onUploadSuccess);">
 					<img id="catImg" alt="Category" src="<%=request.getContextPath()%>/image/category/${_category.avatar}">
 				</div>
 			</div>
@@ -67,31 +67,7 @@
 <%-- import js files --%>
 <jsp:include page="../../component/common-js.jsp"></jsp:include>
 
-<script type="text/javascript">
 
-function handleCancel() {
-	location.href="<%=request.getContextPath()%>/admin/course-category";
-}
-
-$( document ).ready(function() {
-
-	ClassicEditor
-	.create( document.querySelector( '#editor' ) )
-	.then(editor => {
-		
-		editor.setData( '${_category.description}' );
-		
-		editor.model.document.on( 'change:data', () => {
-		    document.getElementById('editorVal').value = editor.getData();
-		});
-	})
-	.catch( error => {
-		console.error( error );
-	});
-	
-});
-
-</script>
 
 </body>
 </html>

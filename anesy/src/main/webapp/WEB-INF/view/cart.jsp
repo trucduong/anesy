@@ -1,3 +1,4 @@
+<%@page import="com.green.entity.Cart"%>
 <%@page import="com.green.entity.Profile"%>
 <%@page import="com.green.entity.Course"%>
 <%@page import="java.util.List"%>
@@ -15,7 +16,11 @@
 </head>
 <body>
 	<jsp:include page="../component/header.jsp"></jsp:include>
-
+	
+	<%
+		Cart cart = (Cart) session.getAttribute("CART");
+		long total = cart.getTotal();
+	%>
 	
 	<div class="full-width-name"
 		style="height: 150px; background-color: #ffe494; margin-bottom: 50px;">
@@ -27,31 +32,37 @@
 		<div style="margin-bottom: 10px;"><b><h5>1 Khóa học trong giỏ hàng</h5></b></div>
 		<div class="row">
 			<div class="col-md-9">
+			<%
+					for (int code : cart.getDetails().keySet()) {
+						Course course = cart.getDetails().get(code);
+				%>
 			<div class="card mb-3" style="max-height: 130px;">
 				<div class="row no-gutters">
 					<div class="col-md-2">
 						<img
-							src="<%=request.getContextPath()%>/resources/image/avatar-comment-image/hinh2.jpg"
+							src="<%=request.getContextPath()%>/image/course/<%=course.getAvatar() %>"
 							class="card-img" alt="" >
 					</div>
 					<div class="col-md-6">
 						<div class="card-body">
-							<h5 class="card-title">Java</h5>
+							<h5 class="card-title"><%=course.getName() %></h5>
 							<p class="card-text">
-								<small class="text-muted"></small>
+								<small class="text-muted"><%=course.getShortdesc() %></small>
 							</p>
-							<p class="card-text">haha</p>
-							<p class="card-text">haha</p>
 						</div>
 					</div>
 					<div class="col-md-2">
 						<div class="giatien">
-							<a href="#">Remove</a>
+							<form action="<%=request.getContextPath()%>/cart/remove" method="post">
+							<input type="hidden" name="courseId"
+								value=<%=course.getId()%>> 
+							<button type="submit" value="remove">Remove</button>
+						</form>
 						</div>
 					</div>
 					<div class="col-md-2">
 						<div class="giatien">
-							<b>100000 VNĐ</b>
+							<b><%=course.getPrice() %> VNĐ</b>
 						</div>
 						<div class="giatien">
 						<span class="oi oi-star"><%=5%></span>
@@ -59,11 +70,12 @@
 					</div>
 				</div>
 			</div>
+			<%} %>
 			</div>
 			<div class="col-md-3">
 				<div class="total">
 					<i><h5>Tổng cộng :</h5></i>
-					<b><h2>100000 VND</h2></b>
+					<b><h2><%=cart.getTotal() %> VND</h2></b>
 				</div>
 					<button type="button" class="btn btn-danger btn-lg btn-block">Thanh toán</button>
 				

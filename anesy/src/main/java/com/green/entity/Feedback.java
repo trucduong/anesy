@@ -26,8 +26,9 @@ public class Feedback {
 	@Column(name = "target_id")
 	private int targetId;
 
-	@Column(name = "target_type")
-	private FeedbackTargetType targetType;
+	@Column(name = "target")
+	@Enumerated(EnumType.STRING)
+	private FeedbackTarget target;
 
 	public int getId() {
 		return id;
@@ -61,12 +62,11 @@ public class Feedback {
 		this.targetId = targetId;
 	}
 
-	public FeedbackTargetType getTargetType() {
-		return targetType;
+	public FeedbackTarget getTarget() {
+		return target;
 	}
 
-	public void setTargetType(FeedbackTargetType targetType) {
-		this.targetType = targetType;
+	public void setTarget(FeedbackTarget target) {
+		this.target = target;
 	}
-
 }
