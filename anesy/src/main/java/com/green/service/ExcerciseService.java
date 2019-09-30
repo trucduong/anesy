@@ -34,5 +34,5 @@ public class ExcerciseService {
 	public void update(Exercise exercise) {
 		exerciseDao.update(exercise);
 	}
-
+	
 }

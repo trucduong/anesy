@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Subjects</title>
+<title>Insert title here</title>
 
 <%-- import css files --%>
 <jsp:include page="../../component/common-css.jsp"></jsp:include>
@@ -24,33 +24,37 @@
 	
 %>
 
-<h1 class="page-title">Subjects</h1>
+<h1 class="page-title">Subject</h1>
 
-<div class="row">
-	
-	<form>
-  <div class="form-group">
-    <label for="Subjectname">Subject name</label>
-    <input type="text" class="form-control" id="Subjectname" aria-describedby="Subject" placeholder="Enter subject name" size="80">
-    <small id="Subject" class="form-text text-muted">Tên môn học phải hợp lệ</small>
-  </div>
-  <div class="form-group">
-    <label for="decripsion">Decription</label>
-    <input type="text" class="form-control" id="decripsion" placeholder="Description" size="80">
-  </div>
-  <div class="form-group">
-    <label for="author">Author</label>
-    <input type="text" class="form-control" id="author" placeholder="author" size="80">
-  </div>
-  
-  <div class="form-group">
-    <label for="tag">Tag</label>
-    <input type="text" data-role="tagsinput" />
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-	
-	
+<div class="row justify-content-center mb-4">
+	<div class="col-md-12">
+		<form method="post">
+			
+			<input name="id" type="hidden" value=${_category.id}>
+			
+			<div class="form-group">
+				<div class="custom-file image-box" >
+					<input id="subImgVal" name="avatar" type="hidden" value="${_subjects.avatar}">
+					<input id="subImgFile" type="file" class="custom-file-input" onchange="doUpload('subjects', 'sub')">
+					<img id="subImg" alt="Subjects" src="<%=request.getContextPath()%>/image/subjects/${_subjects.avatar}">
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label for="subName">Subjects Name</label>
+				<input name="name" type="text" class="form-control" id="subName" placeholder="Enter course subject name" value="${_subjects.name}">
+			</div>
+			
+			<div class="form-group">
+				<label>Description</label>
+				<div id="editor"></div>
+				<input id="editorVal" name="description" type="hidden" value="${_subjects.description}">
+			</div>
+			
+			<button type="submit" class="btn btn-primary">Submit</button>
+			<button type="button" onclick="handleCancel()" class="btn btn-default">Cancel</button>
+		</form>
+	</div>
 </div>
 
 </div>
@@ -62,5 +66,33 @@
 
 <%-- import js files --%>
 <jsp:include page="../../component/common-js.jsp"></jsp:include>
+
+<script type="text/javascript">
+
+
+function handleCancel() {
+	location.href="<%=request.getContextPath()%>/admin/subjects";
+}
+
+$( document ).ready(function() {
+
+	ClassicEditor
+	.create( document.querySelector( '#editor' ) )
+	.then(editor => {
+		
+		editor.setData( '${_subjects.description}' );
+		
+		editor.model.document.on( 'change:data', () => {
+		    document.getElementById('editorVal').value = editor.getData();
+		});
+	})
+	.catch( error => {
+		console.error( error );
+	});
+	
+});
+
+</script>
+
 </body>
 </html>
