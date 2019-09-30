@@ -6,9 +6,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -17,7 +14,6 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,6 +21,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,6 +36,7 @@ import com.green.config.MsgType;
 import com.green.entity.Account;
 import com.green.entity.Course;
 import com.green.entity.Profile;
+import com.green.model.ProfileModel;
 import com.green.service.AccountService;
 import com.green.service.CourseService;
 import com.green.service.ProfileService;
@@ -84,17 +82,29 @@ public class ProfileController {
 	
 	@GetMapping("/info")
 	public String info(HttpServletRequest request) {
-		
 		int id = authContext.getAccountId();
 		Profile profile = profileservice.findById(id);
 		request.setAttribute("_profile", profile);
 		return "profile/info";
 	}
-
-	@PostMapping("image")
-	public String image() {
-		return "";
+	
+	@PostMapping("/info")
+	public String updateinfo(@ModelAttribute ProfileModel model, HttpServletRequest request) {
+		Profile profile = profileservice.findById(authContext.getAccountId());
+		
+		profile.setAddress(model.getAddress());
+		profile.setBirthDate(model.getBirthDate());
+		profile.setFullName(model.getFullName());
+		profile.setGender(model.getGender());
+		profile.setPhone(model.getFullName());
+		profile.setEmail(model.getEmail());
+		
+		profileservice.update(profile);
+		authContext.setProfile(profile);
+		
+		return "redirect:/profile/info";
 	}
+
 
 	@GetMapping("/password")
 	public String password(HttpServletRequest request, Model model) {
@@ -109,41 +119,6 @@ public class ProfileController {
 	@GetMapping("/certificate")
 	public String certificate() {
 		return "profile/certificate";
-	}
-
-	@PostMapping("/info")
-	public String updateinfo(Model model, HttpServletRequest request) {
-
-		String name = (String) request.getParameter("name");
-		String phone = (String) request.getParameter("phone");
-		String gender = (String) request.getParameter("gender");
-		String birthday = (String) request.getParameter("birthday");
-		String address = (String) request.getParameter("address");
-		String userType = (String) request.getParameter("usertype");
-
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date birthdayDate;
-		try {
-			birthdayDate = (Date) sdf.parse(birthday);
-		} catch (ParseException e) {
-			e.printStackTrace();
-			return "profile/info";
-		}
-		HttpSession session = request.getSession();
-		int id = authContext.getAccountId();
-		String email = authContext.getEmail();
-		Profile profile = new Profile();
-		profile.setAccountId(id);
-		profile.setAddress(address);
-		profile.setEmail(email);
-		profile.setFullName(name);
-		profile.setGender(gender);
-		profile.setPhone(phone);
-		profile.setUserType(Integer.parseInt(userType));
-		profile.setBirthDate(birthdayDate);
-
-		profileservice.update(profile);
-		return "redirect:/profile/info";
 	}
 
 	@PostMapping("/password")

@@ -33,5 +33,26 @@
 		<tag-class>com.green.taglib.CategoryDropdownTag</tag-class>
 		<body-content>scriptless</body-content>
 	</tag>
+	
+	<tag>
+		<name>feedback</name>
+		<tag-class>com.green.taglib.FeedbackTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<name>target</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>targetId</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>type</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
 
 </taglib>

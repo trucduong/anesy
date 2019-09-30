@@ -3,6 +3,9 @@
 <%@page import="com.green.entity.CourseCategory"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
+
+<%@ taglib prefix = "anesy" uri="/WEB-INF/anesy.tld"%>	
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -55,7 +58,7 @@
 				<h4>Tìm được <%=courselist.size() %> kết quả</h4>
 			</div>
 		</div>
-		
+	
 		<%for(Course course:courselist) {%>
 		<div class="row">
 			<div class="card mb-3" style="cursor: pointer;" onclick="location.href='<%=request.getContextPath()%>/course/<%=course.getId()%>'">
@@ -80,7 +83,14 @@
 							<b><%=course.getPrice()%>VNĐ</b>
 						</div>
 						<div class="giatien">
-						<span class="oi oi-star"><%=5%></span>
+							<span class="icon">
+								<anesy:feedback targetId="<%=course.getId() %>" type="LIKE" target="COURSE"></anesy:feedback>
+								<i class="material-icons">thumb_up</i>
+							</span>
+							<span class="icon">
+								<anesy:feedback targetId="<%=course.getId() %>" type="UNLIKE" target="COURSE"></anesy:feedback>
+								<i class="material-icons">thumb_down</i>
+							</span>
 						</div>
 					</div>
 				</div>

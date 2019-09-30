@@ -32,7 +32,7 @@ public class LoginController {
 
 	@GetMapping()
 	public String getlogin() {
-		authContext.clearContext();
+		authContext.clear();
 		return "login";
 	}
 

@@ -1,3 +1,5 @@
+<%@page import="com.green.util.SpringContextUtil"%>
+<%@page import="com.green.config.AuthContext"%>
 <%@ page import="com.green.entity.Profile"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -8,26 +10,15 @@
 			.substring(request.getContextPath().length());
 %>
 <%
-	Profile profile = (Profile) request.getAttribute("_info");
+	AuthContext authContext = SpringContextUtil.getBean(AuthContext.class);
+	Profile profile = authContext.getProfile();
 %>
-<div class="card">
-	<div class="card-body">
-		<div style="display: inline-block;">
-			<img alt="Ảnh đại diện"
-				src="<%=request.getContextPath()%>/product/image?code=${_product.code}"
-				width="100" height="100">
-		</div>
-		<div>
-			<form
-				action="<%=request.getContextPath()%>/product/image?code=${_product.code}"
-				method="post" enctype="multipart/form-data">
-				<input type="file" name="file" />
-				<button class="btn btn-primary" type="submit">Tải ảnh</button>
-			</form>
-		</div>
-		
-	</div>
 
+<div class="mb-2" style="position: inherit;">
+	<div class="image-box" >
+		<input id="_profileImgFile" type="file" class="custom-file-input" onchange="doUpload('profile', '_profile', {targetId: <%=authContext.getAccountId() %>});">
+		<img id="_profileImg" alt="Avatar" src="<%=request.getContextPath()%>/image/profile/<%=authContext.getAccountId() %>">
+	</div>
 </div>
 <div class="list-group">
 	<a href="<%=request.getContextPath()%>/profile/info"
