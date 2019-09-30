@@ -16,7 +16,7 @@ public class ExerciseDao extends BaseDao<Exercise, Integer> {
 	protected Class<Exercise> getEntityClass() {
 		return Exercise.class;
 	}
-	
+
 	public List<Exercise> findAll(int subId) {
 		StringBuilder hql = new StringBuilder();
 		hql.append("select co from Exercise co where co.subjects.id = :subId");

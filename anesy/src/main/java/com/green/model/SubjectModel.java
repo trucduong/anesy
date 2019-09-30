@@ -3,19 +3,13 @@ package com.green.model;
 import java.util.Date;
 
 public class SubjectModel {
-private int id;
 private String name;
 private String description;
 private String avatar;
 private int author;
 private Date createdAt;
 private String tags;
-public int getId() {
-	return id;
-}
-public void setId(int id) {
-	this.id = id;
-}
+
 public String getName() {
 	return name;
 }
