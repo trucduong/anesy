@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "profile")
@@ -33,6 +35,7 @@ public class Profile {
 	private String gender;
 	
 	@Column(name = "birth_date")
+	@Temporal(TemporalType.DATE)
 	private Date birthDate;
 	
 	@Column(name = "address", columnDefinition = "nvarchar(500)")

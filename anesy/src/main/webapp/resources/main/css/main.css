@@ -4,12 +4,19 @@ body {
 	background: rgb(247, 248, 250) !important;
 }
 
+.icon {
+	line-height: 1;
+    font-size: 24px;
+    padding-right: 10px;	
+}
+
 .action-form {
 	display: inline-block !important;
 }
 
 .page {
 	min-height: 500px;
+	padding-top: 10px
 }
 
 .page-title {
@@ -19,7 +26,6 @@ body {
 
 .image-box {
 	cursor: pointer;
-	width: 200px;
 	height: 200px;
 }
 

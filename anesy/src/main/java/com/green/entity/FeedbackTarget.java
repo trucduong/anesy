@@ -1,5 +1,5 @@
 package com.green.entity;
 
-public enum FeedbackTargetType {
+public enum FeedbackTarget {
 	COURSE, SUBJECTS, TEACHER
 }

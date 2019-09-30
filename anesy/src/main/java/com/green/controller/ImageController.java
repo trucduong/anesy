@@ -61,7 +61,11 @@ public class ImageController {
 		File file = new File(fileName);
 		// nếu không tồn tại thì lấy hình đại diện mặc định
 		if (!file.exists()) {
-			file = new File(context.getRealPath("resources/image/none.svg"));
+			if (target.equals("profile")) {
+				file = new File(context.getRealPath("resources/image/avatar.png"));
+			} else {
+				file = new File(context.getRealPath("resources/image/none.svg"));
+			}
 		}
 
 		InputStream fis = new FileInputStream(file);
@@ -81,13 +85,13 @@ public class ImageController {
 		fis.close();
 	}
 
-	@RequestMapping(value = "/{target}", method = RequestMethod.POST, consumes = {"multipart/form-data"})
+	@RequestMapping(value = "/{target}/{targetId}", method = RequestMethod.POST, consumes = {"multipart/form-data"})
 	@ResponseBody
-	public ResponseEntity<Object> upload(@RequestParam("file") MultipartFile file, @PathVariable(name = "target") String target) 
+	public ResponseEntity<Object> upload(@RequestParam("file") MultipartFile file, 
+			@PathVariable(name = "target") String target,
+			@PathVariable(name = "targetId") String targetId) 
 			throws ServletException, IOException {
 
-		String targetId = UUID.randomUUID().toString();
-		
 		if (file.isEmpty()) {
 			return ResponseEntity.badRequest().build();
 		}
@@ -112,6 +116,16 @@ public class ImageController {
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 		}
+	}
+	
+	@RequestMapping(value = "/{target}", method = RequestMethod.POST, consumes = {"multipart/form-data"})
+	@ResponseBody
+	public ResponseEntity<Object> upload(@RequestParam("file") MultipartFile file, @PathVariable(name = "target") String target) 
+			throws ServletException, IOException {
+
+		String targetId = UUID.randomUUID().toString();
+		
+		return upload(file, target, targetId);
 	}
 
 	private String getFilePath(String target, String targetId) {

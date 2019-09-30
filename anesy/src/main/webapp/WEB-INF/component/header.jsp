@@ -105,6 +105,7 @@ msgBox.clear();
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
              <img width="20" alt="Avatar" src="<%=request.getContextPath() %>/image/profile/<%=authContext.getAvatar() %>"> <%=authContext.getAccountId() %>
+             <img width="20px" alt="Avatar" src="<%=request.getContextPath() %>/image/profile/<%=authContext.getAccountId() %>"> <%=authContext.getFullName() %>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
               <a class="dropdown-item" href="<%= request.getContextPath()%>/profile/info">Thông Tin Tài Khoản</a>

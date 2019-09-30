@@ -12,27 +12,38 @@ import com.green.entity.Profile;
 @Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class AuthContext {
 	private boolean isAuthenticated;
-	
 	private Account account = new Account();
 	private Profile profile = new Profile();
-
+	
 	public void setContext(Account account, Profile profile) {
 		this.account = account;
 		this.profile = profile;
-		isAuthenticated = true;
+		this.isAuthenticated = true;
 	}
 	
-	public void clearContext() {
+	public void clear() {
+		this.isAuthenticated = false;
 		this.account = new Account();
 		this.profile = new Profile();
-		isAuthenticated = false;
 	}
-	
 	
 	public Account getAccount() {
 		return account;
 	}
 	
+	public Profile getProfile() {
+		return profile;
+	}
+	
+	public void setAccount(Account account) {
+		this.account = account;
+	}
+	
+	public void setProfile(Profile profile) {
+		this.profile = profile;
+	}
+	
+
 	public int getUserType() {
 		return profile.getUserType();
 	}
@@ -41,25 +52,19 @@ public class AuthContext {
 	public boolean isAuthenticated() {
 		return isAuthenticated;
 	}
-	
+
 	public Integer getAccountId() {
 		return account.getId();
 	}
 
+
 	public String getEmail() {
-		return account.getEmail();
+		return profile.getEmail();
 	}
-	
+
 	public String getFullName() {
 		return profile.getFullName();
 	}
 
-	public Profile getProfile() {
-		return profile;
-	}
-	
-	public String getAvatar() {
-		return profile.getAvatar();
-	}
-	
+
 }
