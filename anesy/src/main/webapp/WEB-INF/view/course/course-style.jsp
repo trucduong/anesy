@@ -40,8 +40,11 @@
 						<div class="price" style="margin-bottom: 20px;"><b><h2><%=course.getPrice() %>  VNĐ</h2></b>
 						</div>
 						<div class="buy-button">
-							<button type="button" class="btn btn-danger btn-lg btn-block">Thêm vào giỏ hàng </button>
-							
+						<form action="<%=request.getContextPath()%>/cart/add" method="post">
+						<input type="hidden" name="courseId" value="<%=course.getId()%>">
+						<input type="hidden" name="mode" value="add">
+							<button type="submit" class="btn btn-danger btn-lg btn-block">Thêm vào giỏ hàng </button>
+						</form>	
 							<button type="button" class="btn btn-light btn-lg btn-block" style="border: 1px solid;">Mua ngay</button>
 						</div>
 					</div>

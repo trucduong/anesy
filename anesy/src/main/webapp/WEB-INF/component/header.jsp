@@ -1,3 +1,6 @@
+<%@page import="java.util.Map"%>
+<%@page import="com.green.entity.Cart"%>
+<%@page import="com.green.entity.Course"%>
 <%@page import="com.green.config.AuthContext"%>
 <%@page import="com.green.config.MessageBox"%>
 <%@page import="com.green.util.SpringContextUtil"%>
@@ -57,7 +60,19 @@ alert.clear();
 msgBox.clear();
 	}
 %>
-
+<% 
+	Cart cart = (Cart) session.getAttribute("CART");
+		if (cart == null) {
+			cart = new Cart();
+		}
+		
+		int count = 0;	
+		Map<Integer, Course> map = cart.getDetails();
+		for (Map.Entry<Integer, Course> entry : map.entrySet()) {
+			
+			count = count + 1; // CartDetail
+		}
+		%>
 <header>
 
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -72,12 +87,13 @@ msgBox.clear();
       
         <ul class="navbar-nav ml-auto">
        	<li class="nav-item">
-        	<a class="nav-link" href="">
+        	<a class="nav-link" href="<%=request.getContextPath()%>/cart">
         	<i class="material-icons">add_shopping_cart</i>
 			</a>
 		</li>
-          <span aria-label="1 item" class="badge" style="color: red;margin-left: -18px;font-size: 15px;">1</span>
-        
+		  <%if(count > 0){ %>
+          <span aria-label="1 item" class="badge" style="color: red;margin-left: -18px;font-size: 15px;"><%=count %></span>
+          <%} %>	
           <li class="nav-item">
             <a class="nav-link" href="about.html">Khóa học của tôi</a>
           </li>
