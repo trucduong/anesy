@@ -49,7 +49,7 @@ public class AdminCourseCategoryController {
 	
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public String handleCreate(@ModelAttribute CategoryModel catModel) {
-		
+		// model -> entity
 		CourseCategory cat = new CourseCategory();
 		cat.setName(catModel.getName());
 		cat.setDescription(catModel.getDescription());

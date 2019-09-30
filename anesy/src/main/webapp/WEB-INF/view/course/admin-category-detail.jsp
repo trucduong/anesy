@@ -30,7 +30,7 @@
 	<div class="col-md-12">
 		<form method="post">
 			
-			<input name="id" type="hidden" value=${_category.id}>
+			<input name="id" type="hidden" value="${_category.id}">
 			
 			<div class="form-group">
 				<div class="custom-file image-box" >
