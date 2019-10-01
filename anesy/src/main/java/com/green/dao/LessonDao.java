@@ -9,7 +9,9 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
+import com.green.entity.Course;
 import com.green.entity.Lesson;
+import com.green.entity.Subjects;
 
 @Repository
 public class LessonDao extends BaseDao<Lesson, Integer> {
@@ -35,4 +37,14 @@ public class LessonDao extends BaseDao<Lesson, Integer> {
 		
 		return session.createQuery(hql).getResultList();
 	}*/
+	
+	public List<Lesson> findAll(int subId) {
+		StringBuilder hql = new StringBuilder();
+		hql.append("select co from Lession co where co.subjects.id = :subId");
+		
+		Query query = getFactory().openSession().createQuery(hql.toString(), Subjects.class);
+		query.setParameter("subId", subId);
+		
+		return query.getResultList();
+	}
 }

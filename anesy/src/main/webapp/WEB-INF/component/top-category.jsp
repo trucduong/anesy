@@ -91,7 +91,7 @@
 			<div class="top-category panel panel-default">
 				<div class="panel-body">
 					<a
-						href="<%=request.getContextPath()%>/category/<%=category.getId()%>">
+						href="<%=request.getContextPath()%>/course?catId=<%=category.getId()%>">
 						<div class="top-category-content">
 							<span class="top-category-icon udi-medium udi"><img alt=""
 								src="../anesy/resources/image/<%=category.getName()%>.png"></span>

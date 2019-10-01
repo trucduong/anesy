@@ -1,4 +1,4 @@
-package com.green.controller;
+ package com.green.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,7 +36,7 @@ public class AdminCourseCategoryController {
 		
 		Page<CourseCategory> pageData = courseService.findCategories(filter, page);
 		model.addAttribute("_pageData", pageData);
-		
+		 
 		return "/course/admin-category-list";
 	}
 	
@@ -49,7 +49,7 @@ public class AdminCourseCategoryController {
 	
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public String handleCreate(@ModelAttribute CategoryModel catModel) {
-		
+		// model -> entity
 		CourseCategory cat = new CourseCategory();
 		cat.setName(catModel.getName());
 		cat.setDescription(catModel.getDescription());
