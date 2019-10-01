@@ -80,7 +80,7 @@
 					<button type="button" class="btn btn-danger btn-lg btn-block" data-toggle="modal" data-target="#exampleModalScrollable">
 							 Thanh toán
 					</button>
-					
+				<form action="<%=request.getContextPath()%>/cart/pay" method="post">
 				<div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
 				  <div class="modal-dialog modal-dialog-scrollable" role="document">
 				    <div class="modal-content">
@@ -100,6 +100,7 @@
 				    </div>
 				  </div>
 			</div>
+			</form>
 			</div>
 		</div>
 								
