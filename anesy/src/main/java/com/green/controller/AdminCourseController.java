@@ -1,6 +1,10 @@
 package com.green.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +20,9 @@ import com.green.config.AuthContext;
 import com.green.config.MessageBox;
 import com.green.entity.Course;
 import com.green.entity.CourseCategory;
+import com.green.entity.CourseComment;
+import com.green.entity.CourseRegistration;
+import com.green.entity.Progress;
 import com.green.model.CategoryModel;
 import com.green.model.CourseModel;
 import com.green.model.Page;
@@ -55,8 +62,20 @@ public class AdminCourseController {
 		return "/course/admin-course-detail";
 	}
 	
+	@GetMapping("/preview")
+	public String showPreview(HttpServletRequest request,Model model) {
+	
+		Course course = (Course) request.getSession().getAttribute("course_preview");
+		model.addAttribute("_comment", new ArrayList<>());
+		model.addAttribute("_course", course);
+		
+		
+		return "course/course-style";
+	}
+	
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public String handleCreate(@ModelAttribute CourseModel courseModel) {
+	public String handleCreate(@ModelAttribute CourseModel courseModel, Model model, HttpServletRequest request) {
+		
 		Date date = new Date();
 		Course course = new Course();
 		course.setAvatar(courseModel.getAvatar());
@@ -70,9 +89,15 @@ public class AdminCourseController {
 		course.setAuthor(authContext.getProfile());
 		course.setCreatedAt(date);
 		
+		String action = request.getParameter("action");
+		if("preview".equals(courseModel.getAction())) {
+			model.addAttribute("_course", course);
+			request.getSession().setAttribute("course_preview", course);
+			return "/course/admin-course-detail";
+		}
+		
 		
 		courseService.insert(course);
-		
 		return "redirect:/admin/course";
 	}
 	
