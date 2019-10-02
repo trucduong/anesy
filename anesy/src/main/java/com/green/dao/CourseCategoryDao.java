@@ -29,7 +29,7 @@ public class CourseCategoryDao extends BaseDao<CourseCategory, Integer> {
 		StringBuilder hql = new StringBuilder();
 		hql.append("from CourseCategory ca where 1=1");
 		if (filter != null) {
-			hql.append(" and ca.name like '%").append(filter).append("%'");
+			hql.append(" and ca.name like N'%").append(filter).append("%'");
 		}
 		
 		Query query = getFactory().openSession().createQuery(hql.toString(), CourseCategory.class);
@@ -43,7 +43,7 @@ public class CourseCategoryDao extends BaseDao<CourseCategory, Integer> {
 		StringBuilder hql = new StringBuilder();
 		hql.append("select count(ca) from CourseCategory ca where 1=1");
 		if (filter != null) {
-			hql.append(" and ca.name like '%").append(filter).append("%'");
+			hql.append(" and ca.name like N'%").append(filter).append("%'");
 		}
 		
 		Query query = getFactory().openSession().createQuery(hql.toString());

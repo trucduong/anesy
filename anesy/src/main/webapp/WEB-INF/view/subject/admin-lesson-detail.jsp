@@ -28,7 +28,7 @@ Lesson lesson = (Lesson) request.getAttribute("_lesson");
 List<Subjects> subjectList = (List<Subjects>) request.getAttribute("_subjectList");
 %>
 
-<h1 class="page-title">Lesson</h1>
+<h1 class="page-title">Bài giảng</h1>
 
 <div class="row justify-content-center mb-4">
 	<div class="col-md-12">

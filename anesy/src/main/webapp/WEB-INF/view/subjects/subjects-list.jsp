@@ -28,7 +28,7 @@
 	}
 %>
 
-<h1 class="page-title">Subjects List</h1>
+<h1 class="page-title">Danh sách môn học</h1>
 
 <div class="row">
 	<div class="input-group mb-1">

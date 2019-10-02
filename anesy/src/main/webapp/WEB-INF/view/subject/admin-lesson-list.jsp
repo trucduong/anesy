@@ -29,7 +29,7 @@
 	}
 %>
 
-<h1 class="page-title">Lesson List</h1>
+<h1 class="page-title">Danh sách bài giảng</h1>
 
 <div class="row">
 	<div class="input-group mb-1">

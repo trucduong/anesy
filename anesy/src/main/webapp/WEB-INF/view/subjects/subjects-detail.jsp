@@ -24,7 +24,7 @@
 	
 %>
 
-<h1 class="page-title">Subject</h1>
+<h1 class="page-title">Môn học</h1>
 
 <div class="row justify-content-center mb-4">
 	<div class="col-md-12">

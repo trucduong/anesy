@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.green.entity.Course;
-import com.green.entity.CourseCategory;
 import com.green.entity.Profile;
 import com.green.model.CourseFilter;
 import com.green.util.ApplicationConfig;
@@ -49,16 +48,16 @@ private int pageSize;
 		hql.append("select co from Course co where 1=1");
 		
 		if (filter.getSearchText() != null) {
-			hql.append(" and co.name like '%" + filter.getSearchText() + "%'");
+			hql.append(" and LOWER(co.name) like N'%" + filter.getSearchText().toLowerCase() + "%'");
 		}
 		
 		if (filter.getCategory() != null) {
 			hql.append(" and co.category.id = " + String.valueOf(filter.getCategory()));
 		}
 		
-		if (filter.getTag() != null) {
-			hql.append(" and co.name like '%," + filter.getTag() + ",%'");
-		}
+//		if (filter.getTag() != null) {
+//			hql.append(" and co.name like '%," + filter.getTag() + ",%'");
+//		}
 		
 		Query query = getFactory().openSession().createQuery(hql.toString(), Course.class);
 		return query.getResultList();
@@ -76,7 +75,7 @@ private int pageSize;
 		StringBuilder hql = new StringBuilder();
 		hql.append("from Course ca where 1=1");
 		if (filter != null) {
-			hql.append(" and ca.name like '%").append(filter).append("%'");
+			hql.append(" and LOWER(ca.name) like N'%").append(filter.toLowerCase()).append("%'");
 		}
 		
 		Query query = getFactory().openSession().createQuery(hql.toString(), Course.class);
@@ -90,7 +89,7 @@ private int pageSize;
 		StringBuilder hql = new StringBuilder();
 		hql.append("select count(ca) from Course ca where 1=1");
 		if (filter != null) {
-			hql.append(" and ca.name like '%").append(filter).append("%'");
+			hql.append(" and LOWER(ca.name) like N'%").append(filter.toLowerCase()).append("%'");
 		}
 		
 		Query query = getFactory().openSession().createQuery(hql.toString());

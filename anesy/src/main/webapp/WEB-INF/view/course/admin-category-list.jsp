@@ -28,7 +28,7 @@
 	}
 %>
 
-<h1 class="page-title">Course Category List</h1>
+<h1 class="page-title">Danh sách Category</h1>
 
 <div class="row">
 	<div class="input-group mb-1">
