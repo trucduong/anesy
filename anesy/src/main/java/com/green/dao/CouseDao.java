@@ -45,21 +45,21 @@ private int pageSize;
 	
 	public List<Course> search(CourseFilter filter) {
 		StringBuilder hql = new StringBuilder();
-		hql.append("select co from Course co where 1=1");
+		hql.append("select * from course co where 1=1");
 		
 		if (filter.getSearchText() != null) {
 			hql.append(" and LOWER(co.name) like N'%" + filter.getSearchText().toLowerCase() + "%'");
 		}
 		
 		if (filter.getCategory() != null) {
-			hql.append(" and co.category.id = " + String.valueOf(filter.getCategory()));
+			hql.append(" and co.category_id = " + String.valueOf(filter.getCategory()));
 		}
 		
 //		if (filter.getTag() != null) {
 //			hql.append(" and co.name like '%," + filter.getTag() + ",%'");
 //		}
 		
-		Query query = getFactory().openSession().createQuery(hql.toString(), Course.class);
+		Query query = getFactory().openSession().createNativeQuery(hql.toString(), Course.class);
 		return query.getResultList();
 	}
 	
@@ -73,12 +73,12 @@ private int pageSize;
 	
 	public List<Course> search(String filter, int page) {
 		StringBuilder hql = new StringBuilder();
-		hql.append("from Course ca where 1=1");
+		hql.append("select * from course ca where 1=1");
 		if (filter != null) {
 			hql.append(" and LOWER(ca.name) like N'%").append(filter.toLowerCase()).append("%'");
 		}
 		
-		Query query = getFactory().openSession().createQuery(hql.toString(), Course.class);
+		Query query = getFactory().openSession().createNativeQuery(hql.toString(), Course.class);
 		query.setFirstResult((page-1) * pageSize);
 		query.setMaxResults(pageSize);
 		
@@ -87,12 +87,12 @@ private int pageSize;
 	
 	public long count(String filter) {
 		StringBuilder hql = new StringBuilder();
-		hql.append("select count(ca) from Course ca where 1=1");
+		hql.append("select count(*) from course ca where 1=1");
 		if (filter != null) {
 			hql.append(" and LOWER(ca.name) like N'%").append(filter.toLowerCase()).append("%'");
 		}
 		
-		Query query = getFactory().openSession().createQuery(hql.toString());
+		Query query = getFactory().openSession().createNativeQuery(hql.toString());
 		Number val = (Number) query.getSingleResult();
 		return val.longValue();
 	}

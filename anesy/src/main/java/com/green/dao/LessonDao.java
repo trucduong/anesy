@@ -55,12 +55,12 @@ public class LessonDao extends BaseDao<Lesson, Integer> {
 	
 	public List<Lesson> search(String filter, int page) {
 		StringBuilder hql = new StringBuilder();
-		hql.append("from Lesson le where 1=1");
+		hql.append("select * from lesson le where 1=1");
 		if (filter != null) {
-			hql.append(" and le.name like '%").append(filter).append("%'");
+			hql.append(" and LOWER(le.name) like '%").append(filter.toLowerCase()).append("%'");
 		}
 		
-		Query query = getFactory().openSession().createQuery(hql.toString(), Lesson.class);
+		Query query = getFactory().openSession().createNativeQuery(hql.toString(), Lesson.class);
 		query.setFirstResult((page-1) * pageSize);
 		query.setMaxResults(pageSize);
 		
@@ -69,12 +69,12 @@ public class LessonDao extends BaseDao<Lesson, Integer> {
 	
 	public long count(String filter) {
 		StringBuilder hql = new StringBuilder();
-		hql.append("select count(le) from Lesson le where 1=1");
+		hql.append("select count(*) from lesson le where 1=1");
 		if (filter != null) {
-			hql.append(" and le.name like '%").append(filter).append("%'");
+			hql.append(" and LOWER(le.name) like '%").append(filter.toLowerCase()).append("%'");
 		}
 		
-		Query query = getFactory().openSession().createQuery(hql.toString());
+		Query query = getFactory().openSession().createNativeQuery(hql.toString());
 		Number val = (Number) query.getSingleResult();
 		return val.longValue();
 	}
