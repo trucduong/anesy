@@ -100,8 +100,8 @@ div.course-item course-image img {
 }
 
 .hinh {
-	background-image: url("../../image/hoc-tap-2.jpg");
-	height: 560px;
+	background-image: url("../../image/background.png");
+	height: 760px;
 	width: 100%;
 	margin: 0;
 }
@@ -135,7 +135,7 @@ div.course-item course-image img {
 }
 
 .slogan{
-	background-color: orange;
+	background-color: #17a2b8;
 	margin-bottom: 30px;
 }
 
