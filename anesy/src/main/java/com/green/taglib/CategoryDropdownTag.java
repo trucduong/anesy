@@ -43,10 +43,9 @@ public class CategoryDropdownTag extends BaseTag {
 	
 	private void renderCategory(CourseCategory courseCategory) throws IOException {
 		JspWriter out = getJspContext().getOut();
-		
 		out.println("<a class='dropdown-item' href='"
 		+getRequest().getContextPath()
-		+"/category/" + courseCategory.getId()
+		+"/course?catId=" + courseCategory.getId()
 		+"'>"+courseCategory.getName()+"</a>");
 	}
 
