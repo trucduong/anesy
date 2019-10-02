@@ -1,18 +1,15 @@
 package com.green.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.persistence.Tuple;
 
-import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
-import com.green.entity.Course;
 import com.green.entity.Lesson;
 import com.green.entity.Subjects;
+import com.green.util.ApplicationConfig;
 
 @Repository
 public class LessonDao extends BaseDao<Lesson, Integer> {
