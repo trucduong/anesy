@@ -3,16 +3,26 @@ package com.green.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.persistence.Tuple;
 
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
+import com.green.entity.CourseCategory;
 import com.green.entity.Lesson;
+import com.green.util.ApplicationConfig;
 
 @Repository
 public class LessonDao extends BaseDao<Lesson, Integer> {
+	
+	private int pageSize;
+	
+	@PostConstruct
+	private void init() {
+		pageSize = Integer.parseInt(ApplicationConfig.getConfig("paging.size"));
+	}
 	
 	@Override
 	protected Class<Lesson> getEntityClass() {
@@ -35,4 +45,29 @@ public class LessonDao extends BaseDao<Lesson, Integer> {
 		
 		return session.createQuery(hql).getResultList();
 	}*/
+	public List<Lesson> search(String filter, int page) {
+		StringBuilder hql = new StringBuilder();
+		hql.append("from Lesson le where 1=1");
+		if (filter != null) {
+			hql.append(" and le.name like '%").append(filter).append("%'");
+		}
+		
+		Query query = getFactory().openSession().createQuery(hql.toString(), Lesson.class);
+		query.setFirstResult((page-1) * pageSize);
+		query.setMaxResults(pageSize);
+		
+		return query.getResultList();
+	}
+	
+	public long count(String filter) {
+		StringBuilder hql = new StringBuilder();
+		hql.append("select count(le) from Lesson le where 1=1");
+		if (filter != null) {
+			hql.append(" and le.name like '%").append(filter).append("%'");
+		}
+		
+		Query query = getFactory().openSession().createQuery(hql.toString());
+		Number val = (Number) query.getSingleResult();
+		return val.longValue();
+	}
 }
