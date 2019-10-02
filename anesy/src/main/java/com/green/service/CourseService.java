@@ -14,6 +14,7 @@ import com.green.entity.CourseCategory;
 import com.green.entity.CourseComment;
 import com.green.entity.CourseRegistration;
 import com.green.entity.Profile;
+import com.green.entity.Progress;
 import com.green.model.CourseFilter;
 import com.green.model.Page;
 
@@ -128,4 +129,17 @@ public class CourseService {
 		result.setTotalRows(totalRows);
 		return result;
 	}
+	
+	public List<CourseRegistration> findCourseRegistration(Profile profile) {
+		return courseRegistrationDao.findByStudent(profile);
+	}
+	
+	public CourseRegistration findCourseRegistration(int accountId, int courseId, Progress[] status) {
+		return courseRegistrationDao.find(accountId, courseId, status);
+	}
+	
+	public void insertComment(CourseComment courseComment) {
+		courseCommentDao.save(courseComment);
+	}
+	
 }

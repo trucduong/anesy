@@ -70,6 +70,7 @@ public class AdminCourseController {
 		course.setAuthor(authContext.getProfile());
 		course.setCreatedAt(date);
 		
+		
 		courseService.insert(course);
 		
 		return "redirect:/admin/course";
@@ -94,23 +95,25 @@ public class AdminCourseController {
 	public String handleUpdate(@PathVariable("id") int id,
 			@ModelAttribute CourseModel courseModel) {
 		
-		Course course = courseService.findById(id);
-		if (course == null) {
-			messageBox.setMessage("Không tìm thấy course id: " + id);
-			return "redirect:/admin/course";
-		}
-
-		course.setAvatar(courseModel.getAvatar());
-		course.setBenefit(courseModel.getBenefit());
-		course.setDescription(courseModel.getDescription());
-		course.setInclude(courseModel.getInclude());
-		course.setName(courseModel.getName());
-		course.setPrice(courseModel.getPrice());
-		course.setRequiment(courseModel.getRequiment());
-		course.setShortdesc(courseModel.getShortdesc());
-		course.setAuthor(authContext.getProfile());
 		
-		courseService.update(course);
+//		Course course = courseService.findById(id);
+//		if (course == null) {
+//			messageBox.setMessage("Không tìm thấy course id: " + id);
+//			return "redirect:/admin/course";
+//		}
+//
+//		course.setAvatar(courseModel.getAvatar());
+//		course.setBenefit(courseModel.getBenefit());
+//		course.setDescription(courseModel.getDescription());
+//		course.setInclude(courseModel.getInclude());
+//		course.setName(courseModel.getName());
+//		course.setPrice(courseModel.getPrice());
+//		course.setRequiment(courseModel.getRequiment());
+//		course.setShortdesc(courseModel.getShortdesc());
+//		course.setAuthor(authContext.getProfile());
+//	
+//		
+//		courseService.update(course);
 		
 		return "redirect:/admin/course";
 	}
