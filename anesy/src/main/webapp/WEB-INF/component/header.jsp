@@ -88,14 +88,14 @@ msgBox.clear();
         <ul class="navbar-nav ml-auto">
        	<li class="nav-item">
         	<a class="nav-link" href="<%=request.getContextPath()%>/cart">
-        	<i class="material-icons">add_shopping_cart</i>
+        	<i class="material-icons"> shopping_cart </i>
 			</a>
 		</li>
 		  <%if(count > 0){ %>
           <span aria-label="1 item" class="badge" style="color: red;margin-left: -18px;font-size: 15px;"><%=count %></span>
           <%} %>	
           <li class="nav-item">
-            <a class="nav-link" href="about.html">Khóa học của tôi</a>
+            <a class="nav-link" href="<%=request.getContextPath()%>/profile/my-course">Khóa học của tôi</a>
           </li>
           
           

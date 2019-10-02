@@ -1,5 +1,5 @@
 package com.green.entity;
 
 public enum Progress {
-	IN_PROGRESS, DONE 
+	NEW, IN_PROGRESS, DONE 
 }

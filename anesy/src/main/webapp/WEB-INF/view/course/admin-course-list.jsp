@@ -1,3 +1,4 @@
+<%@page import="com.green.entity.Course"%>
 <%@page import="com.green.entity.CourseCategory"%>
 <%@page import="com.green.model.Page"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -21,14 +22,14 @@
 <div class="col-md-8">
 
 <%
-	Page<CourseCategory> pageData = (Page<CourseCategory>) request.getAttribute("_pageData");
+	Page<Course> pageData = (Page<Course>) request.getAttribute("_pageData");
 	String filter = request.getParameter("filter");
 	if (filter == null) {
 		filter = "";
 	}
 %>
 
-<h1 class="page-title">Course Category List</h1>
+<h1 class="page-title">Course List</h1>
 
 <div class="row">
 	<div class="input-group mb-1">
@@ -40,7 +41,7 @@
 			</div>
 		</form>
 		<div class="input-group-append">
-			<form class="action-form" action="course-category/create" method="get" style="display: flex !important;">
+			<form class="action-form" action="course/create" method="get" style="display: flex !important;">
 				<button type="submit" class="btn btn-primary">Tạo mới</button>
 			</form>
 		</div>
@@ -60,17 +61,17 @@
 	  </thead>
 	  <tbody>
 <%
-	for(CourseCategory category : pageData.getList()) {
+	for(Course course : pageData.getList()) {
 %>
 	    <tr>
-	      <th scope="row"><%=category.getId() %></th>
-	      <td><%=category.getName() %></td>
-	      <td><%=category.getDescription() %></td>
+	      <th scope="row"><%=course.getId() %></th>
+	      <td><%=course.getName() %></td>
+	      <td><%=course.getShortdesc() %></td>
 	      <td>
-	      	<form class="action-form" action="course-category/<%=category.getId() %>" method="get">
+	      	<form class="action-form" action="course/<%=course.getId() %>" method="get">
 	      		<button type="submit">Update</button>
 	      	</form>
-	      	<form class="action-form" action="course-category/delete/<%=category.getId() %>" method="post">
+	      	<form class="action-form" action="course/delete/<%=course.getId() %>" method="post">
 	      		<button type="submit">Delete</button>
 	      	</form>
 	      </td>

@@ -29,7 +29,7 @@
 		</div>
 	</div>
 	<div class="container page">
-		<div style="margin-bottom: 10px;"><b><h5>1 Khóa học trong giỏ hàng</h5></b></div>
+		<div style="margin-bottom: 10px;"><b><h5><%=cart.getDetails().size() %> Khóa học trong giỏ hàng</h5></b></div>
 		<div class="row">
 			<div class="col-md-9">
 			<%
@@ -77,8 +77,30 @@
 					<i><h5>Tổng cộng :</h5></i>
 					<b><h2><%=cart.getTotal() %> VND</h2></b>
 				</div>
-					<button type="button" class="btn btn-danger btn-lg btn-block">Thanh toán</button>
-				
+					<button type="button" class="btn btn-danger btn-lg btn-block" data-toggle="modal" data-target="#exampleModalScrollable">
+							 Thanh toán
+					</button>
+				<form action="<%=request.getContextPath()%>/cart/pay" method="post">
+				<div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+				  <div class="modal-dialog modal-dialog-scrollable" role="document">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <h5 class="modal-title" id="exampleModalScrollableTitle">Xác nhận thanh toán </h5>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				      </div>
+				      <div class="modal-body">
+				        Bạn có chắc chắn xác nhận thanh toán <%=cart.getTotal()%> VND 
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+				        <button type="summit" class="btn btn-primary">Xác nhận</button>
+				      </div>
+				    </div>
+				  </div>
+			</div>
+			</form>
 			</div>
 		</div>
 								

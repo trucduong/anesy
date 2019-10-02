@@ -1,3 +1,4 @@
+<%@page import="com.green.entity.CourseRegistration"%>
 <%@page import="com.green.entity.CourseComment"%>
 <%@page import="java.util.List"%>
 <%@page import="com.green.entity.Course"%>
@@ -18,6 +19,7 @@
 	<%
 	Course course = (Course) request.getAttribute("_course");
 	List<CourseComment> commentList = (List<CourseComment>) request.getAttribute("_comment");
+	CourseRegistration courseRegistration = (CourseRegistration) request.getAttribute("_courseRegis");
 	%>
 <div class="full-width" >
 	<div class="container">
@@ -31,6 +33,7 @@
 					<div style="font-size: 21px;font-family: tahoma;"><%=course.getShortdesc() %></div>
 				</div>
 			</div>
+			<%if(courseRegistration == null){ %>
 			<div class="col-md-4">
 				<div class="course-content" >
 					<div class="course-pic" style="width: 100%; height: 200px;" >
@@ -56,6 +59,7 @@
 					</div>
 				</div>
 			</div>
+			<%} %>
 			
 		</div>
 	</div>
@@ -154,7 +158,7 @@
 		<div class="row course-author">
 		<div class="col-md-2">
 			<div style="margin-left: 20px;">
-				<img class="author-avatar" alt="" src="<%=request.getContextPath()%>/resources/image/avatar-comment-image/hinh2.jpg" width="120" height="120">
+				<img class="author-avatar" alt="" src="<%=request.getContextPath()%>/image/profile/<%=course.getAuthor().getAvatar() %>" width="120" height="120">
 			</div>
 			<div style="font-size: 14px; margin-top: 10px;">
 				<ul>
