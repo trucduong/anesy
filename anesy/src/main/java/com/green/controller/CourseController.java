@@ -17,6 +17,7 @@ import com.green.entity.Course;
 import com.green.entity.CourseCategory;
 import com.green.entity.CourseComment;
 import com.green.entity.CourseRegistration;
+import com.green.entity.CourseSubjects;
 import com.green.entity.Progress;
 import com.green.model.CourseFilter;
 import com.green.service.CourseService;
@@ -76,6 +77,14 @@ public class CourseController {
 		courseComment.setCreatedAt(date);
 		courseService.insertComment(courseComment);
 		return "redirect:/course/" + courseId;
+	}
+	
+	@GetMapping("/learn/{id}")
+	public String courseLearn(@PathVariable(name = "id")int id) {
+		Course course = courseService.findById(id);
+		List<CourseSubjects> courseSubjectslist = courseService.findSubjects(course);
+		return "";
+		
 	}
 	
 	

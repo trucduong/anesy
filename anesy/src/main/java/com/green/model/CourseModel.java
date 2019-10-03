@@ -10,6 +10,22 @@ public class CourseModel {
 	private String benefit;
 	private String requiment;
 	private String include;
+	private String action;
+	
+	
+
+	/**
+	 * @return the action
+	 */
+	public String getAction() {
+		return action;
+	}
+	/**
+	 * @param action the action to set
+	 */
+	public void setAction(String action) {
+		this.action = action;
+	}
 	/**
 	 * @return the avatar
 	 */
