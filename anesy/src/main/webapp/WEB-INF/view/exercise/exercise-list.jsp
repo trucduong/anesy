@@ -1,4 +1,4 @@
-<%@page import="com.green.entity.Subjects"%>
+<%@page import="com.green.entity.Exercise"%>
 <%@page import="com.green.model.Page"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
@@ -21,14 +21,14 @@
 <div class="col-md-8">
 
 <%
-	Page<Subjects> pageData = (Page<Subjects>) request.getAttribute("_pageData");
+	Page<Exercise> pageData = (Page<Exercise>) request.getAttribute("_pageData");
 	String filter = request.getParameter("filter");
 	if (filter == null) {
 		filter = "";
 	}
 %>
 
-<h1 class="page-title">Danh sách môn học</h1>
+<h1 class="page-title">Exercise List</h1>
 
 <div class="row">
 	<div class="input-group mb-1">
@@ -40,7 +40,7 @@
 			</div>
 		</form>
 		<div class="input-group-append">
-			<form action="subjects/create" method="get" style="display: flex !important;">
+			<form action="exercise/create" method="get" style="display: flex !important;">
 				<button type="submit" class="btn btn-primary">Tạo mới</button>
 			</form>
 		</div>
@@ -60,17 +60,17 @@
 	  </thead>
 	  <tbody>
 <%
-	for(Subjects subjects : pageData.getList()) {
+	for(Exercise exercise : pageData.getList()) {
 %>
 	    <tr>
-	      <th scope="row"><%=subjects.getId() %></th>
-	      <td><%=subjects.getName() %></td>
-	      <td><%=subjects.getDescription() %></td>
+	      <th scope="row"><%=exercise.getId() %></th>
+	      <td><%=exercise.getName() %></td>
+	      <td><%=exercise.getDescription() %></td>
 	      <td>
-	      	<form action="subjects/<%=subjects.getId() %>" method="get">
+	      	<form action="exercise/<%=exercise.getId() %>" method="get">
 	      		<button type="submit">Update</button>
 	      	</form>
-	      	<form action="subjects/delete/<%=subjects.getId() %>" method="post">
+	      	<form action="exercise/delete/<%=exercise.getId() %>" method="post">
 	      		<button type="submit">Delete</button>
 	      	</form>
 	      </td>

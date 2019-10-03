@@ -1,4 +1,4 @@
-<%@page import="com.green.entity.CourseCategory"%>
+<%@page import="com.green.entity.Exercise"%>
 <%@page import="com.green.model.Page"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Course Category Detail</title>
+<title>Insert title here</title>
 
 <%-- import css files --%>
 <jsp:include page="../../component/common-css.jsp"></jsp:include>
@@ -24,31 +24,25 @@
 	
 %>
 
-<h1 class="page-title">Category</h1>
+<h1 class="page-title">Exercise</h1>
 
 <div class="row justify-content-center mb-4">
 	<div class="col-md-12">
 		<form method="post">
 			
-			<input name="id" type="hidden" value="${_category.id}">
+			<input name="id" type="hidden" value=${_exercise.id}>
+			
+			
 			
 			<div class="form-group">
-				<div class="custom-file image-box" >
-					<input id="catImgVal" name="avatar" type="hidden" value="${_category.avatar}">
-					<input id="catImgFile" type="file" class="custom-file-input" onchange="doUpload('category', 'cat');">
-					<img id="catImg" alt="Category" src="<%=request.getContextPath()%>/image/category/${_category.avatar}">
-				</div>
-			</div>
-			
-			<div class="form-group">
-				<label for="catName">Category Name</label>
-				<input name="name" type="text" class="form-control" id="catName" placeholder="Enter course category name" value="${_category.name}">
+				<label for="subName">Exercise Name</label>
+				<input name="name" type="text" class="form-control" id="subName" placeholder="Enter course subject name" value="${_exercise.name}">
 			</div>
 			
 			<div class="form-group">
 				<label>Description</label>
 				<div id="editor"></div>
-				<input id="editorVal" name="description" type="hidden" value="${_category.description}">
+				<input id="editorVal" name="description" type="hidden" value="${_exercise.description}">
 			</div>
 			
 			<button type="submit" class="btn btn-primary">Submit</button>
@@ -69,8 +63,9 @@
 
 <script type="text/javascript">
 
+
 function handleCancel() {
-	location.href="<%=request.getContextPath()%>/admin/course-category";
+	location.href="<%=request.getContextPath()%>/admin/exercise";
 }
 
 $( document ).ready(function() {
@@ -79,7 +74,7 @@ $( document ).ready(function() {
 	.create( document.querySelector( '#editor' ) )
 	.then(editor => {
 		
-		editor.setData( '${_category.description}' );
+		editor.setData( '${_exercise.description}' );
 		
 		editor.model.document.on( 'change:data', () => {
 		    document.getElementById('editorVal').value = editor.getData();

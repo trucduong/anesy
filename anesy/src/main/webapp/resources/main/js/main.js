@@ -31,7 +31,7 @@ function doUpload(target, id, options={}) {
 			if (xhr.status === 200) {
 				var imageId = xhr.response;
 				
-				var url = 'http://localhost:8080/anesy/image/' + target
+				var url = location.origin + '/anesy/image/' + target;
 				if(document.getElementById(imageF)) {
 					document.getElementById(imageF).src = url + '/'+ imageId;
 				}
@@ -54,7 +54,7 @@ function doUpload(target, id, options={}) {
 		}
 	}
 
-	var url = 'http://localhost:8080/anesy/image/' + target
+	var url = location.origin + '/anesy/image/' + target;
 	if (options.targetId) {
 		url = url + '/' + options.targetId;
 	}

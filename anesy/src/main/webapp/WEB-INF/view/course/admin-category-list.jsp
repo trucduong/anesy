@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Course Category</title>
 
 <%-- import css files --%>
 <jsp:include page="../../component/common-css.jsp"></jsp:include>
@@ -28,7 +28,7 @@
 	}
 %>
 
-<h1 class="page-title">Course Category List</h1>
+<h1 class="page-title">Danh sách Category</h1>
 
 <div class="row">
 	<div class="input-group mb-1">
