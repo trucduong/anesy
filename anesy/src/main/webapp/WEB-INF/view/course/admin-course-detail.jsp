@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="com.green.entity.Course"%>
 <%@page import="com.green.entity.CourseCategory"%>
 <%@page import="com.green.model.Page"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -6,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Course Detail</title>
 
 <%-- import css files --%>
 <jsp:include page="../../component/common-css.jsp"></jsp:include>
@@ -21,7 +23,8 @@
 <div class="col-md-8">
 
 <%
-	
+	Course course = (Course) request.getAttribute("_course");
+	List<CourseCategory> categoryList = (List<CourseCategory>) request.getAttribute("_categoryList");
 %>
 
 <h1 class="page-title">Course</h1>
@@ -42,18 +45,37 @@
 			
 			<div class="form-group">
 				<label >Course Name</label>
-				<input name="name" type="text" class="form-control" id="catName" placeholder="Enter course name" value="${_course.name}">
+				<input name="name" type="text" class="form-control" id="courseName" placeholder="Enter course name" value="${_course.name}">
 			</div>
 			
 			<div class="form-group">
 				<label >Short Description</label>
-				<input name="shortdesc" type="text" class="form-control" id="catName" placeholder="Enter course short decription" value="${_course.shortdesc}">
+				<input name="shortdesc" type="text" class="form-control" id="courseDes" placeholder="Enter course short decription" value="${_course.shortdesc}">
 			</div>
 			
 			<div class="form-group">
 				<label>Description</label>
 				<div id="editor"></div>
 				<input id="editorVal" name="description" type="hidden" value="${_course.description}">
+			</div>
+			
+			<div class="form-group">
+				<label>Category Name</label>
+				<select name="subjectsId">
+							<%
+								for (CourseCategory courseCat : categoryList) {
+							%>
+							<option value="<%=courseCat.getId()%>"
+								<%=(course.getCategory()!=null && course.getCategory().getId() == courseCat.getId()) ? "selected" : ""%>><%=courseCat.getName()%></option>
+							<%
+								}
+							%>
+					</select>
+			</div>
+			
+			<div class="form-group">
+				<label>Tags</label>
+				<input name="seq" value="${_course.tags}">
 			</div>
 			
 			<div class="form-group">
@@ -76,11 +98,9 @@
 			
 			<div class="form-group">
 				<label >Price</label>
-				<input name="price" type="text" class="form-control" id="catName" placeholder="Enter course price" value="${_course.price}">
+				<input name="price" type="text" class="form-control" id="coursePrice" placeholder="Enter course price" value="${_course.price}">
 			</div>
-			
-			
-			
+		
 			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalReview">
  			 		Review
 			</button>

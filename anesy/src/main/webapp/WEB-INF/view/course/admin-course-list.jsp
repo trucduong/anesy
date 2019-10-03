@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Course</title>
 
 <%-- import css files --%>
 <jsp:include page="../../component/common-css.jsp"></jsp:include>
@@ -55,7 +55,15 @@
 	    <tr>
 	      <th scope="col">#</th>
 	      <th scope="col">Tên</th>
+	      <th scope="col">Tóm tắt</th>
 	      <th scope="col">Mô tả</th>
+	       <th scope="col">Category</th>
+	       <th scope="col">Học phí</th>
+	        <th scope="col">Ngày tạo</th>
+	         <th scope="col">Tags</th>
+	         <th scope="col">Lợi ích</th>
+	         <th scope="col">Yêu cầu</th>
+	         <th scope="col">Bao gồm</th>
 	      <th scope="col">Tùy chọn</th>
 	    </tr>
 	  </thead>
@@ -67,6 +75,14 @@
 	      <th scope="row"><%=course.getId() %></th>
 	      <td><%=course.getName() %></td>
 	      <td><%=course.getShortdesc() %></td>
+	       <td><%=course.getDescription() %></td>
+	       <td><%=course.getCategory().getName() %></td>
+	       <td><%=course.getPrice() %></td>
+	       <td><%=course.getCreatedAt() %></td>
+	       <td><%=course.getTags() %></td>
+	       <td><%=course.getBenefit() %></td>
+	       <td><%=course.getRequiment() %></td>
+	       <td><%=course.getInclude() %></td>
 	      <td>
 	      	<form class="action-form" action="course/<%=course.getId() %>" method="get">
 	      		<button type="submit">Update</button>

@@ -10,8 +10,10 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.green.entity.Account;
 import com.green.entity.Course;
 import com.green.entity.CourseCategory;
+import com.green.entity.CourseSubjects;
 import com.green.entity.Profile;
 import com.green.model.CourseFilter;
 import com.green.util.ApplicationConfig;
@@ -42,6 +44,18 @@ private int pageSize;
 		query.setParameter("catId", catId);
 		
 		return query.getResultList();
+	}
+	
+public CourseSubjects findBySubject(int subId) {
+		
+		Session session = getFactory().openSession();
+		Query query = session.createQuery("select cosub from CourseSubjects cosub where cosub.subjects.id = :subId");
+		query.setParameter("subId", subId);
+		List<CourseSubjects> result = query.getResultList();
+		if(result.isEmpty())
+			return null;
+		else
+			return result.get(0);
 	}
 	
 	public List<Course> search(CourseFilter filter) {
