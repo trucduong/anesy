@@ -8,11 +8,13 @@ import org.springframework.stereotype.Service;
 import com.green.dao.CourseCategoryDao;
 import com.green.dao.CourseCommentDao;
 import com.green.dao.CourseRegistrationDao;
+import com.green.dao.CourseSubjectDao;
 import com.green.dao.CouseDao;
 import com.green.entity.Course;
 import com.green.entity.CourseCategory;
 import com.green.entity.CourseComment;
 import com.green.entity.CourseRegistration;
+import com.green.entity.CourseSubjects;
 import com.green.entity.Profile;
 import com.green.entity.Progress;
 import com.green.model.CourseFilter;
@@ -32,6 +34,9 @@ public class CourseService {
 	
 	@Autowired
 	private CourseCommentDao courseCommentDao;
+	
+	@Autowired
+	private CourseSubjectDao courseSubjectDao;
 	
 
 	public List<Course> search(CourseFilter filter) {
@@ -140,6 +145,10 @@ public class CourseService {
 	
 	public void insertComment(CourseComment courseComment) {
 		courseCommentDao.save(courseComment);
+	}
+	
+	public List<CourseSubjects> findSubjects(Course course){
+		return courseSubjectDao.findSubjects(course);
 	}
 	
 }
