@@ -61,7 +61,7 @@
 			
 			<div class="form-group">
 				<label>Category Name</label>
-				<select name="subjectsId">
+				<select name="categoryId">
 							<%
 								for (CourseCategory courseCat : categoryList) {
 							%>
