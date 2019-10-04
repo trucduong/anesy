@@ -30,6 +30,6 @@
 		Sử Học Tập</a> <a href="<%=request.getContextPath()%>/profile/certificate"
 		class="list-group-item list-group-item-action <%=currentPage.equals("/profile/certificate") ? "active" : ""%>">Chứng
 		Chỉ</a>
-		<a href="<%=request.getContextPath()%>/profile/certificate"
-		class="list-group-item list-group-item-action <%=currentPage.equals("/profile/mycourse") ? "active" : ""%>">Khóa Học Của Tôi</a>
+		<a href="<%=request.getContextPath()%>/profile/my-course"
+		class="list-group-item list-group-item-action <%=currentPage.equals("/profile/my-course") ? "active" : ""%>">Khóa Học Của Tôi</a>
 </div>

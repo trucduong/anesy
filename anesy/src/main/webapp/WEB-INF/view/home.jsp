@@ -218,36 +218,37 @@
         </button>
       </div>
       <div class="modal-body">
-        <form>
+        <form action="<%=request.getContextPath()%>/regis/teacher" method="post">
+        <input type="hidden" name="id" value="<%=authContext.getAccountId()%>">
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Họ và tên:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-          <div class="form-group">
-            <label for="message-text" class="col-form-label">Email:</label>
-            <input type="text" class="form-control" id="recipient-name">
+            <input name="name" type="text" class="form-control" id="recipient-name">
           </div>
           <div class="form-group">
             <label for="message-text" class="col-form-label">Số điện thoại:</label>
-            <input type="text" class="form-control" id="recipient-name">
+            <input name="phone" type="text" class="form-control" id="recipient-name">
           </div>
           <div class="form-group">
             <label for="message-text" class="col-form-label">Chủ đề giảng dạy của bạn là gì ?</label>
-            <input type="text" class="form-control" id="recipient-name">
+            <input name="specialize" type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Tiểu sử của bạn (Mô tả chi tiết về bản thân)</label>
+            <textarea name="description" type="text" class="form-control"></textarea>
           </div>
           <div class="form-group">
             <label for="message-text" class="col-form-label">Bạn đã có kinh nghiệm tạo video khóa học chưa ?</label><br>
-              <input type="radio" name="gender" value="male"> Mới bắt đầu<br>
-  			  <input type="radio" name="gender" value="female">Một chút<br>
- 			  <input type="radio" name="gender" value="other">Đã có kinh nghiệm<br>
- 			  <input type="radio" name="gender" value="other">Đã có video và sẵn sàng tải lên Anesy<br>   
+              <input type="radio" name="experience" value="begin"> Mới bắt đầu<br>
+  			  <input type="radio" name="experience" value="little">Một chút<br>
+ 			  <input type="radio" name="experience" value="high">Đã có kinh nghiệm<br>
+ 			  <input type="radio" name="experience" value="best">Đã có video và sẵn sàng tải lên Anesy<br>   
           </div>
-        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
+        <button type="submit" class="btn btn-primary">Đăng ký</button>
       </div>
+      </form>
     </div>
   </div>
 </div>

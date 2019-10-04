@@ -15,6 +15,7 @@ import com.green.entity.CourseCategory;
 import com.green.entity.CourseComment;
 import com.green.entity.CourseRegistration;
 import com.green.entity.CourseSubjects;
+import com.green.entity.Lesson;
 import com.green.entity.Profile;
 import com.green.entity.Progress;
 import com.green.model.CourseFilter;
@@ -147,8 +148,8 @@ public class CourseService {
 		courseCommentDao.save(courseComment);
 	}
 	
-	public List<CourseSubjects> findSubjects(Course course){
-		return courseSubjectDao.findSubjects(course);
-	}
+	
+	
+
 	
 }

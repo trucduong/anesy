@@ -10,13 +10,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.green.config.Alert;
 import com.green.config.MessageBox;
 import com.green.config.MsgType;
+import com.green.entity.Profile;
 import com.green.exception.MyException;
 import com.green.model.RegisModel;
 import com.green.service.AccountService;
+import com.green.service.ProfileService;
 
 @Controller
 @RequestMapping("/regis")
@@ -27,6 +30,9 @@ public class RegisController extends HttpServlet{
 	
 	@Autowired
 	private AccountService accountService;
+	
+	@Autowired
+	private ProfileService profileService;
 	
 	@Autowired
 	private Alert alert;
@@ -65,6 +71,26 @@ public class RegisController extends HttpServlet{
 		messageBox.setMessage("Đăng ký thành công.<br>Mật khẩu đã được gửi vào email <strong>"+regisModel.getEmail()+"</strong>");
 		
 		return "redirect:/";
+	}
+	
+	@PostMapping("/teacher")
+	public String becomeTeacher(Model model, @RequestParam(name = "name")String name,
+											@RequestParam(name = "specialize")String specialize,
+											@RequestParam(name = "phone")String phone,
+											@RequestParam(name = "description")String description,
+											@RequestParam(name = "experience")String experience,
+											@RequestParam(name = "id")int id) {
+											Profile profile = profileService.findById(id);
+											profile.setFullName(name);
+											profile.setPhone(phone);
+											profile.setDescription(description);
+											profile.setSpecialize(specialize);
+											profile.setUserType(2);
+											profileService.update(profile);
+											alert.addMessage("Đăng ký thành công", MsgType.success);
+											return "redirect:/";
+		
+		
 	}
 
 }

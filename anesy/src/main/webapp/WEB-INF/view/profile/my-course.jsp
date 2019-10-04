@@ -2,6 +2,8 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
+	
+<%@ taglib prefix = "anesy" uri="/WEB-INF/anesy.tld"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -26,27 +28,27 @@
 
 			</div>
 			<div class="col-md-7">
-				<div class="card">
-					<h5 class="card-header">Lịch Sử Học Tập</h5>
+			 <anesy:course-list courses="${_courselist}"></anesy:course-list>
+				<%-- <div class="card">
+					<h5 class="card-header">Khóa học của tôi</h5>
 					<div class="card-body">
 						<div class="card-columns">
 						<%for(Course course : courseList){ %>
-							<div class="card">
+							<a href="<%=request.getContextPath()%>/learning/course/<%=course.getId()%>"> 
+							<div class="card" style="min-height: 270px;">
 								<img src="" class="card-img-top"
 									alt="Java Programming Masterclass for Software Developers">
 								<div class="card-body">
 									<h5 class="card-title"><%=course.getName() %></h5>
-									<p class="card-text"><%=course.getShortdesc() %></p>
-									<p class="card-text text-right">
-										<b><%=course.getPrice() %> VND</b>
-									</p>
 								</div>
 							</div>
+							</a>
 							<%} %>
+							
 						</div>
 						
 					</div>
-				</div>
+				</div> --%>
 			</div>
 		</div>
 	</div>

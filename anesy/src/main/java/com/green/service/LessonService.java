@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.green.dao.LessonDao;
 import com.green.entity.CourseCategory;
 import com.green.entity.Lesson;
+import com.green.entity.Subjects;
 import com.green.model.Page;
 
 @Service
@@ -63,4 +64,8 @@ public class LessonService {
 		return lessons;
 //		return lessonDao.findAllWithSubjects();
 	}
-}
+	
+	public List<Lesson> findLessonbySubject(Subjects subjects){
+		return lessonDao.findLessonbySubject(subjects);
+	}
+ }
