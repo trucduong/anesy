@@ -4,6 +4,10 @@ body {
 	background: rgb(247, 248, 250) !important;
 }
 
+. modal-lg {
+	max-width: 90% !important;
+}
+
 .icon {
 	line-height: 1;
     font-size: 24px;

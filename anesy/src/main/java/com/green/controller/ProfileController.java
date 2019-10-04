@@ -1,6 +1,7 @@
 package com.green.controller;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -22,6 +23,7 @@ import com.green.config.AuthContext;
 import com.green.config.MsgType;
 import com.green.entity.Account;
 import com.green.entity.Course;
+import com.green.entity.CourseRegistration;
 import com.green.entity.Profile;
 import com.green.model.ProfileModel;
 import com.green.service.AccountService;
@@ -106,6 +108,17 @@ public class ProfileController {
 	@GetMapping("/certificate")
 	public String certificate() {
 		return "profile/certificate";
+	}
+	
+	@GetMapping("/my-course")
+	public String mycourse(Model model) {
+		List<CourseRegistration> listCourseRegis = courseService.findCourseRegistration(authContext.getProfile());
+		List<Course> listCourse =new ArrayList<Course>();
+		for(CourseRegistration courseRegistration : listCourseRegis) {
+			listCourse.add(courseService.findById(courseRegistration.getCourse().getId()));
+		}
+		model.addAttribute("_courselist", listCourse);
+		return "profile/my-course";
 	}
 
 	@PostMapping("/password")

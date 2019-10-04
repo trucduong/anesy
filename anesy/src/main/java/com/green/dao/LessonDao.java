@@ -1,20 +1,25 @@
 package com.green.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Tuple;
+import javax.annotation.PostConstruct;
 
-import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
-import com.green.entity.Course;
 import com.green.entity.Lesson;
 import com.green.entity.Subjects;
+import com.green.util.ApplicationConfig;
 
 @Repository
 public class LessonDao extends BaseDao<Lesson, Integer> {
+	
+	private int pageSize;
+	
+	@PostConstruct
+	private void init() {
+		pageSize = Integer.parseInt(ApplicationConfig.getConfig("paging.size"));
+	}
 	
 	@Override
 	protected Class<Lesson> getEntityClass() {
@@ -44,6 +49,42 @@ public class LessonDao extends BaseDao<Lesson, Integer> {
 		
 		Query query = getFactory().openSession().createQuery(hql.toString(), Subjects.class);
 		query.setParameter("subId", subId);
+		
+		return query.getResultList();
+	}
+	
+	public List<Lesson> search(String filter, int page) {
+		StringBuilder hql = new StringBuilder();
+		hql.append("select * from lesson le where 1=1");
+		if (filter != null) {
+			hql.append(" and LOWER(le.name) like '%").append(filter.toLowerCase()).append("%'");
+		}
+		
+		Query query = getFactory().openSession().createNativeQuery(hql.toString(), Lesson.class);
+		query.setFirstResult((page-1) * pageSize);
+		query.setMaxResults(pageSize);
+		
+		return query.getResultList();
+	}
+	
+	public long count(String filter) {
+		StringBuilder hql = new StringBuilder();
+		hql.append("select count(*) from lesson le where 1=1");
+		if (filter != null) {
+			hql.append(" and LOWER(le.name) like '%").append(filter.toLowerCase()).append("%'");
+		}
+		
+		Query query = getFactory().openSession().createNativeQuery(hql.toString());
+		Number val = (Number) query.getSingleResult();
+		return val.longValue();
+	}
+	
+	public List<Lesson> findLessonbySubject(Subjects subjects){
+		StringBuilder hql = new StringBuilder();
+		hql.append("from Lesson where subjects = :_subjects");
+		
+		Query query = getFactory().openSession().createQuery(hql.toString(), Lesson.class);
+		query.setParameter("_subjects", subjects);
 		
 		return query.getResultList();
 	}

@@ -7,11 +7,17 @@ import org.springframework.stereotype.Service;
 
 import com.green.dao.CourseCategoryDao;
 import com.green.dao.CourseCommentDao;
+import com.green.dao.CourseRegistrationDao;
+import com.green.dao.CourseSubjectDao;
 import com.green.dao.CouseDao;
 import com.green.entity.Course;
 import com.green.entity.CourseCategory;
 import com.green.entity.CourseComment;
+import com.green.entity.CourseRegistration;
+import com.green.entity.CourseSubjects;
+import com.green.entity.Lesson;
 import com.green.entity.Profile;
+import com.green.entity.Progress;
 import com.green.model.CourseFilter;
 import com.green.model.Page;
 
@@ -21,11 +27,17 @@ public class CourseService {
 	private CourseCategoryDao courseCategoryDao;
 	
 	@Autowired
+	private CourseRegistrationDao courseRegistrationDao;
+	
+	@Autowired
 	private CouseDao courseDao;
 	
 	
 	@Autowired
 	private CourseCommentDao courseCommentDao;
+	
+	@Autowired
+	private CourseSubjectDao courseSubjectDao;
 	
 
 	public List<Course> search(CourseFilter filter) {
@@ -104,4 +116,40 @@ public class CourseService {
 		
 		courseCategoryDao.deleteById(catId);
 	}
+	
+	public void saveCourseRegis(CourseRegistration courseRegistration) {
+		courseRegistrationDao.save(courseRegistration);
+	}
+	
+	public Page<Course> findCourse(String filter, int page) {
+		Page<Course> result = new Page<>();
+		long totalRows = courseDao.count(filter);
+		if (totalRows <= 0) {
+			return result;
+		}
+		
+		List<Course> list = courseDao.search(filter, page);
+		
+		result.setCurrent(page);
+		result.setList(list);
+		result.setTotalRows(totalRows);
+		return result;
+	}
+	
+	public List<CourseRegistration> findCourseRegistration(Profile profile) {
+		return courseRegistrationDao.findByStudent(profile);
+	}
+	
+	public CourseRegistration findCourseRegistration(int accountId, int courseId, Progress[] status) {
+		return courseRegistrationDao.find(accountId, courseId, status);
+	}
+	
+	public void insertComment(CourseComment courseComment) {
+		courseCommentDao.save(courseComment);
+	}
+	
+	
+	
+
+	
 }

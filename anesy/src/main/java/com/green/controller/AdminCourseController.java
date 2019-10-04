@@ -1,5 +1,10 @@
 package com.green.controller;
 
+import java.util.ArrayList;
+import java.util.Date;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,15 +15,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.green.config.AuthContext;
 import com.green.config.MessageBox;
-import com.green.entity.CourseCategory;
-import com.green.model.CategoryModel;
+import com.green.entity.Course;
+import com.green.model.CourseModel;
 import com.green.model.Page;
 import com.green.service.CourseService;
 
 @Controller
 @RequestMapping("/admin/course")
 public class AdminCourseController {
+	@Autowired
+	private AuthContext authContext;
 	
 	@Autowired
 	private CourseService courseService;
@@ -35,70 +43,111 @@ public class AdminCourseController {
 			page = 1;
 		}
 		
-		Page<CourseCategory> pageData = courseService.findCategories(filter, page);
+		Page<Course> pageData = courseService.findCourse(filter, page);
 		model.addAttribute("_pageData", pageData);
 		
-		return "/course/admin-category-list";
+		return "/course/admin-course-list";
 	}
 	
 	////////////////////////////////////////////////////////////////////////////////
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String showCreatePage(Model model) {
-		model.addAttribute("_category", new CourseCategory());
-		return "/course/admin-category-detail";
+		model.addAttribute("_course", new Course());
+		model.addAttribute("_categoryList", courseService.findCategories());
+		return "/course/admin-course-detail";
+	}
+	
+	@GetMapping("/preview")
+	public String showPreview(HttpServletRequest request,Model model) {
+	
+		Course course = (Course) request.getSession().getAttribute("course_preview");
+		model.addAttribute("_comment", new ArrayList<>());
+		model.addAttribute("_course", course);
+		
+		
+		return "course/course-review";
 	}
 	
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public String handleCreate(@ModelAttribute CategoryModel catModel) {
+	public String handleCreate(@ModelAttribute CourseModel courseModel, Model model, HttpServletRequest request) {
 		
-		CourseCategory cat = new CourseCategory();
-		cat.setName(catModel.getName());
-		cat.setDescription(catModel.getDescription());
-		cat.setAvatar(catModel.getAvatar());
+		Date date = new Date();
+		Course course = new Course();
+		course.setAvatar(courseModel.getAvatar());
+		course.setBenefit(courseModel.getBenefit());
+		course.setDescription(courseModel.getDescription());
+		course.setInclude(courseModel.getInclude());
+		course.setName(courseModel.getName());
+		course.setPrice(courseModel.getPrice());
+		course.setRequiment(courseModel.getRequiment());
+		course.setShortdesc(courseModel.getShortdesc());
+		course.setAuthor(authContext.getProfile());
+		course.setCreatedAt(date);
+		course.setCategory(courseService.findCategory(courseModel.getCategoryId()));
 		
-		courseService.saveCategory(cat);
+		if("preview".equals(courseModel.getAction())) {
+			model.addAttribute("_course", course);
+			request.getSession().setAttribute("course_preview", course);
+			return "/course/admin-course-detail";
+		}
 		
-		return "redirect:/admin/course-category";
+		courseService.insert(course);
+		return "redirect:/admin/course";
 	}
 	
 	////////////////////////////////////////////////////////////////////////////////
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public String showUpdatePage(@PathVariable("id") int id, Model model) {
 		
-		CourseCategory cat = courseService.findCategory(id);
-		if (cat == null) {
-			messageBox.setMessage("Không tìm thấy category id: " + id);
-			return "redirect:/admin/course-category";
+		Course course = courseService.findById(id);
+		if (course == null) {
+			messageBox.setMessage("Không tìm thấy course id: " + id);
+			return "redirect:/admin/course";
 		}
 		
-		model.addAttribute("_category", cat);
+		model.addAttribute("_course", course);
+		model.addAttribute("_categoryList",courseService.findCategories());
 		
-		return "/course/admin-category-detail";
+		return "/course/admin-course-detail";
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
 	public String handleUpdate(@PathVariable("id") int id,
-			@ModelAttribute CategoryModel catModel) {
+			@ModelAttribute CourseModel courseModel, Model model, HttpServletRequest request) {
 		
-		CourseCategory cat = courseService.findCategory(id);
-		if (cat == null) {
-			messageBox.setMessage("Không tìm thấy category id: " + id);
-			return "redirect:/admin/course-category";
+		
+		Course course = courseService.findById(id);
+		if (course == null) {
+			messageBox.setMessage("Không tìm thấy course id: " + id);
+			return "redirect:/admin/course";
 		}
 
-		cat.setName(catModel.getName());
-		cat.setDescription(catModel.getDescription());
-		cat.setAvatar(catModel.getAvatar());
+		course.setAvatar(courseModel.getAvatar());
+		course.setBenefit(courseModel.getBenefit());
+		course.setDescription(courseModel.getDescription());
+		course.setInclude(courseModel.getInclude());
+		course.setName(courseModel.getName());
+		course.setPrice(courseModel.getPrice());
+		course.setRequiment(courseModel.getRequiment());
+		course.setShortdesc(courseModel.getShortdesc());
+		course.setAuthor(authContext.getProfile());
+		course.setCategory(courseService.findCategory(courseModel.getCategoryId()));
 		
-		courseService.saveCategory(cat);
+		if("preview".equals(courseModel.getAction())) {
+			model.addAttribute("_course", course);
+			request.getSession().setAttribute("course_preview", course);
+			return "/course/admin-course-detail";
+		}
+	
+		courseService.update(course);
 		
-		return "redirect:/admin/course-category";
+		return "redirect:/admin/course";
 	}
 	
 	////////////////////////////////////////////////////////////////////////////////
 	@RequestMapping(value = "delete/{id}", method = RequestMethod.POST)
 	public String handleDelete(@PathVariable("id") int id) {
-		courseService.deleteCategory(id);
-		return "redirect:/admin/course-category";
+		courseService.delete(courseService.findById(id));
+		return "redirect:/admin/course";
 	}
 }

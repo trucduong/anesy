@@ -1,3 +1,4 @@
+<%@page import="com.green.entity.Course"%>
 <%@page import="com.green.entity.CourseCategory"%>
 <%@page import="com.green.model.Page"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -6,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Course</title>
 
 <%-- import css files --%>
 <jsp:include page="../../component/common-css.jsp"></jsp:include>
@@ -21,14 +22,14 @@
 <div class="col-md-8">
 
 <%
-	Page<CourseCategory> pageData = (Page<CourseCategory>) request.getAttribute("_pageData");
+	Page<Course> pageData = (Page<Course>) request.getAttribute("_pageData");
 	String filter = request.getParameter("filter");
 	if (filter == null) {
 		filter = "";
 	}
 %>
 
-<h1 class="page-title">Course Category List</h1>
+<h1 class="page-title">Danh sách khóa học</h1>
 
 <div class="row">
 	<div class="input-group mb-1">
@@ -40,7 +41,7 @@
 			</div>
 		</form>
 		<div class="input-group-append">
-			<form class="action-form" action="course-category/create" method="get" style="display: flex !important;">
+			<form class="action-form" action="course/create" method="get" style="display: flex !important;">
 				<button type="submit" class="btn btn-primary">Tạo mới</button>
 			</form>
 		</div>
@@ -54,23 +55,39 @@
 	    <tr>
 	      <th scope="col">#</th>
 	      <th scope="col">Tên</th>
-	      <th scope="col">Mô tả</th>
+	      <th scope="col">Tóm tắt</th>
+	      <!-- <th scope="col">Mô tả</th> -->
+	       <!-- <th scope="col">Category</th> -->
+	       <th scope="col">Học phí</th>
+	        <th scope="col">Ngày tạo</th>
+	         <th scope="col">Tags</th>
+	       <!--   <th scope="col">Lợi ích</th>
+	         <th scope="col">Yêu cầu</th>
+	         <th scope="col">Bao gồm</th> -->
 	      <th scope="col">Tùy chọn</th>
 	    </tr>
 	  </thead>
 	  <tbody>
 <%
-	for(CourseCategory category : pageData.getList()) {
+	for(Course course : pageData.getList()) {
 %>
 	    <tr>
-	      <th scope="row"><%=category.getId() %></th>
-	      <td><%=category.getName() %></td>
-	      <td><%=category.getDescription() %></td>
+	      <th scope="row"><%=course.getId() %></th>
+	      <td><%=course.getName() %></td>
+	      <td><%=course.getShortdesc() %></td>
+	       <%-- <td><%=course.getDescription() %></td> --%>
+	       <%-- <td><%=course.getCategory().getName() %></td> --%>
+	       <td><%=course.getPrice() %></td>
+	       <td><%=course.getCreatedAt() %></td>
+	       <td><%=course.getTags() %></td>
+	       <%-- <td><%=course.getBenefit() %></td> --%>
+	       <%-- <td><%=course.getRequiment() %></td> --%>
+	       <%-- <td><%=course.getInclude() %></td> --%>
 	      <td>
-	      	<form class="action-form" action="course-category/<%=category.getId() %>" method="get">
+	      	<form class="action-form" action="course/<%=course.getId() %>" method="get">
 	      		<button type="submit">Update</button>
 	      	</form>
-	      	<form class="action-form" action="course-category/delete/<%=category.getId() %>" method="post">
+	      	<form class="action-form" action="course/delete/<%=course.getId() %>" method="post">
 	      		<button type="submit">Delete</button>
 	      	</form>
 	      </td>
@@ -116,7 +133,6 @@
 </div>
 
 </div>
-<div class="col-md-1"><jsp:include page="../../component/right.jsp"></jsp:include></div>
 </div>
 </div>
 

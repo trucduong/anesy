@@ -1,3 +1,6 @@
+<%@page import="com.green.entity.CourseSubjects"%>
+<%@page import="java.util.List"%>
+<%@page import="com.green.entity.Course"%>
 <%@page import="com.green.entity.Subjects"%>
 <%@page import="com.green.model.Page"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -6,7 +9,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Subjects Detail</title>
 
 <%-- import css files --%>
 <jsp:include page="../../component/common-css.jsp"></jsp:include>
@@ -21,10 +24,11 @@
 <div class="col-md-8">
 
 <%
-	
+	CourseSubjects courseSubjects = (CourseSubjects) request.getAttribute("_subjectsCourse");
+	List<Course> courseList = (List<Course>)  request.getAttribute("_courseList");
 %>
 
-<h1 class="page-title">Subject</h1>
+<h1 class="page-title">Môn học</h1>
 
 <div class="row justify-content-center mb-4">
 	<div class="col-md-12">
@@ -42,13 +46,27 @@
 			
 			<div class="form-group">
 				<label for="subName">Subjects Name</label>
-				<input name="name" type="text" class="form-control" id="subName" placeholder="Enter course subject name" value="${_subjects.name}">
+				<input name="name" type="text" class="form-control" id="subName" placeholder="Enter subject name" value="${_subjects.name}">
 			</div>
 			
 			<div class="form-group">
 				<label>Description</label>
 				<div id="editor"></div>
 				<input id="editorVal" name="description" type="hidden" value="${_subjects.description}">
+			</div>
+			
+			<div class="form-group">
+				<label>Course Name</label>
+				<select name="subjectsId">
+							<%
+								for (Course course : courseList) {
+							%>
+							<option value="<%=course.getId()%>"
+								<%=(courseSubjects.getCourse()!=null  && courseSubjects.getCourse().getId() == course.getId()) ? "selected" : ""%>><%=course.getName()%></option>
+							<%
+								}
+							%>
+					</select>
 			</div>
 			
 			<button type="submit" class="btn btn-primary">Submit</button>
@@ -58,7 +76,6 @@
 </div>
 
 </div>
-<div class="col-md-1"><jsp:include page="../../component/right.jsp"></jsp:include></div>
 </div>
 </div>
 

@@ -19,10 +19,10 @@ public class Subjects {
 	@Column(name = "avatar", columnDefinition = "nvarchar(50)")
 	private String avatar;
 
-	@Column(name = "name", columnDefinition = "nvarchar(500)")
+	@Column(name = "name", columnDefinition = "nvarchar(MAX)")
 	private String name;
 
-	@Column(name = "description", columnDefinition = "nvarchar(1000)")
+	@Column(name = "description", columnDefinition = "nvarchar(MAX)")
 	private String description;
 
 	@Column(name = "author")
@@ -31,7 +31,7 @@ public class Subjects {
 	@Column(name = "created_at")
 	private Date createdAt;
 
-	@Column(name = "tags", columnDefinition = "nvarchar(500)")
+	@Column(name = "tags", columnDefinition = "nvarchar(MAX)")
 	private String tags;
 
 	public int getId() {

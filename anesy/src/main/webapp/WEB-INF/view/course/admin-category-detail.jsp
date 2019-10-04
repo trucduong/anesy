@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Course Category Detail</title>
 
 <%-- import css files --%>
 <jsp:include page="../../component/common-css.jsp"></jsp:include>
@@ -24,7 +24,7 @@
 	
 %>
 
-<h1 class="page-title">Course Category</h1>
+<h1 class="page-title">Category</h1>
 
 <div class="row justify-content-center mb-4">
 	<div class="col-md-12">
@@ -58,7 +58,6 @@
 </div>
 
 </div>
-<div class="col-md-1"><jsp:include page="../../component/right.jsp"></jsp:include></div>
 </div>
 </div>
 

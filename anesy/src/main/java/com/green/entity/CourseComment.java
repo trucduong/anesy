@@ -26,7 +26,7 @@ public class CourseComment {
 	@JoinColumn(name = "author")
 	private Profile author;
 
-	@Column(name = "content", columnDefinition = "nvarchar(1000)")
+	@Column(name = "content", columnDefinition = "nvarchar(MAX)")
 	private String content;
 
 	@Column(name = "created_at")

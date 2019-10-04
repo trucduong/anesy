@@ -38,17 +38,46 @@ public class Profile {
 	@Temporal(TemporalType.DATE)
 	private Date birthDate;
 	
-	@Column(name = "address", columnDefinition = "nvarchar(500)")
+	@Column(name = "address", columnDefinition = "nvarchar(MAX)")
 	private String address;
 	
-	@Column(name = "certificates", columnDefinition = "nvarchar(1000)")
+	@Column(name = "certificates", columnDefinition = "nvarchar(MAX)")
 	private String certificates;
 	
 	@Column(name = "specialize")
 	private String specialize;
 	
-	@Column(name = "description", columnDefinition = "nvarchar(1000)")
+	@Column(name = "description", columnDefinition = "nvarchar(MAX)")
 	private String description;
+	
+	
+	/**
+	 * @return the specialize
+	 */
+	public String getSpecialize() {
+		return specialize;
+	}
+
+	/**
+	 * @param specialize the specialize to set
+	 */
+	public void setSpecialize(String specialize) {
+		this.specialize = specialize;
+	}
+
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * @param description the description to set
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
 	public int getAccountId() {
 		return accountId;
