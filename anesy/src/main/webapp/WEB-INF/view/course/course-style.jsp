@@ -37,7 +37,7 @@
 			<div class="col-md-4">
 				<div class="course-content" >
 					<div class="course-pic" style="width: 100%; height: 200px;" >
-					<img alt="" src="<%=request.getContextPath()%>/image/course/<%=course.getAvatar() %> %>" style="width: 100%; height: 100%;">
+					<img alt="" src="<%=request.getContextPath()%>/image/course/<%=course.getAvatar() %>" style="width: 100%; height: 100%;">
 					</div>
 					<div class="buy-group" style="text-align: center; padding: 20px;">
 						<div class="price" style="margin-bottom: 20px;"><b><h2><%=course.getPrice() %>  VNĐ</h2></b>
@@ -65,8 +65,7 @@
 					<img alt="" src="<%=request.getContextPath()%>/image/course/<%=course.getAvatar() %> %>" style="width: 100%; height: 100%;">
 					</div>
 					<div class="buy-group" style="text-align: center; padding: 20px;">
-						<div class="price" style="margin-bottom: 20px;"><b><h2><%=course.getPrice() %>  VNĐ</h2></b>
-						</div>
+						
 						<div class="buy-button">
 						<form action="<%=request.getContextPath()%>/learning/course/<%=course.getId() %>" method="get">
 							<button type="submit" class="btn btn-danger btn-lg btn-block">Học ngay </button>

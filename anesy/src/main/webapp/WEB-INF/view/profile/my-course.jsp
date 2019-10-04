@@ -2,6 +2,8 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
+	
+<%@ taglib prefix = "anesy" uri="/WEB-INF/anesy.tld"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -26,7 +28,8 @@
 
 			</div>
 			<div class="col-md-7">
-				<div class="card">
+			 <anesy:course-list courses="${_courselist}"></anesy:course-list>
+				<%-- <div class="card">
 					<h5 class="card-header">Khóa học của tôi</h5>
 					<div class="card-body">
 						<div class="card-columns">
@@ -45,7 +48,7 @@
 						</div>
 						
 					</div>
-				</div>
+				</div> --%>
 			</div>
 		</div>
 	</div>
