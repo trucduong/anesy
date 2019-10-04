@@ -34,15 +34,15 @@
 		<div class="col-md-4">
 		<div style="margin-top: 16px; color: red; ">
 		<div>
-		<h2><b>Enjoy Anesy.Save your time and money.</b></h2>
-		<p>It’s Never Too Late To Learn</p>
+		<h2 class="home-logan2"><b>Enjoy Anesy.Save your time and money.</b></h2>
+		<p class="home-logan">It’s Never Too Late To Learn</p>
 		</div>
 		<form action="<%=request.getContextPath()%>/course" method="get">
-		<div class="input-group" >
+		<div class="input-group home-search" >
 			<input name="filter" type="text" class="form-control"
 				placeholder="Tìm kiếm khóa học" role="combobox"> <span
 				class="input-group-btn">
-				<button class="btn btn-secondary" type="submit">Tìm kiếm</button>
+				<button class="btn-search" type="submit">Search</button>
 			</span>
 		</div>
 		</form>
