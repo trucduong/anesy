@@ -69,7 +69,8 @@
 						
 						<div class="card-columns">
 						<%for(Course course : courseList){ %>
-							<div class="card">
+						<a href="<%=request.getContextPath()%>/course/<%=course.getId()%>">
+							<div class="card" style="min-height: 280px;">
 								<img src="" class="card-img-top"
 									alt="Java Programming Masterclass for Software Developers">
 								<div class="card-body">
@@ -80,6 +81,7 @@
 									</p>
 								</div>
 							</div>
+						</a>
 							<%} %>
 						</div>
 					

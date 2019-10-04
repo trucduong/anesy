@@ -27,22 +27,21 @@
 			</div>
 			<div class="col-md-7">
 				<div class="card">
-					<h5 class="card-header">Lịch Sử Học Tập</h5>
+					<h5 class="card-header">Khóa học của tôi</h5>
 					<div class="card-body">
 						<div class="card-columns">
 						<%for(Course course : courseList){ %>
-							<div class="card">
+							<a href="<%=request.getContextPath()%>/learning/course/<%=course.getId()%>"> 
+							<div class="card" style="min-height: 270px;">
 								<img src="" class="card-img-top"
 									alt="Java Programming Masterclass for Software Developers">
 								<div class="card-body">
 									<h5 class="card-title"><%=course.getName() %></h5>
-									<p class="card-text"><%=course.getShortdesc() %></p>
-									<p class="card-text text-right">
-										<b><%=course.getPrice() %> VND</b>
-									</p>
 								</div>
 							</div>
+							</a>
 							<%} %>
+							
 						</div>
 						
 					</div>

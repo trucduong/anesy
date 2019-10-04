@@ -5,10 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.green.dao.CourseSubjectDao;
 import com.green.dao.ExerciseDao;
 import com.green.dao.LessonDao;
 import com.green.dao.SubjectsDao;
 import com.green.entity.Course;
+import com.green.entity.CourseSubjects;
 import com.green.entity.Exercise;
 import com.green.entity.Lesson;
 import com.green.entity.Subjects;
@@ -20,6 +22,9 @@ public class SubjectsService {
 	private SubjectsDao subjectsDao;
 	private LessonDao lessonDao;
 	private ExerciseDao exerciseDao;
+	
+	@Autowired
+	private CourseSubjectDao courseSubjectdao;
 
 	public List<Subjects> findAll() {
 		return subjectsDao.findAll();
@@ -67,5 +72,12 @@ public class SubjectsService {
 		result.setTotalRows(totalRows);
 		return result;
 	}
-
+	
+	public List<CourseSubjects> findListSubjects(Course course){
+		return courseSubjectdao.findSubjects(course);
+	}
+	
+	public CourseSubjects findSubject(int id){
+		return courseSubjectdao.find(id);
+	}
 }

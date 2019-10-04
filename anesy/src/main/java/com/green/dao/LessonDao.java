@@ -78,4 +78,14 @@ public class LessonDao extends BaseDao<Lesson, Integer> {
 		Number val = (Number) query.getSingleResult();
 		return val.longValue();
 	}
+	
+	public List<Lesson> findLessonbySubject(Subjects subjects){
+		StringBuilder hql = new StringBuilder();
+		hql.append("from Lesson where subjects = :_subjects");
+		
+		Query query = getFactory().openSession().createQuery(hql.toString(), Lesson.class);
+		query.setParameter("_subjects", subjects);
+		
+		return query.getResultList();
+	}
 }

@@ -79,13 +79,7 @@ public class CourseController {
 		return "redirect:/course/" + courseId;
 	}
 	
-	@GetMapping("/learn/{id}")
-	public String courseLearn(@PathVariable(name = "id")int id) {
-		Course course = courseService.findById(id);
-		List<CourseSubjects> courseSubjectslist = courseService.findSubjects(course);
-		return "";
-		
-	}
+	
 	
 	
 }

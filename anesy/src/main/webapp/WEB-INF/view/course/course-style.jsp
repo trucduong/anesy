@@ -68,9 +68,7 @@
 						<div class="price" style="margin-bottom: 20px;"><b><h2><%=course.getPrice() %>  VNĐ</h2></b>
 						</div>
 						<div class="buy-button">
-						<form action="<%=request.getContextPath()%>/cart/add" method="post">
-						<input type="hidden" name="courseId" value="<%=course.getId()%>">
-						<input type="hidden" name="mode" value="add">
+						<form action="<%=request.getContextPath()%>/learning/course/<%=course.getId() %>" method="get">
 							<button type="submit" class="btn btn-danger btn-lg btn-block">Học ngay </button>
 						</form>	
 						</div>
@@ -84,7 +82,6 @@
 				</div>
 			</div>
 			<%} %>
-			
 			
 		</div>
 	</div>
@@ -206,17 +203,6 @@
 		</div>
 		
 		<div class="row" style="height: 50px;"></div>
-		<%if(courseRegistration != null){ %>
-		<h2>Bình luận</h2>
-		<form action="<%=request.getContextPath()%>/course/comment" method="post">
-		<input type="hidden" name="courseId" value="<%=course.getId()%>">
-		<div class="form-group">
-				<div id="editor"></div>
-				<input id="editorVal" name="comment" type="hidden" value="">
-		</div>
-		<button type="submit" class="btn btn-primary">Bình luận</button>
-		</form>
-		<%} %>
 		
 		<div class="course-use-title" style="font-size: 28px; padding-bottom: 20px;"><b>Bình luận của mọi người</b></div>
 		<%for(CourseComment comment : commentList){ %>
@@ -245,30 +231,5 @@
 
 <%-- import js files --%>
 <jsp:include page="../../component/common-js.jsp"></jsp:include>
-<script type="text/javascript">
-
-function handleCancel() {
-	location.href="<%=request.getContextPath()%>/admin/course";
-}
-
-$( document ).ready(function() {
-
-	ClassicEditor
-	.create( document.querySelector( '#editor' ) )
-	.then(editor => {
-		
-		editor.setData( '${_course.requiment}' );
-		
-		editor.model.document.on( 'change:data', () => {
-		    document.getElementById('editorVal').value = editor.getData();
-		});
-	})
-	.catch( error => {
-		console.error( error );
-	});
-	
-});
-
-</script>
 </body>
 </html>
