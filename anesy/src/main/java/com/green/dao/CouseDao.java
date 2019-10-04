@@ -60,21 +60,21 @@ public CourseSubjects findBySubject(int subId) {
 	
 	public List<Course> search(CourseFilter filter) {
 		StringBuilder hql = new StringBuilder();
-		hql.append("select co from Course co where 1=1");
+		hql.append("select * from course co where 1=1");
 		
 		if (filter.getSearchText() != null) {
-			hql.append(" and co.name like '%" + filter.getSearchText() + "%'");
+			hql.append(" and LOWER(co.name) like N'%" + filter.getSearchText().toLowerCase() + "%'");
 		}
 		
 		if (filter.getCategory() != null) {
-			hql.append(" and co.category.id = " + String.valueOf(filter.getCategory()));
+			hql.append(" and co.category_id = " + String.valueOf(filter.getCategory()));
 		}
 		
-		if (filter.getTag() != null) {
-			hql.append(" and co.name like '%," + filter.getTag() + ",%'");
-		}
+//		if (filter.getTag() != null) {
+//			hql.append(" and co.name like '%," + filter.getTag() + ",%'");
+//		}
 		
-		Query query = getFactory().openSession().createQuery(hql.toString(), Course.class);
+		Query query = getFactory().openSession().createNativeQuery(hql.toString(), Course.class);
 		return query.getResultList();
 	}
 	

@@ -1,4 +1,4 @@
-<%@page import="com.green.entity.CourseCategory"%>
+<%@page import="com.green.entity.Exercise"%>
 <%@page import="com.green.model.Page"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Course Category</title>
+<title>Exercise</title>
 
 <%-- import css files --%>
 <jsp:include page="../../component/common-css.jsp"></jsp:include>
@@ -21,18 +21,18 @@
 <div class="col-md-8">
 
 <%
-	Page<CourseCategory> pageData = (Page<CourseCategory>) request.getAttribute("_pageData");
+	Page<Exercise> pageData = (Page<Exercise>) request.getAttribute("_pageData");
 	String filter = request.getParameter("filter");
 	if (filter == null) {
 		filter = "";
 	}
 %>
 
-<h1 class="page-title">Danh sách Category</h1>
+<h1 class="page-title">Exercise List</h1>
 
 <div class="row">
 	<div class="input-group mb-1">
-		<form class="action-form" method="get" style="display: flex !important;">
+		<form method="get" style="display: flex !important;">
 			<input name="page" type="hidden" value="1">
 			<input name="filter" type="text" class="form-control" placeholder="..." value="<%=filter %>">
 			<div class="input-group-append">
@@ -40,7 +40,7 @@
 			</div>
 		</form>
 		<div class="input-group-append">
-			<form class="action-form" action="course-category/create" method="get" style="display: flex !important;">
+			<form action="exercise/create" method="get" style="display: flex !important;">
 				<button type="submit" class="btn btn-primary">Tạo mới</button>
 			</form>
 		</div>
@@ -55,22 +55,24 @@
 	      <th scope="col">#</th>
 	      <th scope="col">Tên</th>
 	      <th scope="col">Mô tả</th>
+	      <th scope="col">Môn học</th>
 	      <th scope="col">Tùy chọn</th>
 	    </tr>
 	  </thead>
 	  <tbody>
 <%
-	for(CourseCategory category : pageData.getList()) {
+	for(Exercise exercise : pageData.getList()) {
 %>
 	    <tr>
-	      <th scope="row"><%=category.getId() %></th>
-	      <td><%=category.getName() %></td>
-	      <td><%=category.getDescription() %></td>
+	      <th scope="row"><%=exercise.getId() %></th>
+	      <td><%=exercise.getName() %></td>
+	      <td><%=exercise.getDescription() %></td>
+	       <td><%=exercise.getSubjects().getName() %></td>
 	      <td>
-	      	<form class="action-form" action="course-category/<%=category.getId() %>" method="get">
+	      	<form action="exercise/<%=exercise.getId() %>" method="get">
 	      		<button type="submit">Update</button>
 	      	</form>
-	      	<form class="action-form" action="course-category/delete/<%=category.getId() %>" method="post">
+	      	<form action="exercise/delete/<%=exercise.getId() %>" method="post">
 	      		<button type="submit">Delete</button>
 	      	</form>
 	      </td>
@@ -86,7 +88,7 @@
 		<nav>
 			<ul class="pagination justify-content-center">
 				<li class="page-item <%=pageData.getCurrent()<=1?"disabled": "" %>">
-					<form class="action-form" id="pagingFormPrevious" method="get">
+					<form id="pagingFormPrevious" method="get">
 						<input name="filter" type="hidden" type="text" value="<%=filter %>">
 						<input name="page" type="hidden" type="text" value="<%=(pageData.getCurrent() - 1) %>">
 						<a class="page-link" href="#" onclick="javascript:$('#pagingFormPrevious').submit();">&laquo;</a>
@@ -96,7 +98,7 @@
 	for (int i = 1; i <= pageData.getTotal(); i++) {
 %>
 				<li class="page-item <%=i==pageData.getCurrent()?"active": "" %>">
-					<form class="action-form" id="pagingForm<%=i %>" method="get">
+					<form id="pagingForm<%=i %>" method="get">
 						<input name="filter" type="hidden" type="text" value="<%=filter %>">
 						<input name="page" type="hidden" type="text" value="<%=(i) %>">
 						<a class="page-link" href="#" onclick="javascript:$('#pagingForm<%=i %>').submit();"><%=i %></a>
@@ -104,7 +106,7 @@
 				</li>
 <% } %>
 				<li class="page-item <%=pageData.getCurrent()>=pageData.getTotal()?"disabled": "" %>">
-					<form class="action-form" id="pagingFormNext" method="get">
+					<form id="pagingFormNext" method="get">
 						<input name="filter" type="hidden" type="text" value="<%=filter %>">
 						<input name="page" type="hidden" type="text" value="<%=(pageData.getCurrent() + 1) %>">
 						<a class="page-link" href="#" onclick="javascript:$('#pagingFormNext').submit();">&raquo;</a>

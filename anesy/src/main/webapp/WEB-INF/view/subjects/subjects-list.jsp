@@ -129,7 +129,7 @@
 </div>
 
 <jsp:include page="../../component/footer.jsp"></jsp:include>
-
+ 
 <%-- import js files --%>
 <jsp:include page="../../component/common-js.jsp"></jsp:include>
 </body>

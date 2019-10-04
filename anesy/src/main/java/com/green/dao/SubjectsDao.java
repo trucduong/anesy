@@ -26,12 +26,12 @@ public class SubjectsDao extends BaseDao<Subjects, Integer> {
 	
 	public List<Subjects> search(String filter, int page) {
 		StringBuilder hql = new StringBuilder();
-		hql.append("from Subjects ca where 1=1");
+		hql.append("select * from subjects ca where 1=1");
 		if (filter != null) {
-			hql.append(" and ca.name like '%").append(filter).append("%'");
+			hql.append(" and LOWER(ca.name) like N'%").append(filter.toLowerCase()).append("%'");
 		}
 		
-		Query query = getFactory().openSession().createQuery(hql.toString(), Subjects.class);
+		Query query = getFactory().openSession().createNativeQuery(hql.toString(), Subjects.class);
 		query.setFirstResult((page-1) * pageSize);
 		query.setMaxResults(pageSize);
 		
@@ -40,12 +40,12 @@ public class SubjectsDao extends BaseDao<Subjects, Integer> {
 
 	public long count(String filter) {
 		StringBuilder hql = new StringBuilder();
-		hql.append("select count(ca) from Subjects ca where 1=1");
+		hql.append("select count(*) from subjects ca where 1=1");
 		if (filter != null) {
-			hql.append(" and ca.name like '%").append(filter).append("%'");
+			hql.append(" and LOWER(ca.name) like N'%").append(filter.toLowerCase()).append("%'");
 		}
 		
-		Query query = getFactory().openSession().createQuery(hql.toString());
+		Query query = getFactory().openSession().createNativeQuery(hql.toString());
 		Number val = (Number) query.getSingleResult();
 		return val.longValue();
 	}

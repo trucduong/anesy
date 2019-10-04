@@ -1,7 +1,6 @@
-<%@page import="com.green.entity.CourseSubjects"%>
-<%@page import="java.util.List"%>
-<%@page import="com.green.entity.Course"%>
 <%@page import="com.green.entity.Subjects"%>
+<%@page import="java.util.List"%>
+<%@page import="com.green.entity.Exercise"%>
 <%@page import="com.green.model.Page"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
@@ -9,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Subjects Detail</title>
+<title>Exercise Detail</title>
 
 <%-- import css files --%>
 <jsp:include page="../../component/common-css.jsp"></jsp:include>
@@ -24,45 +23,39 @@
 <div class="col-md-8">
 
 <%
-	CourseSubjects courseSubjects = (CourseSubjects) request.getAttribute("_subjectsCourse");
-	List<Course> courseList = (List<Course>)  request.getAttribute("_courseList");
+Exercise exercise = (Exercise) request.getAttribute("_exercise");
+List<Subjects> subjectList = (List<Subjects>) request.getAttribute("_subjectList");
 %>
 
-<h1 class="page-title">Môn học</h1>
+<h1 class="page-title">Exercise</h1>
 
 <div class="row justify-content-center mb-4">
 	<div class="col-md-12">
 		<form method="post">
 			
-			<input name="id" type="hidden" value=${_category.id}>
+			<input name="id" type="hidden" value=${_exercise.id}>
+			
+			
 			
 			<div class="form-group">
-				<div class="custom-file image-box" >
-					<input id="subImgVal" name="avatar" type="hidden" value="${_subjects.avatar}">
-					<input id="subImgFile" type="file" class="custom-file-input" onchange="doUpload('subjects', 'sub')">
-					<img id="subImg" alt="Subjects" src="<%=request.getContextPath()%>/image/subjects/${_subjects.avatar}">
-				</div>
-			</div>
-			
-			<div class="form-group">
-				<label for="subName">Subjects Name</label>
-				<input name="name" type="text" class="form-control" id="subName" placeholder="Enter subject name" value="${_subjects.name}">
+				<label for="subName">Exercise Name</label>
+				<input name="name" type="text" class="form-control" id="subName" placeholder="Enter exercise name" value="${_exercise.name}">
 			</div>
 			
 			<div class="form-group">
 				<label>Description</label>
 				<div id="editor"></div>
-				<input id="editorVal" name="description" type="hidden" value="${_subjects.description}">
+				<input id="editorVal" name="description" type="hidden" value="${_exercise.description}">
 			</div>
 			
 			<div class="form-group">
-				<label>Course Name</label>
+				<label>Subject Name</label>
 				<select name="subjectsId">
 							<%
-								for (Course course : courseList) {
+								for (Subjects subject : subjectList) {
 							%>
-							<option value="<%=course.getId()%>"
-								<%=(courseSubjects.getCourse()!=null  && courseSubjects.getCourse().getId() == course.getId()) ? "selected" : ""%>><%=course.getName()%></option>
+							<option value="<%=subject.getId()%>"
+								<%=(exercise.getSubjects()!=null && exercise.getSubjects().getId() == subject.getId()) ? "selected" : ""%>><%=subject.getName()%></option>
 							<%
 								}
 							%>
@@ -89,7 +82,7 @@
 
 
 function handleCancel() {
-	location.href="<%=request.getContextPath()%>/admin/subjects";
+	location.href="<%=request.getContextPath()%>/admin/exercise";
 }
 
 $( document ).ready(function() {
@@ -98,7 +91,7 @@ $( document ).ready(function() {
 	.create( document.querySelector( '#editor' ) )
 	.then(editor => {
 		
-		editor.setData( '${_subjects.description}' );
+		editor.setData( '${_exercise.description}' );
 		
 		editor.model.document.on( 'change:data', () => {
 		    document.getElementById('editorVal').value = editor.getData();
