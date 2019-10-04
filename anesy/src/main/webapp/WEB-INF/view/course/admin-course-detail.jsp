@@ -20,9 +20,6 @@
 <div class="col-md-3"><jsp:include page="../../component/left.jsp"></jsp:include></div>
 <div class="col-md-8">
 
-<%
-	
-%>
 
 <h1 class="page-title">Khóa học</h1>
 
@@ -52,26 +49,26 @@
 			
 			<div class="form-group">
 				<label>Description</label>
-				<div id="editor"></div>
-				<input id="editorVal" name="description" type="hidden" value="${_course.description}">
+				<div id="description"></div>
+				<input id="descriptionVal" name="description" type="hidden" value="${_course.description}">
 			</div>
 			
 			<div class="form-group">
 				<label>Benefit</label>
-				<div id="editor1"></div>
-				<input id="editorVal" name="benefit" type="hidden" value="${_course.benefit}">
+				<div id="benefit"></div>
+				<input id="benefitVal" name="benefit" type="hidden" value="${_course.benefit}">
 			</div>
 			
 			<div class="form-group">
-				<label>Requiment</label>
-				<div id="editor2"></div>
-				<input id="editorVal" name="requiment" type="hidden" value="${_course.requiment}">
+				<label>Requirement</label>
+				<div id="requiment"></div>
+				<input id="requimentVal" name="requiment" type="hidden" value="${_course.requiment}">
 			</div>
 			
 			<div class="form-group">
 				<label>Include</label>
-				<div id="editor3"></div>
-				<input id="editorVal" name="include" type="hidden" value="${_course.include}">
+				<div id="include"></div>
+				<input id="includeVal" name="include" type="hidden" value="${_course.include}">
 			</div>
 			
 			<div class="form-group">
@@ -89,12 +86,14 @@
 	</div>
 </div>
 
-
-<div class="modal fade" id="modalReview" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog  modal-dialog-centered" role="document">
+<%
+if (session.getAttribute("course_preview") != null) {
+%>
+<div class="modal fade" id="courseReviewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Review Course</h5>
+        <h5 class="modal-title" >Review Course</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -110,7 +109,7 @@
     </div>
   </div>
 </div>
-			
+<% } %>
 			
 </div>
 <div class="col-md-1"><jsp:include page="../../component/right.jsp"></jsp:include></div>
@@ -121,105 +120,36 @@
 
 <%-- import js files --%>
 <jsp:include page="../../component/common-js.jsp"></jsp:include>
+
 <script type="text/javascript">
 
-function handleCancel() {
-	location.href="<%=request.getContextPath()%>/admin/course";
-}
-
 $( document ).ready(function() {
-
-	ClassicEditor
-	.create( document.querySelector( '#editor1' ) )
-	.then(editor => {
-		
-		editor.setData( '${_course.description}' );
-		
-		editor.model.document.on( 'change:data', () => {
-		    document.getElementById('editorVal').value = editor.getData();
-		});
-	})
-	.catch( error => {
-		console.error( error );
-	});
-	
+	if ($('#courseReviewModal')) {
+		$('#courseReviewModal').modal('show');
+	}
 });
 
-</script>
-
-
-<script type="text/javascript">
-
 function handleCancel() {
 	location.href="<%=request.getContextPath()%>/admin/course";
 }
 
 $( document ).ready(function() {
 
-	ClassicEditor
-	.create( document.querySelector( '#editor2' ) )
-	.then(editor => {
-		
-		editor.setData( '${_course.benefit}' );
-		
-		editor.model.document.on( 'change:data', () => {
-		    document.getElementById('editorVal').value = editor.getData();
+	var editors = ['description', 'benefit','requiment','include'];
+	editors.forEach(function(editorId) {
+		ClassicEditor
+		.create( document.querySelector( '#' + editorId ) )
+		.then(editor => {
+			
+			editor.setData(document.getElementById(editorId + 'Val').value);
+			
+			editor.model.document.on( 'change:data', () => {
+			    document.getElementById(editorId + 'Val').value = editor.getData();
+			});
+		})
+		.catch( error => {
+			console.error( error );
 		});
-	})
-	.catch( error => {
-		console.error( error );
-	});
-	
-});
-
-</script>
-
-<script type="text/javascript">
-
-function handleCancel() {
-	location.href="<%=request.getContextPath()%>/admin/course";
-}
-
-$( document ).ready(function() {
-
-	ClassicEditor
-	.create( document.querySelector( '#editor3' ) )
-	.then(editor => {
-		
-		editor.setData( '${_course.requiment}' );
-		
-		editor.model.document.on( 'change:data', () => {
-		    document.getElementById('editorVal').value = editor.getData();
-		});
-	})
-	.catch( error => {
-		console.error( error );
-	});
-	
-});
-
-</script>
-
-<script type="text/javascript">
-
-function handleCancel() {
-	location.href="<%=request.getContextPath()%>/admin/course";
-}
-
-$( document ).ready(function() {
-
-	ClassicEditor
-	.create( document.querySelector( '#editor' ) )
-	.then(editor => {
-		
-		editor.setData( '${_course.include}' );
-		
-		editor.model.document.on( 'change:data', () => {
-		    document.getElementById('editorVal').value = editor.getData();
-		});
-	})
-	.catch( error => {
-		console.error( error );
 	});
 	
 });

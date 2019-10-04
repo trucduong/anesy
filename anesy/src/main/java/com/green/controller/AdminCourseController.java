@@ -2,7 +2,6 @@ package com.green.controller;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -19,11 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.green.config.AuthContext;
 import com.green.config.MessageBox;
 import com.green.entity.Course;
-import com.green.entity.CourseCategory;
-import com.green.entity.CourseComment;
-import com.green.entity.CourseRegistration;
-import com.green.entity.Progress;
-import com.green.model.CategoryModel;
 import com.green.model.CourseModel;
 import com.green.model.Page;
 import com.green.service.CourseService;
@@ -70,7 +64,7 @@ public class AdminCourseController {
 		model.addAttribute("_course", course);
 		
 		
-		return "course/course-style";
+		return "course/course-review";
 	}
 	
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
@@ -89,7 +83,6 @@ public class AdminCourseController {
 		course.setAuthor(authContext.getProfile());
 		course.setCreatedAt(date);
 		
-		String action = request.getParameter("action");
 		if("preview".equals(courseModel.getAction())) {
 			model.addAttribute("_course", course);
 			request.getSession().setAttribute("course_preview", course);
@@ -118,27 +111,34 @@ public class AdminCourseController {
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
 	public String handleUpdate(@PathVariable("id") int id,
-			@ModelAttribute CourseModel courseModel) {
+			@ModelAttribute CourseModel courseModel, Model model, HttpServletRequest request) {
 		
 		
-//		Course course = courseService.findById(id);
-//		if (course == null) {
-//			messageBox.setMessage("Không tìm thấy course id: " + id);
-//			return "redirect:/admin/course";
-//		}
-//
-//		course.setAvatar(courseModel.getAvatar());
-//		course.setBenefit(courseModel.getBenefit());
-//		course.setDescription(courseModel.getDescription());
-//		course.setInclude(courseModel.getInclude());
-//		course.setName(courseModel.getName());
-//		course.setPrice(courseModel.getPrice());
-//		course.setRequiment(courseModel.getRequiment());
-//		course.setShortdesc(courseModel.getShortdesc());
-//		course.setAuthor(authContext.getProfile());
-//	
-//		
-//		courseService.update(course);
+		Course course = courseService.findById(id);
+		if (course == null) {
+			messageBox.setMessage("Không tìm thấy course id: " + id);
+			return "redirect:/admin/course";
+		}
+
+		Date date = new Date();
+		course.setAvatar(courseModel.getAvatar());
+		course.setBenefit(courseModel.getBenefit());
+		course.setDescription(courseModel.getDescription());
+		course.setInclude(courseModel.getInclude());
+		course.setName(courseModel.getName());
+		course.setPrice(courseModel.getPrice());
+		course.setRequiment(courseModel.getRequiment());
+		course.setShortdesc(courseModel.getShortdesc());
+		course.setAuthor(authContext.getProfile());
+		
+		if("preview".equals(courseModel.getAction())) {
+			model.addAttribute("_course", course);
+			request.getSession().setAttribute("course_preview", course);
+			return "/course/admin-course-detail";
+		}
+		
+		
+		courseService.update(course);
 		
 		return "redirect:/admin/course";
 	}
