@@ -122,7 +122,6 @@ public class AdminCourseController {
 			return "redirect:/admin/course";
 		}
 
-		Date date = new Date();
 		course.setAvatar(courseModel.getAvatar());
 		course.setBenefit(courseModel.getBenefit());
 		course.setDescription(courseModel.getDescription());
@@ -132,31 +131,13 @@ public class AdminCourseController {
 		course.setRequiment(courseModel.getRequiment());
 		course.setShortdesc(courseModel.getShortdesc());
 		course.setAuthor(authContext.getProfile());
+		course.setCategory(courseService.findCategory(courseModel.getCategoryId()));
 		
 		if("preview".equals(courseModel.getAction())) {
 			model.addAttribute("_course", course);
 			request.getSession().setAttribute("course_preview", course);
 			return "/course/admin-course-detail";
 		}
-		
-		Course course = courseService.findById(id);
-		if (course == null) {
-			messageBox.setMessage("Không tìm thấy course id: " + id);
-			return "redirect:/admin/course";
-		}
-
-		course.setAvatar(courseModel.getAvatar());
-		course.setBenefit(courseModel.getBenefit());
-		course.setDescription(courseModel.getDescription());
-		course.setInclude(courseModel.getInclude());
-		course.setName(courseModel.getName());
-		course.setPrice(courseModel.getPrice());
-		course.setRequiment(courseModel.getRequiment());
-		course.setShortdesc(courseModel.getShortdesc());
-		course.setAuthor(authContext.getProfile());
-		Date date = new Date();
-		course.setCreatedAt(date);
-		course.setCategory(courseService.findCategory(courseModel.getCategoryId()));
 	
 		courseService.update(course);
 		
