@@ -13,4 +13,16 @@ public class MyFormater {
 		String result = numberFormatter.format(val);
 		return result;
 	}
+	
+	public static String formatText(String input, int length) {
+		if (input == null) {
+			return input;
+		}
+		
+		if (input.length() < length) {
+			return input + " ...";
+		}
+		
+		return input.substring(0, length -1) + " ...";
+	}
 }

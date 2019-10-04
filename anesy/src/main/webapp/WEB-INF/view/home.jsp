@@ -31,11 +31,11 @@
 	<jsp:include page="../component/header.jsp"></jsp:include>
 
 	<div class="row hinh" >
-		<div class="col-md-6">
-		<div style="margin-top: 200px; color: red; ">
+		<div class="col-md-4">
+		<div style="margin-top: 16px; color: red; ">
 		<div>
-		<h2><b>haha</b></h2>
-		<p>Anywhere, anytime. Enjoy risk-free with our 30-day, money-back guarantee.</p>
+		<h2><b>Enjoy Anesy.Save your time and money.</b></h2>
+		<p>It’s Never Too Late To Learn</p>
 		</div>
 		<form action="<%=request.getContextPath()%>/course" method="get">
 		<div class="input-group" >

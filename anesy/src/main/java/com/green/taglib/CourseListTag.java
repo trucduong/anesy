@@ -6,8 +6,6 @@ import java.util.List;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-
 import com.green.dao.FeedbackDao;
 import com.green.entity.Course;
 import com.green.entity.FeedbackTarget;
@@ -61,7 +59,7 @@ public class CourseListTag extends BaseTag {
 		out.println("<img src='image/course/"+ course.getAvatar() +"' class='card-img-top' alt='"+course.getName()+"'>");
 		out.println("<div class='card-body'>");
 		out.println("<h5 class='card-title'>"+course.getName()+"</h5>");
-		out.println("<p class='card-text'>"+course.getShortdesc()+"</p>");
+		out.println("<p class='card-text'>"+MyFormater.formatText(course.getShortdesc(), 250)+"</p>");
 		out.println("<p class='card-text text-right'>");
 		out.println("<span class='icon'>" + feedbackDao.getFeedback(FeedbackTarget.COURSE, course.getId(), FeedbackType.LIKE) + "<i class='material-icons'>thumb_up</i></span>");
 		out.println("<span class='icon'>" + feedbackDao.getFeedback(FeedbackTarget.COURSE, course.getId(), FeedbackType.UNLIKE) + "<i class='material-icons'>thumb_down</i></span>");
