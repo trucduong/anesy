@@ -24,22 +24,22 @@
 		<div class="row">
 			<div class="col-md-4">
 
-				<jsp:include page="../../component/profilelistgroup.jsp"></jsp:include>
+			<jsp:include page="../../component/profilelistgroup.jsp"></jsp:include>
 
 			</div>
 			<div class="col-md-7">
-			 <anesy:course-list courses="${_courselist}"></anesy:course-list>
-				<%-- <div class="card">
+			 <%-- <anesy:course-list courses="${_courselist}"></anesy:course-list> --%>
+				<div class="card">
 					<h5 class="card-header">Khóa học của tôi</h5>
 					<div class="card-body">
 						<div class="card-columns">
 						<%for(Course course : courseList){ %>
 							<a href="<%=request.getContextPath()%>/learning/course/<%=course.getId()%>"> 
-							<div class="card" style="min-height: 270px;">
-								<img src="" class="card-img-top"
+							<div class="card" style="min-height: 300px;">
+								<img src="<%=request.getContextPath()%>/image/course/<%=course.getAvatar() %>" class="card-img-top"
 									alt="Java Programming Masterclass for Software Developers">
 								<div class="card-body">
-									<h5 class="card-title"><%=course.getName() %></h5>
+									<h5 class="card-title" style="font-size: 15px;"><%=course.getName() %></h5>
 								</div>
 							</div>
 							</a>
@@ -48,7 +48,7 @@
 						</div>
 						
 					</div>
-				</div> --%>
+				</div>
 			</div>
 		</div>
 	</div>

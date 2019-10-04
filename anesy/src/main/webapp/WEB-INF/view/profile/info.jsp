@@ -1,3 +1,5 @@
+<%@page import="com.green.util.SpringContextUtil"%>
+<%@page import="com.green.config.AuthContext"%>
 <%@ page import="com.green.entity.Profile"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
@@ -14,6 +16,9 @@
 
 	<%
 		Profile profile = (Profile) request.getAttribute("_profile");
+	%>
+	<%
+		AuthContext authContext = SpringContextUtil.getBean(AuthContext.class);
 	%>
 
 	<jsp:include page="../../component/header.jsp"></jsp:include>
@@ -65,12 +70,25 @@
 								</select>
 							</div>
 
-
 							<div class="input-group mb-3">
 								<div class="input-group-prepend">
 									<span class="input-group-text">Địa Chỉ</span>
 								</div>
 								<textarea name="address" type="text" class="form-control">${_profile.address}</textarea>
+							</div>
+							<%if(authContext.getUserType() ==2 && authContext.getUserType() ==3) %>
+							<div class="input-group mb-3">
+								<div class="input-group-prepend">
+									<span class="input-group-text">Chủ đề giảng dạy</span>
+								</div>
+								<textarea name="specialize" type="text" class="form-control">${_profile.specialize}</textarea>
+							</div>
+							
+							<div class="input-group mb-3">
+								<div class="input-group-prepend">
+									<span class="input-group-text">Tiểu sử</span>
+								</div>
+								<textarea name="description" type="text" class="form-control">${_profile.description}</textarea>
 							</div>
 
 
