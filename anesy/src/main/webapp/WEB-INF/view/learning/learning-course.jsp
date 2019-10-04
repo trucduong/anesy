@@ -100,7 +100,7 @@
 		<div class="row course-author">
 		<div class="col-md-2">
 			<div style="margin-left: 20px;">
-				<img class="author-avatar" alt="" src="<%=request.getContextPath()%>/image/profile/<%=course.getAuthor().getAvatar() %>" width="120" height="120">
+				<img class="author-avatar" alt="" src="<%=request.getContextPath()%>/image/profile/<%=course.getAuthor().getAccountId() %>" width="120" height="120">
 			</div>
 			<div style="font-size: 14px; margin-top: 10px;">
 				<ul>
@@ -114,10 +114,10 @@
 		<div class="col-md-6" style="margin-left: 50px; ">
 			<div class="course-author-name" style="text-decoration: none;">
 				<a href="<%=request.getContextPath()%>/profile/<%=course.getAuthor().getAccountId()%>"><b><h3><%=course.getAuthor().getFullName() %></h3></b></a>
-				<b>Java Python Android and C# Expert Developer - 532K+ students</b>
+				<b><%=course.getAuthor().getSpecialize() %></b>
 			</div>
 			<div class="course-author-decription" style="margin-top: 30px;">
-				<p>You’ve just stumbled upon the most complete, in-depth Java programming course online. With over 260,000 students enrolled and tens of thousands of 5 star reviews to date, these comprehensive java tutorials cover everything you’ll ever need.</p>
+				<p><%=course.getAuthor().getDescription() %></p>
 			</div>
 		</div>
 		</div>

@@ -188,7 +188,7 @@
 		
 		<div class="row" style="height: 50px"></div>
 		
-		<%if(authContext.getUserType()!=2 && authContext.getUserType()!=2 ){ %>
+		<%if(authContext.getUserType()!=2 && authContext.getUserType()!=3 ){ %>
 
 		<div class="row justify-content-center">
 			<div class="col-5">

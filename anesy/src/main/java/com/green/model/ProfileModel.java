@@ -20,6 +20,39 @@ public class ProfileModel {
 	private Date birthDate;
 
 	private String address;
+	
+	private String specialize;
+	
+	private String description;
+
+	
+	/**
+	 * @return the specialize
+	 */
+	public String getSpecialize() {
+		return specialize;
+	}
+
+	/**
+	 * @param specialize the specialize to set
+	 */
+	public void setSpecialize(String specialize) {
+		this.specialize = specialize;
+	}
+
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * @param description the description to set
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
 	public int getAccountId() {
 		return accountId;

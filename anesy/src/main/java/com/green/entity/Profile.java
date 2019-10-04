@@ -44,7 +44,7 @@ public class Profile {
 	@Column(name = "certificates", columnDefinition = "nvarchar(MAX)")
 	private String certificates;
 	
-	@Column(name = "specialize")
+	@Column(name = "specialize" , columnDefinition = "nvarchar(MAX)")
 	private String specialize;
 	
 	@Column(name = "description", columnDefinition = "nvarchar(MAX)")
