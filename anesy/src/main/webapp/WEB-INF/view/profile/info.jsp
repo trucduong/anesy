@@ -77,18 +77,17 @@
 								<textarea name="address" type="text" class="form-control">${_profile.address}</textarea>
 							</div>
 							<%if(authContext.getUserType() ==2 && authContext.getUserType() ==3) %>
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text">Chủ đề giảng dạy</span>
-								</div>
-								<textarea name="specialize" type="text" class="form-control">${_profile.specialize}</textarea>
+							
+							<div class="form-group">
+								<label>Chủ đề giảng dạy</label>
+								<div id="specialize"></div>
+								<input id="specializeVal" name="specialize" type="hidden" value="${_profile.specialize}">
 							</div>
 							
-							<div class="input-group mb-3">
-								<div class="input-group-prepend">
-									<span class="input-group-text">Tiểu sử</span>
-								</div>
-								<textarea name="description" type="text" class="form-control">${_profile.description}</textarea>
+							<div class="form-group">
+								<label>Tiểu sử</label>
+								<div id="description"></div>
+								<input id="descriptionVal" name="description" type="hidden" value="${_profile.description}">
 							</div>
 
 
@@ -106,6 +105,30 @@
 
 	<%-- import js files --%>
 	<jsp:include page="../../component/common-js.jsp"></jsp:include>
+	<script type="text/javascript">
+	
+	$( document ).ready(function() {
+
+		var editors = ['description', 'specialize'];
+		editors.forEach(function(editorId) {
+			ClassicEditor
+			.create( document.querySelector( '#' + editorId ) )
+			.then(editor => {
+				
+				editor.setData(document.getElementById(editorId + 'Val').value);
+				
+				editor.model.document.on( 'change:data', () => {
+				    document.getElementById(editorId + 'Val').value = editor.getData();
+				});
+			})
+			.catch( error => {
+				console.error( error );
+			});
+		});
+		
+	});
+	
+	</script>
 </body>
 </html>
 

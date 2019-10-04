@@ -1,3 +1,4 @@
+<%@page import="com.green.entity.CourseSubjects"%>
 <%@page import="com.green.entity.CourseRegistration"%>
 <%@page import="com.green.entity.CourseComment"%>
 <%@page import="java.util.List"%>
@@ -20,6 +21,7 @@
 	Course course = (Course) request.getAttribute("_course");
 	List<CourseComment> commentList = (List<CourseComment>) request.getAttribute("_comment");
 	CourseRegistration courseRegistration = (CourseRegistration) request.getAttribute("_courseRegis");
+	List<CourseSubjects> courseSubjectslist = (List<CourseSubjects>) request.getAttribute("_courseSubjectslist");
 	%>
 <div class="full-width" >
 	<div class="container">
@@ -105,49 +107,23 @@
 			<div class="course-use-title" style="font-size: 28px;margin: 10px;"><b>Nội dung khóa học</b></div>
 			
 			<div class="accordion" id="accordionExample">
+			<%for(CourseSubjects courseSubjects : courseSubjectslist ){ %>
 				  <div class="card">
 				    <div class="card-header" id="headingOne">
 				      <h2 class="mb-0">
 				        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-				          Collapsible Group Item #1
+				          <%=courseSubjects.getSubjects().getName() %>
 				        </button>
 				      </h2>
 				    </div>
 				
 				    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
 				      <div class="card-body">
-				        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+				       <%=courseSubjects.getSubjects().getDescription() %>
 				      </div>
 				    </div>
 				  </div>
-				  <div class="card">
-				    <div class="card-header" id="headingTwo">
-				      <h2 class="mb-0">
-				        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-				          Collapsible Group Item #2
-				        </button>
-				      </h2>
-				    </div>
-				    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-				      <div class="card-body">
-				        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-				      </div>
-				    </div>
-				  </div>
-				  <div class="card">
-				    <div class="card-header" id="headingThree">
-				      <h2 class="mb-0">
-				        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-				          Collapsible Group Item #3
-				        </button>
-				      </h2>
-				    </div>
-				    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-				      <div class="card-body">
-				        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-				      </div>
-				    </div>
-				  </div>
+				  <%} %>
 				</div>
 			</div>
 		</div>
@@ -179,7 +155,7 @@
 		<div class="row course-author">
 		<div class="col-md-2">
 			<div style="margin-left: 20px;">
-				<img class="author-avatar" alt="" src="<%=request.getContextPath()%>/image/profile/<%=course.getAuthor().getAvatar() %>" width="120" height="120">
+				<img class="author-avatar" alt="" src="<%=request.getContextPath()%>/image/profile/<%=course.getAuthor().getAccountId() %>" width="120" height="120">
 			</div>
 			<div style="font-size: 14px; margin-top: 10px;">
 				<ul>
@@ -193,14 +169,25 @@
 		<div class="col-md-6" style="margin-left: 50px; ">
 			<div class="course-author-name" style="text-decoration: none;">
 				<a href="<%=request.getContextPath()%>/profile/<%=course.getAuthor().getAccountId()%>"><b><h3><%=course.getAuthor().getFullName() %></h3></b></a>
-				<b>Java Python Android and C# Expert Developer - 532K+ students</b>
+				<b><%=course.getAuthor().getSpecialize() %></b>
 			</div>
 			<div class="course-author-decription" style="margin-top: 30px;">
-				<p>You’ve just stumbled upon the most complete, in-depth Java programming course online. With over 260,000 students enrolled and tens of thousands of 5 star reviews to date, these comprehensive java tutorials cover everything you’ll ever need.</p>
+				<p><%=course.getAuthor().getDescription() %></p>
 			</div>
 		</div>
 		</div>
 		
+		<div class="row" style="height: 50px;"></div>
+		
+		<h2>Bình luận</h2>
+		<form action="<%=request.getContextPath()%>/course/comment" method="post">
+		<input type="hidden" name="courseId" value="<%=course.getId()%>">
+		<div class="form-group">
+				<div id="editor"></div>
+				<input id="editorVal" name="comment" type="hidden" value="">
+		</div>
+		<button type="submit" class="btn btn-primary">Bình luận</button>
+		</form>
 		<div class="row" style="height: 50px;"></div>
 		
 		<div class="course-use-title" style="font-size: 28px; padding-bottom: 20px;"><b>Bình luận của mọi người</b></div>
@@ -208,7 +195,7 @@
 		<div class="row course-comment">		
 			<div class="col-md-2">
 			<div style="margin-left: 20px;">
-				<img class="people-avatar" alt="" src="<%=request.getContextPath()%>/image/profile/<%=comment.getAuthor().getAvatar() %>" width="50" height="50">
+				<img class="people-avatar" alt="" src="<%=request.getContextPath()%>/image/profile/<%=comment.getAuthor().getAccountId() %>" width="50" height="50">
 			</div>
 			<div style="font-size: 14px; margin-top: 10px; " >
 				<div><b><%=comment.getAuthor().getFullName() %></b></div>
@@ -230,5 +217,31 @@
 
 <%-- import js files --%>
 <jsp:include page="../../component/common-js.jsp"></jsp:include>
+
+<script type="text/javascript">
+
+function handleCancel() {
+	location.href="<%=request.getContextPath()%>/admin/course";
+}
+
+$( document ).ready(function() {
+
+	ClassicEditor
+	.create( document.querySelector( '#editor' ) )
+	.then(editor => {
+		
+		editor.setData( '${_course.requiment}' );
+		
+		editor.model.document.on( 'change:data', () => {
+		    document.getElementById('editorVal').value = editor.getData();
+		});
+	})
+	.catch( error => {
+		console.error( error );
+	});
+	
+});
+
+</script>
 </body>
 </html>

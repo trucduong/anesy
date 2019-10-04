@@ -22,6 +22,7 @@ import com.green.entity.Progress;
 import com.green.model.CourseFilter;
 import com.green.service.CourseService;
 import com.green.service.ProfileService;
+import com.green.service.SubjectsService;
 
 @Controller
 @RequestMapping("/course")
@@ -35,6 +36,9 @@ public class CourseController {
 	
 	@Autowired
 	private ProfileService profileService;
+	
+	@Autowired
+	private SubjectsService subjectService;
 	
 	@GetMapping
 	public String showCourseList(@RequestParam(name = "filter", required = false) String filter,
@@ -56,6 +60,8 @@ public class CourseController {
 	public String showCourseStyle(@PathVariable(name = "id") int id,Model model) {
 		Course course = courseService.findById(id);
 		List<CourseComment> commentList = courseService.findAllComments(id);
+		List<CourseSubjects> courseSubjectslist = subjectService.findListSubjects(course);
+		model.addAttribute("_courseSubjectslist", courseSubjectslist);
 		model.addAttribute("_comment", commentList);
 		model.addAttribute("_course", course);
 		

@@ -24,7 +24,7 @@
 		style="height: 150px; background-color: #ffe494; margin-bottom: 50px;">
 		<div class="teacher-name" style="padding: 30px 150px;">
 			<b><h2><%=profile.getFullName() %></h2></b>
-			<h5>Java Python Android and C# Expert Developer - 532K+ students</h5>
+			<h5><%=profile.getSpecialize() %></h5>
 		</div>
 	</div>
 	<div class="container page">
@@ -32,16 +32,13 @@
 			<div class="col-md-2" style="margin-left: 50px; min-height: 300px;">
 				<div style="margin-left: 20px;">
 					<img class="author-avatar" alt=""
-						src="<%=request.getContextPath()%>/image/profile/<%=profile.getAvatar() %>"
+						src="<%=request.getContextPath()%>/image/profile/<%=profile.getAccountId() %>"
 						width="120" height="120">
 				</div>
 			</div>
 			<div class="col-md-6" style="margin-left: 50px;">
 				<div class="course-author-decription" style="margin-top: 10px;">
-					<p>You’ve just stumbled upon the most complete, in-depth Java
-						programming course online. With over 260,000 students enrolled and
-						tens of thousands of 5 star reviews to date, these comprehensive
-						java tutorials cover everything you’ll ever need.</p>
+					<p><%=profile.getDescription() %></p>
 				</div>
 				<ul class="nav justify-content-center" style="padding-top: 50px;">
 					<li class="nav-item thong-so">
@@ -71,7 +68,7 @@
 						<%for(Course course : courseList){ %>
 						<a href="<%=request.getContextPath()%>/course/<%=course.getId()%>">
 							<div class="card" style="min-height: 280px;">
-								<img src="" class="card-img-top"
+								<img src="<%=request.getContextPath()%>/image/course/<%=course.getAvatar() %>" class="card-img-top"
 									alt="Java Programming Masterclass for Software Developers">
 								<div class="card-body">
 									<h5 class="card-title"><%=course.getName() %></h5>

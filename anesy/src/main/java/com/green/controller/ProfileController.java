@@ -87,6 +87,8 @@ public class ProfileController {
 		profile.setGender(model.getGender());
 		profile.setPhone(model.getFullName());
 		profile.setEmail(model.getEmail());
+		profile.setSpecialize(model.getSpecialize());
+		profile.setDescription(model.getDescription());
 		
 		profileservice.update(profile);
 		authContext.setProfile(profile);
