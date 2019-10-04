@@ -3,14 +3,21 @@ package com.green.model;
 import com.green.entity.Subjects;
 
 public class ExerciseModel {
-	private Subjects subjects;
 	private String description;
 	private String name;
-	public Subjects getSubjects() {
-		return subjects;
+	private int subjectsId;
+	private String subjectName;
+	public int getSubjectsId() {
+		return subjectsId;
 	}
-	public void setSubjects(Subjects subjects) {
-		this.subjects = subjects;
+	public void setSubjectsId(int subjectsId) {
+		this.subjectsId = subjectsId;
+	}
+	public String getSubjectName() {
+		return subjectName;
+	}
+	public void setSubjectName(String subjectName) {
+		this.subjectName = subjectName;
 	}
 	public String getDescription() {
 		return description;

@@ -53,6 +53,7 @@ public class AdminCourseController {
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String showCreatePage(Model model) {
 		model.addAttribute("_course", new Course());
+		model.addAttribute("_categoryList", courseService.findCategories());
 		return "/course/admin-course-detail";
 	}
 	
@@ -82,13 +83,13 @@ public class AdminCourseController {
 		course.setShortdesc(courseModel.getShortdesc());
 		course.setAuthor(authContext.getProfile());
 		course.setCreatedAt(date);
+		course.setCategory(courseService.findCategory(courseModel.getCategoryId()));
 		
 		if("preview".equals(courseModel.getAction())) {
 			model.addAttribute("_course", course);
 			request.getSession().setAttribute("course_preview", course);
 			return "/course/admin-course-detail";
 		}
-		
 		
 		courseService.insert(course);
 		return "redirect:/admin/course";
@@ -105,6 +106,7 @@ public class AdminCourseController {
 		}
 		
 		model.addAttribute("_course", course);
+		model.addAttribute("_categoryList",courseService.findCategories());
 		
 		return "/course/admin-course-detail";
 	}
@@ -120,7 +122,6 @@ public class AdminCourseController {
 			return "redirect:/admin/course";
 		}
 
-		Date date = new Date();
 		course.setAvatar(courseModel.getAvatar());
 		course.setBenefit(courseModel.getBenefit());
 		course.setDescription(courseModel.getDescription());
@@ -130,14 +131,14 @@ public class AdminCourseController {
 		course.setRequiment(courseModel.getRequiment());
 		course.setShortdesc(courseModel.getShortdesc());
 		course.setAuthor(authContext.getProfile());
+		course.setCategory(courseService.findCategory(courseModel.getCategoryId()));
 		
 		if("preview".equals(courseModel.getAction())) {
 			model.addAttribute("_course", course);
 			request.getSession().setAttribute("course_preview", course);
 			return "/course/admin-course-detail";
 		}
-		
-		
+	
 		courseService.update(course);
 		
 		return "redirect:/admin/course";

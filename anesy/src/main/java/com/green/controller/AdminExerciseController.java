@@ -14,12 +14,16 @@ import com.green.entity.Exercise;
 import com.green.model.ExerciseModel;
 import com.green.model.Page;
 import com.green.service.ExerciseService;
+import com.green.service.SubjectsService;
 
 @Controller
 @RequestMapping("/admin/exercise")
 public class AdminExerciseController {
 	@Autowired
 	private ExerciseService exerciseService;
+	
+	@Autowired
+	private SubjectsService subjectsService;
 	
 	@Autowired
 	private MessageBox messageBox;
@@ -41,6 +45,7 @@ public class AdminExerciseController {
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String showCreatePage(Model model) {
 		model.addAttribute("_exercise", new Exercise());
+		model.addAttribute("_subjectList", subjectsService.findAll());
 		return "/exercise/exercise-detail";
 	}
 	
@@ -50,7 +55,7 @@ public class AdminExerciseController {
 		Exercise ex = new Exercise();
 		ex.setName(exerciseModel.getName());
 		ex.setDescription(exerciseModel.getDescription());
-		ex.setSubjects(exerciseModel.getSubjects());
+		ex.setSubjects(subjectsService.findById(exerciseModel.getSubjectsId()));
 		
 		exerciseService.insert(ex);;
 		
@@ -64,11 +69,12 @@ public class AdminExerciseController {
 	public String showUpdatePage(@PathVariable("id") int id, Model model) {
 		Exercise ex = exerciseService.findById(id);
 		if (ex == null) {
-			messageBox.setMessage("KhÃ´ng tÃ¬m tháº¥y exercise id: " + id);
+			messageBox.setMessage("Không tìm thấy exercise id: " + id);
 			return "redirect:/admin/exercise";
 		}
 		
 		model.addAttribute("_exercise", ex);
+		model.addAttribute("_subjectList", subjectsService.findAll());
 		
 		return "/exercise/exercise-detail";
 	}
@@ -80,14 +86,14 @@ public class AdminExerciseController {
 		Exercise ex = exerciseService.findById(id);
 		
 		if (ex == null) {
-			messageBox.setMessage("KhÃ´ng tÃ¬m tháº¥y exercise id: " + id);
+			messageBox.setMessage("Không tìm thấy exercise id: " + id);
 			return "redirect:/admin/exercise";
 		}
 
 		ex.setName(exerciseModel.getName());
 		ex.setDescription(exerciseModel.getDescription());
-		ex.setSubjects(exerciseModel.getSubjects());		
-		exerciseService.insert(ex);
+		ex.setSubjects(subjectsService.findById(exerciseModel.getSubjectsId()));		
+		exerciseService.update(ex);
 		
 		return "redirect:/admin/exercise";
 	}

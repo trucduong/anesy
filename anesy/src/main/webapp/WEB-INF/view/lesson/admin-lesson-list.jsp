@@ -29,7 +29,7 @@
 	}
 %>
 
-<h1 class="page-title">Danh sách bài giảng</h1>
+<h1 class="page-title">Lesson List</h1>
 
 <div class="row">
 	<div class="input-group mb-1">
@@ -123,7 +123,6 @@
 </div>
 
 </div>
-<div class="col-md-1"><jsp:include page="../../component/right.jsp"></jsp:include></div>
 </div>
 </div>
 

@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Exercise</title>
 
 <%-- import css files --%>
 <jsp:include page="../../component/common-css.jsp"></jsp:include>
@@ -55,6 +55,7 @@
 	      <th scope="col">#</th>
 	      <th scope="col">Tên</th>
 	      <th scope="col">Mô tả</th>
+	      <th scope="col">Môn học</th>
 	      <th scope="col">Tùy chọn</th>
 	    </tr>
 	  </thead>
@@ -66,6 +67,7 @@
 	      <th scope="row"><%=exercise.getId() %></th>
 	      <td><%=exercise.getName() %></td>
 	      <td><%=exercise.getDescription() %></td>
+	       <td><%=exercise.getSubjects().getName() %></td>
 	      <td>
 	      	<form action="exercise/<%=exercise.getId() %>" method="get">
 	      		<button type="submit">Update</button>
@@ -116,7 +118,6 @@
 </div>
 
 </div>
-<div class="col-md-1"><jsp:include page="../../component/right.jsp"></jsp:include></div>
 </div>
 </div>
 

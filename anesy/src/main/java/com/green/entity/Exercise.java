@@ -17,10 +17,10 @@ public class Exercise {
 	@Column(name = "id")
 	private int id;
 
-	@Column(name = "name", columnDefinition = "nvarchar(500)")
+	@Column(name = "name", columnDefinition = "nvarchar(MAX)")
 	private String name;
 
-	@Column(name = "description", columnDefinition = "nvarchar(1000)")
+	@Column(name = "description", columnDefinition = "nvarchar(MAX)")
 	private String description;
 
 	@ManyToOne(cascade = CascadeType.DETACH)
