@@ -11,12 +11,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.green.config.AuthContext;
 import com.green.config.MessageBox;
+import com.green.dao.CouseDao;
 import com.green.entity.CourseCategory;
+import com.green.entity.CourseSubjects;
 import com.green.entity.Subjects;
 import com.green.model.CategoryModel;
 import com.green.model.Page;
 import com.green.model.SubjectModel;
+import com.green.service.CourseService;
 import com.green.service.SubjectsService;
 
 
@@ -26,6 +30,15 @@ import com.green.service.SubjectsService;
 public class AdminSubjectController {
 	@Autowired
 	private SubjectsService subjectsService;
+	
+	@Autowired
+	private AuthContext authContext;
+	
+	@Autowired
+	private CourseService courseService;
+	
+	@Autowired
+	private CouseDao courseDao;
 	
 	@Autowired
 	private MessageBox messageBox;
@@ -46,7 +59,10 @@ public class AdminSubjectController {
 	}
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String showCreatePage(Model model) {
-		model.addAttribute("_subjectscategory", new Subjects());
+		model.addAttribute("_subjects", new Subjects());
+		model.addAttribute("_subjectsCourse", new CourseSubjects());
+		model.addAttribute("_courseList",courseService.findAll());
+		
 		return "/subjects/subjects-detail";
 	}
 	
@@ -57,6 +73,10 @@ public class AdminSubjectController {
 		sub.setName(subjectModel.getName());
 		sub.setDescription(subjectModel.getDescription());
 		sub.setAvatar(subjectModel.getAvatar());
+		java.util.Date date=new java.util.Date();
+		sub.setCreatedAt(date);
+		sub.setTags(subjectModel.getTags());
+		sub.setAuthor(authContext.getAccountId());
 		
 		subjectsService.insert(sub);;
 		
@@ -75,6 +95,8 @@ public class AdminSubjectController {
 		}
 		
 		model.addAttribute("_subjects", sub);
+		model.addAttribute("_subjectsCourse", courseDao.findBySubject(sub.getId()));
+		model.addAttribute("_courseList",courseService.findAll());
 		
 		return "/subjects/subjects-detail";
 	}
@@ -93,10 +115,14 @@ public class AdminSubjectController {
 		sub.setName(subjectModel.getName());
 		sub.setDescription(subjectModel.getDescription());
 		sub.setAvatar(subjectModel.getAvatar());
+		java.util.Date date=new java.util.Date();
+		sub.setCreatedAt(date);
+		sub.setTags(subjectModel.getTags());
+		sub.setAuthor(authContext.getAccountId());
 		
-		subjectsService.insert(sub);
+		subjectsService.update(sub);
 		
-		return "redirect:/admin/course-category";
+		return "redirect:/admin/subjects";
 	}
 	
 	////////////////////////////////////////////////////////////////////////////////

@@ -44,14 +44,14 @@ public class AdminLessonController {
 		Page<Lesson> pageData = lessonService.findSubject(filter, page);
 		model.addAttribute("_pageData", pageData);
 		
-		return "/subject/admin-lesson-list";
+		return "/lesson/admin-lesson-list";
 	}
 	
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String showCreatePage(Model model) {
 		model.addAttribute("_lesson", new Lesson());
 		model.addAttribute("_subjectList", subjectsService.findAll());
-		return "/subject/admin-lesson-detail";
+		return "/lesson/admin-lesson-detail";
 	}
 	
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
@@ -83,7 +83,7 @@ public class AdminLessonController {
 		model.addAttribute("_lesson", les);
 		model.addAttribute("_subjectList", subjectsService.findAll());
 		
-		return "/subject/admin-lesson-detail";
+		return "/lesson/admin-lesson-detail";
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.POST)
@@ -104,7 +104,7 @@ public class AdminLessonController {
 		les.setSeq(lesModel.getSeq());
 		les.setAuthor(authContext.getAccountId());
 		
-		lessonService.insert(les);
+		lessonService.update(les);
 		
 		return "redirect:/admin/lesson";
 	}

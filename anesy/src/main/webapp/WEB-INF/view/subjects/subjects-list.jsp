@@ -1,3 +1,7 @@
+
+<%@page import="com.green.entity.CourseSubjects"%>
+<%@page import="com.green.entity.Course"%>
+<%@page import="com.green.dao.CouseDao"%>
 <%@page import="com.green.entity.Subjects"%>
 <%@page import="com.green.model.Page"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -6,7 +10,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Subjects</title>
 
 <%-- import css files --%>
 <jsp:include page="../../component/common-css.jsp"></jsp:include>
@@ -28,7 +32,7 @@
 	}
 %>
 
-<h1 class="page-title">Danh sách môn học</h1>
+<h1 class="page-title">Subjects List</h1>
 
 <div class="row">
 	<div class="input-group mb-1">
@@ -55,6 +59,8 @@
 	      <th scope="col">#</th>
 	      <th scope="col">Tên</th>
 	      <th scope="col">Mô tả</th>
+	       <th scope="col">Tags</th>
+	      <th scope="col">Ngày tạo</th>
 	      <th scope="col">Tùy chọn</th>
 	    </tr>
 	  </thead>
@@ -66,6 +72,8 @@
 	      <th scope="row"><%=subjects.getId() %></th>
 	      <td><%=subjects.getName() %></td>
 	      <td><%=subjects.getDescription() %></td>
+	      <td><%=subjects.getTags() %></td>
+	      <td><%=subjects.getCreatedAt() %></td>
 	      <td>
 	      	<form action="subjects/<%=subjects.getId() %>" method="get">
 	      		<button type="submit">Update</button>
@@ -121,7 +129,7 @@
 </div>
 
 <jsp:include page="../../component/footer.jsp"></jsp:include>
-
+ 
 <%-- import js files --%>
 <jsp:include page="../../component/common-js.jsp"></jsp:include>
 </body>
