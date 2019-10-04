@@ -42,7 +42,7 @@
 			<input name="filter" type="text" class="form-control"
 				placeholder="Tìm kiếm khóa học" role="combobox"> <span
 				class="input-group-btn">
-				<button class="btn-search" type="submit">Search</button>
+				<button class="btn btn-secondary" type="submit">Search</button>
 			</span>
 		</div>
 		</form>
