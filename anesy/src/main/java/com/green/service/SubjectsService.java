@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.green.dao.CourseSubjectDao;
+import com.green.dao.CouseDao;
 import com.green.dao.ExerciseDao;
 import com.green.dao.LessonDao;
 import com.green.dao.SubjectsDao;
@@ -20,11 +21,18 @@ import com.green.model.Page;
 public class SubjectsService {
 	@Autowired
 	private SubjectsDao subjectsDao;
+	
+	@Autowired
 	private LessonDao lessonDao;
+	
+	@Autowired
 	private ExerciseDao exerciseDao;
 	
 	@Autowired
 	private CourseSubjectDao courseSubjectdao;
+	
+	@Autowired
+	private CouseDao courseDao;
 
 	public List<Subjects> findAll() {
 		return subjectsDao.findAll();
@@ -35,8 +43,15 @@ public class SubjectsService {
 		return subjectsDao.find(id);
 	}
 
-	public void insert(Subjects subjects) {
-		subjectsDao.save(subjects);
+	public void insert(Subjects subjects, int courseId) {
+		int subjectId = subjectsDao.save(subjects);
+		subjects.setId(subjectId);
+		
+		Course course = courseDao.find(courseId);
+		CourseSubjects courseSubjects = new CourseSubjects();
+		courseSubjects.setCourse(course);
+		courseSubjects.setSubjects(subjects);
+		courseSubjectdao.save(courseSubjects);
 	}
 
 	public void delete(int subId, Subjects subject) {
@@ -50,12 +65,29 @@ public class SubjectsService {
 			exerciseDao.delete(exercise);
 		}
 		
+		List<CourseSubjects> courseSubjects = courseSubjectdao.findBySubjects(subId);
+		for (CourseSubjects courseSubjects2 : courseSubjects) {
+			courseSubjectdao.delete(courseSubjects2);
+		}
+		
 		subjectsDao.delete(subject);
 		
 	}
 
-	public void update(Subjects subjects) {
+	public void update(Subjects subjects, int courseId) {
 		subjectsDao.update(subjects);
+		
+		CourseSubjects courseSubjects = courseSubjectdao.find(courseId, subjects.getId());
+		Course course = courseDao.find(courseId);
+		if (courseSubjects == null) {
+			courseSubjects = new CourseSubjects();
+			courseSubjects.setCourse(course);
+			courseSubjects.setSubjects(subjects);
+			courseSubjectdao.save(courseSubjects);
+		} else {
+			courseSubjects.setCourse(course);
+			courseSubjectdao.update(courseSubjects);
+		}
 	}
 
 	public Page<Subjects> findSubject(String filter, int page) {
@@ -73,11 +105,16 @@ public class SubjectsService {
 		return result;
 	}
 	
-	public List<CourseSubjects> findListSubjects(Course course){
-		return courseSubjectdao.findSubjects(course);
+	public List<CourseSubjects> findCourseSubjectsByCourse(int courseId){
+		return courseSubjectdao.findByCourse(courseId);
 	}
 	
-	public CourseSubjects findSubject(int id){
-		return courseSubjectdao.find(id);
+	public List<CourseSubjects> findCourseSubjectsBySubjects(int subjectsId){
+		return courseSubjectdao.findBySubjects(subjectsId);
 	}
+	
+	public CourseSubjects findCourseSubjects(int courseId, int subjectsId){
+		return courseSubjectdao.find(courseId, subjectsId);
+	}
+	
 }

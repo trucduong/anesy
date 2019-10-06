@@ -51,17 +51,17 @@
 			<version>${spring.version}</version>
 		</dependency>
 
-		<dependency>
+<!-- 		<dependency>
 			<groupId>com.microsoft.sqlserver</groupId>
 			<artifactId>mssql-jdbc</artifactId> 
 			<version>7.2.2.jre8</version>
-		</dependency>
+		</dependency> -->
 			
-		<!-- <dependency>
+		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.31</version>
-		</dependency> -->
+		</dependency>
 		
 		<dependency>
 			<groupId>commons-dbcp</groupId>

@@ -57,12 +57,12 @@
 			
 			<div class="form-group">
 				<label>Course Name</label>
-				<select name="subjectsId">
+				<select name="courseId">
 							<%
 								for (Course course : courseList) {
 							%>
 							<option value="<%=course.getId()%>"
-								<%=(courseSubjects.getCourse()!=null  && courseSubjects.getCourse().getId() == course.getId()) ? "selected" : ""%>><%=course.getName()%></option>
+								<%=(courseSubjects!=null && courseSubjects.getCourse() !=null  && courseSubjects.getCourse().getId() == course.getId()) ? "selected" : ""%>><%=course.getName()%></option>
 							<%
 								}
 							%>
