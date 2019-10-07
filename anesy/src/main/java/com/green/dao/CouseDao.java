@@ -10,6 +10,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.green.config.AuthContext;
 import com.green.entity.Account;
 import com.green.entity.Course;
 import com.green.entity.CourseCategory;
@@ -32,6 +33,9 @@ private int pageSize;
 	protected Class<Course> getEntityClass() {
 		return Course.class;
 	}
+	
+	@Autowired
+	private AuthContext authContext;
 	
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -60,7 +64,7 @@ public CourseSubjects findBySubject(int subId) {
 	
 	public List<Course> search(CourseFilter filter) {
 		StringBuilder hql = new StringBuilder();
-		hql.append("select * from course co where 1=1");
+		hql.append("select * from course co where author=:author");
 		
 		if (filter.getSearchText() != null) {
 			hql.append(" and LOWER(co.name) like N'%" + filter.getSearchText().toLowerCase() + "%'");
@@ -75,6 +79,7 @@ public CourseSubjects findBySubject(int subId) {
 //		}
 		
 		Query query = getFactory().openSession().createNativeQuery(hql.toString(), Course.class);
+		query.setParameter("author", authContext.getAccountId());
 		return query.getResultList();
 	}
 	
@@ -88,12 +93,13 @@ public CourseSubjects findBySubject(int subId) {
 	
 	public List<Course> search(String filter, int page) {
 		StringBuilder hql = new StringBuilder();
-		hql.append("from Course ca where 1=1");
+		hql.append("select * from course ca where author = :author" );
 		if (filter != null) {
-			hql.append(" and ca.name like '%").append(filter).append("%'");
+			hql.append(" and LOWER(ca.name) like N'%").append(filter).append("%'");
 		}
 		
-		Query query = getFactory().openSession().createQuery(hql.toString(), Course.class);
+		Query query = getFactory().openSession().createNativeQuery(hql.toString(), Course.class);
+		query.setParameter("author", authContext.getAccountId());
 		query.setFirstResult((page-1) * pageSize);
 		query.setMaxResults(pageSize);
 		
@@ -102,12 +108,13 @@ public CourseSubjects findBySubject(int subId) {
 	
 	public long count(String filter) {
 		StringBuilder hql = new StringBuilder();
-		hql.append("select count(ca) from Course ca where 1=1");
+		hql.append("select count(*) from course ca where author= :author");
 		if (filter != null) {
-			hql.append(" and ca.name like '%").append(filter).append("%'");
+			hql.append(" and LOWER(ca.name) like N'%").append(filter).append("%'");
 		}
 		
-		Query query = getFactory().openSession().createQuery(hql.toString());
+		Query query = getFactory().openSession().createNativeQuery(hql.toString());
+		query.setParameter("author", authContext.getAccount());
 		Number val = (Number) query.getSingleResult();
 		return val.longValue();
 	}

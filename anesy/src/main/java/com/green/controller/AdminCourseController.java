@@ -61,6 +61,7 @@ public class AdminCourseController {
 	public String showPreview(HttpServletRequest request,Model model) {
 	
 		Course course = (Course) request.getSession().getAttribute("course_preview");
+		model.addAttribute("_categoryList", courseService.findCategories());
 		model.addAttribute("_comment", new ArrayList<>());
 		model.addAttribute("_course", course);
 		
@@ -88,7 +89,7 @@ public class AdminCourseController {
 		if("preview".equals(courseModel.getAction())) {
 			model.addAttribute("_course", course);
 			request.getSession().setAttribute("course_preview", course);
-			return "/course/admin-course-detail";
+			return showCreatePage(model);
 		}
 		
 		courseService.insert(course);
@@ -136,7 +137,7 @@ public class AdminCourseController {
 		if("preview".equals(courseModel.getAction())) {
 			model.addAttribute("_course", course);
 			request.getSession().setAttribute("course_preview", course);
-			return "/course/admin-course-detail";
+			return showUpdatePage(id, model);
 		}
 	
 		courseService.update(course);

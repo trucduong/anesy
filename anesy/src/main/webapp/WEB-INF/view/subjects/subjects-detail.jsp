@@ -20,7 +20,7 @@
 
 <div class="container page">
 <div class="row">
-<div class="col-md-3"><jsp:include page="../../component/left.jsp"></jsp:include></div>
+<div class=col-md-3></div>
 <div class="col-md-8">
 
 <%

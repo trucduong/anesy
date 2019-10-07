@@ -108,7 +108,7 @@ msgBox.clear();
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
               <a class="dropdown-item" href="<%= request.getContextPath()%>/profile/info">Thông Tin Tài Khoản</a>
-              <%if(authContext.getUserType()!=0) {%>
+              <%if(authContext.getUserType() >1) {%>
               <a class="dropdown-item" href="<%= request.getContextPath()%>/admin/course-category">Quản lý</a>
               <%} %>
               <a class="dropdown-item" href="<%=request.getContextPath()%>/login">Logout</a>
