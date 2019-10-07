@@ -61,7 +61,7 @@
 	      <td><%=courseSubjects.getSubjects().getName() %></td>
 	      <td><%=courseSubjects.getSubjects().getDescription() %></td>
 	      <td>
-	      	<form class="action-form" action="<%=request.getContextPath()%>/learning/course/<%=course.getId() %>/subject/<%=courseSubjects.getId()%>" method="get">
+	      	<form class="action-form" action="<%=request.getContextPath()%>/learning/course/<%=course.getId() %>/subject/<%=courseSubjects.getSubjects().getId()%>" method="get">
 	      		<button type="submit">Chọn</button>
 	      	</form>
 	      </td>
