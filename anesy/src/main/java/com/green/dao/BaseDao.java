@@ -11,8 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.green.entity.Account;
 
-import antlr.debug.TraceAdapter;
-
 public abstract class BaseDao<E, ID> {
 
 	@Autowired
@@ -41,12 +39,13 @@ public abstract class BaseDao<E, ID> {
 		return session.createQuery("from " + entityClass.getName()).getResultList();
 	}
 
-	public void save(E entity) {
+	public ID save(E entity) {
 		Session session = factory.openSession();
 		Transaction tran = session.beginTransaction();
-		session.saveOrUpdate(entity);
+		ID id = (ID) session.save(entity);
 		tran.commit();
 		session.close();
+		return id;
 	}
 
 	public void update(E entity) {

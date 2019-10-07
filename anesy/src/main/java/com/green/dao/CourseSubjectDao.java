@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.green.entity.Course;
 import com.green.entity.CourseCategory;
 import com.green.entity.CourseSubjects;
+import com.green.entity.Subjects;
 import com.green.util.ApplicationConfig;
 
 @Repository
@@ -27,7 +28,11 @@ public class CourseSubjectDao extends BaseDao<CourseSubjects, Integer> {
 		return CourseSubjects.class;
 	}
 	
-	public List<CourseSubjects> findSubjects(Course course) {
+	public List<CourseSubjects> findByCourse(int courseId) {
+		
+		Course course = new Course();
+		course.setId(courseId);
+		
 		StringBuilder hql = new StringBuilder();
 		hql.append("from CourseSubjects where course = :_course");
 		Query query = getFactory().openSession().createQuery(hql.toString(), CourseSubjects.class);
@@ -35,6 +40,42 @@ public class CourseSubjectDao extends BaseDao<CourseSubjects, Integer> {
 		
 		return query.getResultList();
 
+	}
+	
+	public List<CourseSubjects> findBySubjects(int subjectsId) {
+		
+		Subjects subjects = new Subjects();
+		subjects.setId(subjectsId);
+		
+		StringBuilder hql = new StringBuilder();
+		hql.append("from CourseSubjects where subjects = :subjects");
+		Query query = getFactory().openSession().createQuery(hql.toString(), CourseSubjects.class);
+		query.setParameter("subjects", subjects);
+		
+		return query.getResultList();
+
+	}
+	
+	public CourseSubjects find(int courseId, int subjectsId) {
+		Subjects subjects = new Subjects();
+		subjects.setId(subjectsId);
+		
+		Course course = new Course();
+		course.setId(courseId);
+		
+		StringBuilder hql = new StringBuilder();
+		hql.append("from CourseSubjects where subjects = :subjects and course = :course");
+		Query query = getFactory().openSession().createQuery(hql.toString(), CourseSubjects.class);
+		query.setParameter("subjects", subjects);
+		query.setParameter("course", course);
+		
+		List<CourseSubjects> list = query.getResultList();
+		
+		if (list.isEmpty()) {
+			return null;
+		}
+		
+		return list.get(0);
 	}
 
 	public long count(String filter) {

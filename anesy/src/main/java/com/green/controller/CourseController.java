@@ -60,7 +60,7 @@ public class CourseController {
 	public String showCourseStyle(@PathVariable(name = "id") int id,Model model) {
 		Course course = courseService.findById(id);
 		List<CourseComment> commentList = courseService.findAllComments(id);
-		List<CourseSubjects> courseSubjectslist = subjectService.findListSubjects(course);
+		List<CourseSubjects> courseSubjectslist = subjectService.findCourseSubjectsByCourse(id);
 		model.addAttribute("_courseSubjectslist", courseSubjectslist);
 		model.addAttribute("_comment", commentList);
 		model.addAttribute("_course", course);

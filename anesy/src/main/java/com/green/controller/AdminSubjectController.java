@@ -60,7 +60,7 @@ public class AdminSubjectController {
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String showCreatePage(Model model) {
 		model.addAttribute("_subjects", new Subjects());
-		model.addAttribute("_subjectsCourse", new CourseSubjects());
+		model.addAttribute("_subjectsCourse", null);
 		model.addAttribute("_courseList",courseService.findAll());
 		
 		return "/subjects/subjects-detail";
@@ -78,7 +78,7 @@ public class AdminSubjectController {
 		sub.setTags(subjectModel.getTags());
 		sub.setAuthor(authContext.getAccountId());
 		
-		subjectsService.insert(sub);;
+		subjectsService.insert(sub, subjectModel.getCourseId());
 		
 		return "redirect:/admin/subjects";
 	}
@@ -120,7 +120,7 @@ public class AdminSubjectController {
 		sub.setTags(subjectModel.getTags());
 		sub.setAuthor(authContext.getAccountId());
 		
-		subjectsService.update(sub);
+		subjectsService.update(sub, subjectModel.getCourseId());
 		
 		return "redirect:/admin/subjects";
 	}
