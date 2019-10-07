@@ -117,4 +117,10 @@ public class SubjectsService {
 		return courseSubjectdao.find(courseId, subjectsId);
 	}
 	
+	public CourseSubjects findCourseSubjectsbysubject(Subjects subjects){
+		return courseSubjectdao.findBysubjectId(subjects);
+	}
+	
+	
+	
 }

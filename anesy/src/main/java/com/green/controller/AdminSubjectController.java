@@ -1,5 +1,11 @@
 package com.green.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import javax.security.auth.Subject;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.green.config.AuthContext;
 import com.green.config.MessageBox;
 import com.green.dao.CouseDao;
+import com.green.entity.Course;
 import com.green.entity.CourseCategory;
 import com.green.entity.CourseSubjects;
 import com.green.entity.Subjects;
@@ -43,6 +50,8 @@ public class AdminSubjectController {
 	@Autowired
 	private MessageBox messageBox;
 	
+	
+	
 	@RequestMapping
 	public String showListPage(@RequestParam(name="page", required = false) Integer page,
 			@RequestParam(name="filter", required = false) String filter,
@@ -53,6 +62,18 @@ public class AdminSubjectController {
 		}
 		
 		Page<Subjects> pageData = subjectsService.findSubject(filter,page);
+		
+	
+		
+		Map<Integer, List<Course>> map = new HashMap<Integer, List<Course>>();
+		
+		for(Subjects subjects : pageData.getList()) {
+			List<CourseSubjects> listCouSubject = subjectsService.findCourseSubjectsBySubjects(subjects.getId());
+			List<Course> courses = listCouSubject.stream().map(item -> item.getCourse()).collect(Collectors.toList());
+			map.put(subjects.getId(), courses);
+		}
+		
+		model.addAttribute("listCourseSubjects", map);
 		model.addAttribute("_pageData", pageData);
 		
 		return "subjects/subjects-list";
@@ -69,6 +90,7 @@ public class AdminSubjectController {
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public String handleCreate(@ModelAttribute SubjectModel subjectModel) {
 		
+		
 		Subjects sub = new Subjects();
 		sub.setName(subjectModel.getName());
 		sub.setDescription(subjectModel.getDescription());
@@ -77,6 +99,8 @@ public class AdminSubjectController {
 		sub.setCreatedAt(date);
 		sub.setTags(subjectModel.getTags());
 		sub.setAuthor(authContext.getAccountId());
+		
+		
 		
 		subjectsService.insert(sub, subjectModel.getCourseId());
 		

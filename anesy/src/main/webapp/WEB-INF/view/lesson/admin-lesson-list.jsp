@@ -57,7 +57,7 @@
 	      <th scope="col">Tên</th>
 	      <th scope="col">Mô tả</th>
 	       <th scope="col">Môn học</th>
-	        <th scope="col">Mục lục</th>
+	        <th scope="col">Mục lục</th>s
 	        <th scope="col">Ngày tạo</th>
 	      <th scope="col">Tùy chọn</th>
 	    </tr>

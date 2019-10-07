@@ -1,4 +1,6 @@
 
+<%@page import="java.util.Map"%>
+<%@page import="java.util.List"%>
 <%@page import="com.green.entity.CourseSubjects"%>
 <%@page import="com.green.entity.Course"%>
 <%@page import="com.green.dao.CouseDao"%>
@@ -31,6 +33,9 @@
 		filter = "";
 	}
 %>
+<%
+	Map<Integer, List<Course>> courseSubjectsMap = (Map<Integer, List<Course>>) request.getAttribute("listCourseSubjects");
+%> 
 
 <h1 class="page-title">Subjects List</h1>
 
@@ -59,7 +64,7 @@
 	      <th scope="col">#</th>
 	      <th scope="col">Tên</th>
 	      <th scope="col">Mô tả</th>
-	       <th scope="col">Tags</th>
+	       <th scope="col">Khóa học</th>
 	      <th scope="col">Ngày tạo</th>
 	      <th scope="col">Tùy chọn</th>
 	    </tr>
@@ -72,7 +77,13 @@
 	      <th scope="row"><%=subjects.getId() %></th>
 	      <td><%=subjects.getName() %></td>
 	      <td><%=subjects.getDescription() %></td>
-	      <td><%=subjects.getTags() %></td>
+	      <td>
+	     <%
+	     for(Course course:courseSubjectsMap.get(subjects.getId())) {
+	     %>
+	     <p><%=course.getId() %>:<%=course.getName() %></p>
+	     <% } %>
+	      </td>
 	      <td><%=subjects.getCreatedAt() %></td>
 	      <td>
 	      	<form action="subjects/<%=subjects.getId() %>" method="get">

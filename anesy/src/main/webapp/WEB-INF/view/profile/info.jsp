@@ -76,7 +76,7 @@
 								</div>
 								<textarea name="address" type="text" class="form-control">${_profile.address}</textarea>
 							</div>
-							<%if(authContext.getUserType() ==2 && authContext.getUserType() ==3) %>
+							<%if(authContext.getUserType() >1){ %>
 							
 							<div class="form-group">
 								<label>Chủ đề giảng dạy</label>
@@ -89,6 +89,7 @@
 								<div id="description"></div>
 								<input id="descriptionVal" name="description" type="hidden" value="${_profile.description}">
 							</div>
+							<%} %>
 
 
 							<div id="success"></div>

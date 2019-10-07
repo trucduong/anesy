@@ -1,3 +1,5 @@
+<%@page import="com.green.util.SpringContextUtil"%>
+<%@page import="com.green.config.AuthContext"%>
 <%@page import="com.green.entity.CourseSubjects"%>
 <%@page import="com.green.entity.CourseRegistration"%>
 <%@page import="com.green.entity.CourseComment"%>
@@ -179,6 +181,7 @@
 		
 		<div class="row" style="height: 50px;"></div>
 		
+		<%if(courseRegistration != null){ %>
 		<h2>Bình luận</h2>
 		<form action="<%=request.getContextPath()%>/course/comment" method="post">
 		<input type="hidden" name="courseId" value="<%=course.getId()%>">
@@ -188,6 +191,9 @@
 		</div>
 		<button type="submit" class="btn btn-primary">Bình luận</button>
 		</form>
+		<%} %>
+		
+
 		<div class="row" style="height: 50px;"></div>
 		
 		<div class="course-use-title" style="font-size: 28px; padding-bottom: 20px;"><b>Bình luận của mọi người</b></div>

@@ -1,5 +1,8 @@
 package com.green.controller;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServlet;
 
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.green.config.Alert;
+import com.green.config.AuthContext;
 import com.green.config.MessageBox;
 import com.green.config.MsgType;
 import com.green.entity.Profile;
@@ -27,6 +31,8 @@ public class RegisController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 
 	private static final String REGIS_VIEW_NAME = "regis";
+	@Autowired
+	private AuthContext authContext;
 	
 	@Autowired
 	private AccountService accountService;
@@ -47,6 +53,14 @@ public class RegisController extends HttpServlet{
 	@PostMapping
 	public String processSubmitRegis(@ModelAttribute("regisModel") RegisModel regisModel,
 									Model model, ServletRequest request) {
+		Pattern pattern = Pattern.compile("^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$");
+		Matcher matcher = pattern.matcher(regisModel.getEmail());
+				
+		if(!matcher.matches()) {
+			alert.addMessage("Email khong dung dinh dang", MsgType.warning);
+			return REGIS_VIEW_NAME;
+		}
+		
 		// kiem tra
 		if (regisModel.getEmail() == null || regisModel.getEmail().isEmpty()) {
 			alert.addMessage("Vui long nhap email!", MsgType.warning);
@@ -87,6 +101,7 @@ public class RegisController extends HttpServlet{
 											profile.setSpecialize(specialize);
 											profile.setUserType(2);
 											profileService.update(profile);
+											authContext.setProfile(profile);
 											alert.addMessage("Đăng ký thành công", MsgType.success);
 											return "redirect:/";
 		

@@ -77,6 +77,23 @@ public class CourseSubjectDao extends BaseDao<CourseSubjects, Integer> {
 		
 		return list.get(0);
 	}
+	
+	public CourseSubjects findBysubjectId(Subjects subjectsId) {
+		
+		
+		StringBuilder hql = new StringBuilder();
+		hql.append("from CourseSubjects where subjects = :subjects");
+		Query query = getFactory().openSession().createQuery(hql.toString(), CourseSubjects.class);
+		query.setParameter("subjects", subjectsId);
+		
+		List<CourseSubjects> list = query.getResultList();
+		
+		if (list.isEmpty()) {
+			return null;
+		}
+		
+		return list.get(0);
+	}
 
 	public long count(String filter) {
 		StringBuilder hql = new StringBuilder();

@@ -49,9 +49,9 @@ h2 {
 								<tr>
 									<td>User Type</td>
 									<td><select name="userType">
-											<option value="0">Học viên</option>
-											<option value="1">Giáo viên</option>
-											<option value="2">Trung tâm</option>
+											<option value="1">Học viên</option>
+											<option value="2">Giáo viên</option>
+											<option value="3">Trung tâm</option>
 									</select></td>
 								</tr>
 								<tr>

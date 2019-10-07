@@ -24,7 +24,7 @@ public class Subjects {
 
 	@Column(name = "description", columnDefinition = "nvarchar(MAX)")
 	private String description;
-
+	
 	@Column(name = "author")
 	private int author;
 

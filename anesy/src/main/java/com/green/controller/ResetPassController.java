@@ -2,6 +2,7 @@ package com.green.controller;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,7 +39,7 @@ public class ResetPassController extends HttpServlet{
 	}
 	
 	@PostMapping
-	public String processSubmitRegis(ServletRequest request) {
+	public String processSubmitRegis(HttpServletRequest request) {
 		// kiem tra
 		if (request.getParameter("email") == null || request.getParameter("email").isEmpty()) {
 			alert.addMessage("Vui long nhap email!", MsgType.warning);

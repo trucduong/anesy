@@ -92,7 +92,7 @@ public class ProfileController {
 		
 		profileservice.update(profile);
 		authContext.setProfile(profile);
-		
+		alert.addMessage("Cập nhật thành công", MsgType.success);
 		return "redirect:/profile/info";
 	}
 
@@ -139,7 +139,7 @@ public class ProfileController {
 		
 		account.setPassword(newpass);
 		accountservice.update(account);
-		alert.addMessage("Cập nhật thành công");
+		alert.addMessage("Cập nhật thành công", MsgType.success);
 		return "profile/password";
 	}
 	
