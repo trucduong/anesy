@@ -57,7 +57,7 @@ public class LessonDao extends BaseDao<Lesson, Integer> {
 		StringBuilder hql = new StringBuilder();
 		hql.append("select * from lesson le where 1=1");
 		if (filter != null) {
-			hql.append(" and LOWER(le.name) like '%").append(filter.toLowerCase()).append("%'");
+			hql.append(" and LOWER(le.name) like N'%").append(filter.toLowerCase()).append("%'");
 		}
 		
 		Query query = getFactory().openSession().createNativeQuery(hql.toString(), Lesson.class);
@@ -71,7 +71,7 @@ public class LessonDao extends BaseDao<Lesson, Integer> {
 		StringBuilder hql = new StringBuilder();
 		hql.append("select count(*) from lesson le where 1=1");
 		if (filter != null) {
-			hql.append(" and LOWER(le.name) like '%").append(filter.toLowerCase()).append("%'");
+			hql.append(" and LOWER(le.name) like N'%").append(filter.toLowerCase()).append("%'");
 		}
 		
 		Query query = getFactory().openSession().createNativeQuery(hql.toString());

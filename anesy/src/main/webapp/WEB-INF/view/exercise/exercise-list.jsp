@@ -70,10 +70,10 @@
 	       <td><%=exercise.getSubjects().getName() %></td>
 	      <td>
 	      	<form action="exercise/<%=exercise.getId() %>" method="get">
-	      		<button type="submit">Update</button>
+	      		<button class="btn btn-default btn-sm" type="submit"><i class="material-icons">edit</i></button>
 	      	</form>
 	      	<form action="exercise/delete/<%=exercise.getId() %>" method="post">
-	      		<button type="submit">Delete</button>
+	      		<button class="btn btn-default btn-sm" type="submit"><i class="material-icons">delete</i></button>
 	      	</form>
 	      </td>
 	    </tr>

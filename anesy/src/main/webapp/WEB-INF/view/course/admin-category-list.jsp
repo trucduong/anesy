@@ -68,10 +68,10 @@
 	      <td><%=category.getDescription() %></td>
 	      <td>
 	      	<form class="action-form" action="course-category/<%=category.getId() %>" method="get">
-	      		<button type="submit">Update</button>
+	      		<button class="btn btn-default btn-sm" type="submit"><i class="material-icons">edit</i></button>
 	      	</form>
 	      	<form class="action-form" action="course-category/delete/<%=category.getId() %>" method="post">
-	      		<button type="submit">Delete</button>
+	      		<button class="btn btn-default btn-sm" type="submit"><i class="material-icons">delete</i></button>
 	      	</form>
 	      </td>
 	    </tr>
